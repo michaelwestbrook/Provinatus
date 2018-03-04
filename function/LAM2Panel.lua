@@ -465,7 +465,7 @@ function TeamFormation_createLAM2Panel()
 		end
 	end
 
-	if GetUnitName("player") == "Elium" or GetUnitName("player") == "Elena d'Alizarine" then -- Just for me ;) (Prevent crash)
+	if GetUnitName("player") == "Skit'tles" then -- Just for me ;) (Prevent crash)
 		table.insert(optionsData, {
 			type = "submenu",
 			name = "Espace de développement",

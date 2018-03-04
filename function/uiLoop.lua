@@ -327,7 +327,7 @@ local function TeamFormation_uiLoop()
 
 	ProvTF.numUpdate = ProvTF.numUpdate + 1
 
-	local LAM2Panel = WINDOW_MANAGER:GetControlByName("ProvisionsTeamFormationLAM2Panel")
+	local LAM2Panel = WINDOW_MANAGER:GetControlByName("ProvinatusLAM2Panel")
 
 	if updateIsNecessary(1, "LAM2PanelisHidden", not LAM2Panel:IsHidden()) then
 		if not LAM2Panel:IsHidden() then

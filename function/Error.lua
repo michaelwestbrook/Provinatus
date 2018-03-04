@@ -19,7 +19,7 @@ local function TeamFormation_ErrorHandler(error)
 	local message = "--- [[ Prov's TeamFormation - Error L48 - Msg n°" .. tickError .. " ]] --- " .. GetTimeString() .. "." .. GetFrameTimeSeconds() .. "\n" .. error
 
 	message = message
-	:gsub("/AddOns/ProvisionsTeamFormation/", "")
+	:gsub("/AddOns/Provinatus/", "")
 	:gsub("...C.: in function 'xpcall'(.*)", "")
 	:gsub("\nstack traceback:\n.", "\n    from: ")
 	:gsub("\n[^\n]*$", "")

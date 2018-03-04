@@ -1,6 +1,6 @@
 ProvTF =
 {
-	name = "ProvisionsTeamFormation",
+	name = "Provinatus",
 	namePublic = "Prov's TeamFormation",
 	nameColor = "|cFF9999Team|cFF0000Formation|r",
 	author = "|c00C000Provision|r",
