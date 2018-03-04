@@ -14,7 +14,7 @@ end
 function ArrowReticle.UpdateTexture(DistanceToTarget, DX, DY, AngleToTarget, Linear, AbsoluteLinear)
   if not Arrow then
     return
-  elseif IsUnitGroupLeader("player") then
+  elseif IsUnitSoloOrGroupLeader("player") then
     Arrow:SetAlpha(0)
     return
   end
