@@ -1,15 +1,8 @@
 <GuiXml>
   <Controls>
     <TopLevelControl name="CrownPointerThingIndicator" clampedToScreen="true">
-      <Dimensions x="58" y="58" />
-      <Anchor point="BOTTOM" relativeTo="GuiRoot" relativePoint="CENTER" offsetY="-20" />
+      <Anchor point="CENTER" relativeTo="GuiRoot" relativePoint="CENTER" />
       <OnUpdate>CrownPointerThing.onUpdate()</OnUpdate>
-      <Controls>
-        <Label name="$(parent)Label" width="200" height="25" font="ZoFontWinH1" inheritAlpha="true" color="FF0000"
-            wrapMode="TRUNCATE" verticalAlignment="TOP" horizontalAlignment="CENTER">
-          <Anchor point="TOP" relativeTo="$(parent)" relativePoint="TOP" />
-        </Label>
-      </Controls>
     </TopLevelControl>
   </Controls>
 </GuiXml>

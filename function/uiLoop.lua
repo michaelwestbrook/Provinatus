@@ -142,6 +142,10 @@ end
 local function TeamFormation_UpdateIcon(index, sameZone, isDead, isInCombat)
 	local unitTag = (index ~= 0) and ("group" .. index) or "player"
 	local name = GetUnitName(unitTag)
+	if name == GetUnitName("player") then
+		ProvTF.UI.Player[index].Icon:SetAlpha(0) 
+		return 
+	end
 	local health, maxHealth, _ = GetUnitPower(unitTag, POWERTYPE_HEALTH)
 	local sizeHealthBar = zo_round(24 * health / maxHealth)
 	local isUnitBeingResurrected = isDead and IsUnitBeingResurrected(unitTag)
