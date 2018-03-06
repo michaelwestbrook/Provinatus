@@ -2,7 +2,7 @@
 Added an arrow that continuously points to the group leader to [Provision's Team Formation](http://www.esoui.com/downloads/info1135-ProvisionsTeamFormation.html) (a mod that displays teammates position and health on a heads-up display).
 
 ## Provision's Team Formation
-If I could only run one mod in ESO it would be Provision's Team Formation. It makes it super easy to know what your group is going on with your group. 
+If I could only run one mod in ESO it would be Provision's Team Formation. It makes it super easy to know what is going on with your group. 
 
 ## Currently, most code belongs to [Provinatus](http://www.esoui.com/forums/member.php?action=getinfo&userid=18354) and his/her original mod is hosted [here](http://www.esoui.com/downloads/info1135-ProvisionsTeamFormation.html) below is an excerpt from the description.
 >TeamFormation is a user Interface for The Elder Scrolls Online, designed to show the positions and health of your teammates, like a radar. I'm happy to share my addon with you, but please don't make a fork of this addon without my authorization.
