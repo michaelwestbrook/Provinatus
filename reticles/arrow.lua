@@ -14,14 +14,14 @@ end
 function ArrowReticle.UpdateTexture(DistanceToTarget, DX, DY, AngleToTarget, Linear, AbsoluteLinear)
   if not Arrow then
     return
-  elseif IsUnitSoloOrGroupLeader("player") then
+  elseif IsUnitSoloOrGroupLeader("player") or ZO_ReticleContainer:IsHidden() then
     Arrow:SetAlpha(0)
     return
   end
-  -- From Exterminatus
-  local R = 1
-  local G = 1 - AbsoluteLinear
-  local B = 1 - math.min(AbsoluteLinear, 0.05) * 20
+  local AbsAngleToTarget = math.abs(AngleToTarget)
+  local R = AbsAngleToTarget / 2
+  local G = math.pi - AbsAngleToTarget
+  local B = 0
   Arrow:SetTextureRotation(math.pi - AngleToTarget)
   Arrow:SetColor(R, G, B)
 end
