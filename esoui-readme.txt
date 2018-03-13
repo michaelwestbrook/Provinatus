@@ -22,6 +22,7 @@ You can easily see the positions and health of your teammates :
 If I could only run 2 mods, it would be Team Formation and [URL="http://www.esoui.com/downloads/info329-0.1.html"]Exterminatus Group Leader[/URL]. However, Group Leader stopped working for me and inspired me to delve into Lua and ESO modding by recreating some of the features I loved most about Exterminatus Group Leader.
 
 [SIZE="4"]In the below screenshots, the part I created is the big arrow in the center of the screen. The rest of the HUD is Provision's work.[/SIZE]
+Note: Provision has given his/her blessing to modify their code as long as I provide a link to the original mod and specify that I have modified their work. Provision has created a great mod and I only aim to build off of his/her work.
 
 [IMG]https://raw.githubusercontent.com/michaelwestbrook/Provinatus/master/images/crown-down.png[/IMG]
 [IMG]https://raw.githubusercontent.com/michaelwestbrook/Provinatus/master/images/res-crown.png[/IMG]
