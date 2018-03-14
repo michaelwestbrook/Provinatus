@@ -1,9 +1,9 @@
 ProvTF =
 {
 	name = "Provinatus",
-	namePublic = "Prov's TeamFormation",
-	nameColor = "|cFF9999Team|cFF0000Formation|r",
-	author = "|c00C000Provision|r",
+	namePublic = "Provinatus",
+	nameColor = "|cFF9999Provinatus|r",
+	author = "|c00C000Provision|r |c00C0FFAlbinoPython|r",
 	version = "1.2.5", --3 endroits
 	CPL = nil,
 	defaults =

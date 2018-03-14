@@ -182,6 +182,8 @@ local function TeamFormation_UpdateIcon(index, sameZone, isDead, isInCombat)
 			ProvTF.UI.Player[index].Icon:SetTexture("/esoui/art/icons/poi/poi_groupboss_" .. iconPath .. "complete.dds")
 			if isGroupLeader then
 				ProvTF.UI.Player[index].Icon:SetDimensions(48, 48)
+				ProvTF.UI.Player[index].Icon:SetTexture(ProvinatusConfig.PlayerIcons.Crown.Dead)
+				ProvTF.UI.Player[index].Icon:SetAlpha(1)
 			else
 				ProvTF.UI.Player[index].Icon:SetDimensions(32, 32)
 			end
@@ -196,7 +198,7 @@ local function TeamFormation_UpdateIcon(index, sameZone, isDead, isInCombat)
 			ProvTF.UI.Player[index].Icon:SetTexture("/esoui/art/lfg/lfg_" .. role .. "_up.dds")
 			ProvTF.UI.Player[index].Icon:SetDimensions(32, 32)
 		elseif isGroupLeader then
-			ProvTF.UI.Player[index].Icon:SetTexture("EsoUI/Art/Compass/groupLeader.dds")
+			ProvTF.UI.Player[index].Icon:SetTexture(ProvinatusConfig.PlayerIcons.Crown.Alive)
 			ProvTF.UI.Player[index].Icon:SetDimensions(32, 32)
 		elseif class ~= "nil" then
 			ProvTF.UI.Player[index].Icon:SetTexture("/esoui/art/icons/class/class_" .. class .. ".dds")
