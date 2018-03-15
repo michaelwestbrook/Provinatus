@@ -21,17 +21,17 @@ If I could only run one mod in ESO it would be Provision's Team Formation. It ma
 ## Provinatus
 If I could only run 2 mods, it would be Team Formation and [Exterminatus Group Leader](http://www.esoui.com/downloads/info329-0.1.html). However, Group Leader stopped working for me and inspired me to delve into Lua and ESO modding by recreating some of the features I loved most about Exterminatus Group Leader.
 
-![Provision's Team Formation in action](images/TF_low.jpg) 
+![Provision's Team Formation in action](images/full-size-images/TF_low.jpg) 
 
 ## In the below screenshots, the part I created is the big arrow in the center of the screen. The rest of the HUD is Provision's work.
 
-![Such wow!](images/res-at-camp.png)
+![Such wow!](images/full-size-images/res-at-camp.png)
 ### I just spawned at a camp! Where the hell is crown? (The mini map is [Votan's Minimap](http://www.esoui.com/downloads/info1399-VotansMinimap.html))
 
-![Amazazing](images/follow-crown.png)
+![Amazazing](images/full-size-images/follow-crown.png)
 ### Indicator shows I am on headed towards crown
 
-![Oh no! Crown is hurt!](images/crown-hurt.png)
+![Oh no! Crown is hurt!](images/full-size-images/crown-hurt.png)
 ### You can see the crown icon is a little red as he takes damage
 
 ### Special thanks to Provision for letting me use their code. It was not trivial making the head's up display and it was implemented beautifully.
