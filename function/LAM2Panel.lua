@@ -446,6 +446,19 @@ function TeamFormation_createLAM2Panel()
 				},
 			},
 		},
+		{
+			type = "checkbox",
+			name = "Enable debug?",
+			-- TODO I really need to get strings from configs.
+			-- tooltip = GetString(SI_TF_SETTING_ENABLED_TOOLTIP),
+			getFunc = function() 
+				return ProvinatusConfig.Debug
+			end,
+			setFunc = function(value)
+				DebugSlashCommands.SetDebug(value)
+			end,
+			width = "full",
+		}
 	}
 
 	SLASH_COMMANDS["/tfrainbow"] = function()

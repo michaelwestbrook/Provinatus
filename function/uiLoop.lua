@@ -179,7 +179,7 @@ local function TeamFormation_UpdateIcon(index, sameZone, isDead, isInCombat)
 
 			if isGroupLeader then
 				ProvTF.UI.Player[index].Icon:SetDimensions(48, 48)
-				ProvTF.UI.Player[index].Icon:SetTexture(ProvinatusConfig.CrownPointer.Dead)
+				ProvTF.UI.Player[index].Icon:SetTexture(ProvinatusConfig.PlayerIcons.Crown.Dead)
 				ProvTF.UI.Player[index].Icon:SetAlpha(ProvinatusConfig.CrownPointer.Alpha)
 			else
 				ProvTF.UI.Player[index].Icon:SetDimensions(32, 32)

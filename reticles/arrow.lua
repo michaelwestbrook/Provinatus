@@ -10,8 +10,19 @@ function ArrowReticle.Initialize()
 end
 
 function ArrowReticle.UpdateTexture(DistanceToTarget, DX, DY, AngleToTarget, Linear, AbsoluteLinear)
+  if ProvinatusConfig.Debug then
+    DistanceToTarget = ProvinatusConfig.DebugSettings.Reticle.DistanceToTarget
+    DX = ProvinatusConfig.DebugSettings.Reticle.DX
+    DY = ProvinatusConfig.DebugSettings.Reticle.DY
+    AngleToTarget = ProvinatusConfig.DebugSettings.Reticle.AngleToTarget
+    Linear = ProvinatusConfig.DebugSettings.Reticle.Linear
+    AbsoluteLinear = ProvinatusConfig.DebugSettings.Reticle.AbsoluteLinear
+  end
+
   if not Arrow then
     return
+  elseif ProvinatusConfig.Debug then
+    Arrow:SetAlpha(1)
   elseif IsUnitSoloOrGroupLeader("player") or ZO_ReticleContainer:IsHidden() then
     Arrow:SetAlpha(0)
     return

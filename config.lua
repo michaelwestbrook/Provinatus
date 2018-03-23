@@ -23,5 +23,16 @@ ProvinatusConfig = {
     healer = {
       Alive = "/esoui/art/lfg/lfg_healer_up.dds"
     }
+  },
+  Debug = false,
+  DebugSettings = {
+    Reticle = {
+      DistanceToTarget = 0,
+      DX = 0,
+      DY = 0,
+      AngleToTarget = 0.0,
+      Linear = 0,
+      AbsoluteLinear = 0
+    }
   }
 }

@@ -1,6 +1,6 @@
 ﻿## Title: |c00C000Prov|r's |cFF9999Team|cFF0000Formation|r 1.2.5
 ## Description: Adds a pointer to crown to Provisions Team Formation.
-## Author: |c00C000Provision|r |c0000FFAlbinoPython|r
+## Author: |c00C000Provision|r |cFF69B4AlbinoPython|r
 ## SavedVariables: ProvTFSV CrownPointerThingSavedVariables
 ## OptionalDependsOn: LibStub LibAddonMenu-2.0
 ## APIVersion: 100022
@@ -31,6 +31,9 @@ lang/$(language).lua
 
 config.lua
 header.lua
+
+; TODO Disable this in release.
+debug/slash-commands.lua
 
 reticles/arrow.lua
 reticles/elastic-arrows.lua
