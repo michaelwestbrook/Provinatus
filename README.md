@@ -1,7 +1,9 @@
-Provinatus
+## Provinatus
 Added an arrow that continuously points to the group leader to [Provision's Team Formation](http://www.esoui.com/downloads/info1135-ProvisionsTeamFormation.html) (a mod that displays teammates position and health on a heads-up display).
 
-Available on [Minion](https://minion.mmoui.com/) and [ESOUI](http://www.esoui.com/downloads/info1943-Provinatus.html)
+Main page on [ESOUI](http://www.esoui.com/downloads/info1943-Provinatus.html)
+
+Also available through [Minion](http://minion.mmoui.com/) addon manager
 
 ## Provision's Team Formation
 If I could only run one mod in ESO it would be Provision's Team Formation. It makes it super easy to know what is going on with your group. 
