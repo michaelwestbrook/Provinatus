@@ -53,8 +53,6 @@ ZO_CreateStringId("SI_TF_SETTING_YOURALPHA_TOOLTIP", "0 = Versteckt\nVerändere 
 ZO_CreateStringId("SI_TF_SETTING_ROLE", "Rollen Symbol")
 ZO_CreateStringId("SI_TF_SETTING_ROLE_TOOLTIP", "Zeigt das Rollen Symbol anstelle des Klassen Symols.")
 
-ZO_CreateStringId("SI_TF_SETTING_HRADDON", "Passe die Farbe der Symbole mit den folgenden Parametern an.");
-
 ZO_CreateStringId("SI_TF_SETTING_COLOROPTIONS", "Farbeinstellungen")
 ZO_CreateStringId("SI_TF_SETTING_COLOROPTIONS_TOOLTIP", "Stelle die Farbe der dargestellten Symbole in TeamFormation an.")
 ZO_CreateStringId("SI_TF_SETTING_COLORRESET", "Zurücksetzen")

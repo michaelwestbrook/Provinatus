@@ -53,8 +53,6 @@ ZO_CreateStringId("SI_TF_SETTING_YOURALPHA_TOOLTIP", "0 = Masqué\nModifie la tr
 ZO_CreateStringId("SI_TF_SETTING_ROLE", "Afficher le rôle")
 ZO_CreateStringId("SI_TF_SETTING_ROLE_TOOLTIP", "Affiche le rôle au lieu de l'icone de classe.")
 
-ZO_CreateStringId("SI_TF_SETTING_HRADDON", "[NOUVEAU] Personnaliser vos icônes avec le paramètre suivant.");
-
 ZO_CreateStringId("SI_TF_SETTING_COLOROPTIONS", "Personnalisation des couleurs")
 ZO_CreateStringId("SI_TF_SETTING_COLOROPTIONS_TOOLTIP", "Permet de choisir des couleurs personnalisées pour les icônes.")
 ZO_CreateStringId("SI_TF_SETTING_COLORRESET", "Reset")

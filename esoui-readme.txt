@@ -1,5 +1,13 @@
 [SIZE="7"]Provinatus[/SIZE]
-Added an arrow that continuously points to the group leader to [URL="http://www.esoui.com/downloads/info1135-ProvisionsTeamFormation.html"]Provision's Team Formation[/URL].
+Modified [URL="http://www.esoui.com/downloads/info1135-ProvisionsTeamFormation.html"]Provision's Team Formation[/URL] to include a big fat arrow in the center of your screen that directs you to the team leader.
+
+[SIZE="5"][COLOR="Plum"]Now with more configurations![/COLOR][/SIZE]
+[LIST]
+[*]Edit the size of the crown pointer thing
+[*]Change the transparency of the crown pointer
+[*]Decide not to show the damn thing at all
+[*]Enable 'debug mode' that shows the crown and enables debug slash commands
+[/LIST]
 
 [SIZE="5"]Provision's Team Formation[/SIZE]
 If I could only run one mod in ESO it would be Provision's Team Formation. It makes it super easy to know what is going on with your group. You can easily see who is injured or dead and easily find out where the rest of your team is.
@@ -8,7 +16,7 @@ Currently, most of the code belongs to [URL="http://www.esoui.com/forums/member.
 
 [QUOTE]TeamFormation is a user Interface for The Elder Scrolls Online, designed to show the positions and health of your teammates, like a radar. I'm happy to share my addon with you, but please don't make a fork of this addon without my authorization.
 
-I looking for German translation, and english checking for correct grammar and spelling of TeamFormation's settings. See this post.
+I looking for German translation, and english checking for correct grammar and spelling of TeamFormation's settings. See [URL="http://www.esoui.com/forums/showthread.php?t=4841"]this post[/URL].
 
 You can easily see the positions and health of your teammates :
 
@@ -33,5 +41,8 @@ Note: Provision has given his/her blessing to modify their code as long as I pro
 
 [IMG]https://raw.githubusercontent.com/michaelwestbrook/Provinatus/master/images/follow-crown.png[/IMG]
 [SIZE="3"][I][B][COLOR="Plum"]You can watch your flanks while crown zig zags all over the place. (Not responsible for you jumping off a cliff)[/COLOR][/B][/I][/SIZE]
+
+[IMG]https://raw.githubusercontent.com/michaelwestbrook/Provinatus/master/images/settings.png[/IMG]
+[SIZE="3"][I][B][COLOR="Plum"]Now able to control size and transparency of the crown pointer.[/COLOR][/B][/I][/SIZE]
 
 [SIZE=4]Source code is located on [URL="https://github.com/michaelwestbrook/Provinatus"]my GitHub page[/URL]. Now accepting pull requests. If you have any problems with this mod or how to make it better, please raise [URL="https://github.com/michaelwestbrook/Provinatus/issues"]an issue here[/URL].[/SIZE]

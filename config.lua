@@ -1,9 +1,10 @@
+-- Note ALL settings are overridden by saved variables.
 ProvinatusConfig = {
   CrownPointer = {
     -- Controls transparency of the central crown pointer thing.
+    Enabled = true,
     Alpha = 1,
-    Width = 48,
-    Height = 48,
+    Size = 50,
     Texture = "esoui/art/floatingmarkers/quest_icon_assisted.dds"
   },
   ProvsIcons = {
@@ -15,13 +16,16 @@ ProvinatusConfig = {
       Dead = "/esoui/art/icons/poi/poi_groupboss_incomplete.dds"
     },
     dps = {
-      Alive = "/esoui/art/lfg/lfg_dps_up.dds"
+      Alive = "/esoui/art/lfg/lfg_dps_up.dds",
+      Dead = "/esoui/art/icons/poi/poi_groupboss_incomplete.dds"
     },
     tank = {
-      Alive = "/esoui/art/lfg/lfg_tank_up.dds"
+      Alive = "/esoui/art/lfg/lfg_tank_up.dds",
+      Dead = "/esoui/art/icons/poi/poi_groupboss_incomplete.dds"
     },
     healer = {
-      Alive = "/esoui/art/lfg/lfg_healer_up.dds"
+      Alive = "/esoui/art/lfg/lfg_healer_up.dds",
+      Dead = "/esoui/art/icons/poi/poi_groupboss_incomplete.dds"
     }
   },
   Debug = false,

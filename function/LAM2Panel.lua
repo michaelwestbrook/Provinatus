@@ -19,6 +19,13 @@ local function TeamFormation_mapJRULES()
 	return TeamFormation_mapChoices(colorizePseudo, ProvTF.vars.jRules)
 end
 
+local function ResetCrownPointer()
+	CrownPointerThing.SavedVars.CrownPointer.Enabled = ProvinatusConfig.CrownPointer.Enabled;
+	CrownPointerThing.SavedVars.CrownPointer.Alpha = ProvinatusConfig.CrownPointer.Alpha;
+	CrownPointerThing.SavedVars.CrownPointer.Size = ProvinatusConfig.CrownPointer.Size
+	CrownPointerThing.SavedVars.Debug = ProvinatusConfig.Debug;
+end
+
 function TeamFormation_createLAM2Panel()
 	local panelData =
 	{
@@ -40,6 +47,7 @@ function TeamFormation_createLAM2Panel()
 			TeamFormation_SetHidden(not ProvTF.vars.enabled)
 
 			TeamFormation_ResetRefreshRate()
+			ResetCrownPointer()
 		end,
 	}
 
@@ -260,10 +268,6 @@ function TeamFormation_createLAM2Panel()
 			},
 		},
 		{
-			type = "description",
-			text = GetString(SI_TF_SETTING_HRADDON),
-		},
-		{
 			type = "submenu",
 			name = GetString(SI_TF_SETTING_COLOROPTIONS),
 			controls =
@@ -447,18 +451,73 @@ function TeamFormation_createLAM2Panel()
 			},
 		},
 		{
-			type = "checkbox",
-			name = "Enable debug?",
-			-- TODO I really need to get strings from configs.
-			-- tooltip = GetString(SI_TF_SETTING_ENABLED_TOOLTIP),
-			getFunc = function() 
-				return ProvinatusConfig.Debug
-			end,
-			setFunc = function(value)
-				DebugSlashCommands.SetDebug(value)
-			end,
-			width = "full",
-		}
+			type = "submenu",
+			name = "Crown Pointer Thing",
+			controls ={
+			{
+				type = "checkbox",
+				name = "Enable Crown Pointer Thing?",
+				-- TODO I really need to get strings from configs.
+				-- tooltip = GetString(SI_TF_SETTING_ENABLED_TOOLTIP),
+				getFunc = function() 
+					return CrownPointerThing.SavedVars.CrownPointer.Enabled
+				end,
+				setFunc = function(value)
+					CrownPointerThing.SavedVars.CrownPointer.Enabled = value
+				end,
+				width = "full",
+			},
+			{
+				type = "slider",
+				-- TODO still no config strings? jeeze
+				name = "Crown Pointer Transparency",
+				-- tooltip = GetString(SI_TF_SETTING_JRULES_PICKPSEUDO_TOOLTIP),
+				min = 10, max = 100, step = 1,
+				getFunc = function()
+					return CrownPointerThing.SavedVars.CrownPointer.Alpha * 100
+				end,
+				setFunc = function(value)
+					CrownPointerThing.SavedVars.CrownPointer.Alpha = value / 100
+				end,
+				width = "half",
+				disabled = function() 
+					return not CrownPointerThing.SavedVars.CrownPointer.Enabled
+				end,
+			},
+			{
+				type = "slider",
+				-- TODO still no config strings? jeeze
+				name = "Crown pointer size",
+				-- tooltip = GetString(SI_TF_SETTING_JRULES_PICKPSEUDO_TOOLTIP),
+				min = 20, max = 100, step = 1,
+				getFunc = function()
+					return CrownPointerThing.SavedVars.CrownPointer.Size
+				end,
+				setFunc = function(value)
+					CrownPointerThing.SavedVars.CrownPointer.Size = value
+				end,
+				width = "half",
+				disabled = function() 
+					return not CrownPointerThing.SavedVars.CrownPointer.Enabled
+				end
+			},
+			{
+				type = "checkbox",
+				name = "Enable debug?",
+				-- TODO I really need to get strings from configs.
+				-- tooltip = GetString(SI_TF_SETTING_ENABLED_TOOLTIP),
+				getFunc = function() 
+					return CrownPointerThing.SavedVars.Debug
+				end,
+				setFunc = function(value)
+					DebugSlashCommands.SetDebug(value)
+				end,
+				width = "full",
+				disabled = function() 
+					return not CrownPointerThing.SavedVars.CrownPointer.Enabled
+				end
+			}}
+		},
 	}
 
 	SLASH_COMMANDS["/tfrainbow"] = function()
@@ -478,67 +537,68 @@ function TeamFormation_createLAM2Panel()
 		end
 	end
 
-	local MyName = GetUnitName("player")
-	if MyName == "Elium" or MyName == "Elena d'Alizarine" or MyName == "Skit'tles" then -- Just for us ;) (Prevent crash)
-		table.insert(optionsData, {
-			type = "submenu",
-			name = "Espace de développement",
-			controls =
-			{
-				[1] =
-				{
-					type = "checkbox",
-					name = "Activer",
-					getFunc = function() return ProvTF.debug.enabled end,
-					setFunc = function(value) ProvTF.debug.enabled = value end,
-					width = "full",
-				},
-				[2] = {
-					type = "slider",
-					name = "Numéro",
-					min = 1, max = 24, step = 1,
-					getFunc = function() return zo_round(ProvTF.debug.pos.num) end,
-					setFunc = function(value) ProvTF.debug.pos.num = value end,
-					width = "half",
-				},
-				[3] = {
-					type = "button",
-					name = "Définir emplacement",
-					func = function()
-						local x, y, heading = GetMapPlayerPosition("player")
-
-						ProvTF.debug.pos.x = x
-						ProvTF.debug.pos.y = y
-						ProvTF.debug.pos.zone = GetUnitZone("player")
-						ProvTF.debug.pos.heading = heading
-					end,
-					width = "half",
-				},
-				[4] = {
-					type = "description",
-					text = "Où utiliser /tfdebug à la position voulue.",
-				},
-			},
-		})
-
-		SLASH_COMMANDS["/tfdebug"] = function()
-			local x, y, heading = GetMapPlayerPosition("player")
-
-			ProvTF.debug.enabled = true
-			ProvTF.debug.pos.x = x
-			ProvTF.debug.pos.y = y
-			ProvTF.debug.pos.zone = GetUnitZone("player")
-			ProvTF.debug.pos.heading = heading
-
-			for n = 1, GetGroupSize() do
-				if GetUnitName("group" .. n) ~= GetUnitName("player") then
-					ProvTF.debug.pos.num = n
-					break
-				end
-			end
-		end
-	end
-
 	ProvTF.CPL = LAM2:RegisterAddonPanel(ProvTF.name .. "LAM2Panel", panelData)
 	LAM2:RegisterOptionControls(ProvTF.name .. "LAM2Panel", optionsData)
 end
+
+-- local MyName = GetUnitName("player")
+
+-- if MyName == "Elium" or MyName == "Elena d'Alizarine" or MyName == "Skit'tles" then -- Just for us ;) (Prevent crash)
+-- 	table.insert(optionsData, {
+-- 		type = "submenu",
+-- 		name = "Espace de développement",
+-- 		controls =
+-- 		{
+-- 			[1] =
+-- 			{
+-- 				type = "checkbox",
+-- 				name = "Activer",
+-- 				getFunc = function() return ProvTF.debug.enabled end,
+-- 				setFunc = function(value) ProvTF.debug.enabled = value end,
+-- 				width = "full",
+-- 			},
+-- 			[2] = {
+-- 				type = "slider",
+-- 				name = "Numéro",
+-- 				min = 1, max = 24, step = 1,
+-- 				getFunc = function() return zo_round(ProvTF.debug.pos.num) end,
+-- 				setFunc = function(value) ProvTF.debug.pos.num = value end,
+-- 				width = "half",
+-- 			},
+-- 			[3] = {
+-- 				type = "button",
+-- 				name = "Définir emplacement",
+-- 				func = function()
+-- 					local x, y, heading = GetMapPlayerPosition("player")
+
+-- 					ProvTF.debug.pos.x = x
+-- 					ProvTF.debug.pos.y = y
+-- 					ProvTF.debug.pos.zone = GetUnitZone("player")
+-- 					ProvTF.debug.pos.heading = heading
+-- 				end,
+-- 				width = "half",
+-- 			},
+-- 			[4] = {
+-- 				type = "description",
+-- 				text = "Où utiliser /tfdebug à la position voulue.",
+-- 			},
+-- 		},
+-- 	})
+
+-- 	SLASH_COMMANDS["/tfdebug"] = function()
+-- 		local x, y, heading = GetMapPlayerPosition("player")
+
+-- 		ProvTF.debug.enabled = true
+-- 		ProvTF.debug.pos.x = x
+-- 		ProvTF.debug.pos.y = y
+-- 		ProvTF.debug.pos.zone = GetUnitZone("player")
+-- 		ProvTF.debug.pos.heading = heading
+
+-- 		for n = 1, GetGroupSize() do
+-- 			if GetUnitName("group" .. n) ~= GetUnitName("player") then
+-- 				ProvTF.debug.pos.num = n
+-- 				break
+-- 			end
+-- 		end
+-- 	end
+-- end

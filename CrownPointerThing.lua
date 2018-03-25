@@ -16,16 +16,11 @@ local function NormalizeAngle(c)
 end
 
 function CrownPointerThing:Initialize()
-  self.savedVariables = ZO_SavedVars:New(string.format("%sSavedVariables", CrownPointerThing.name), 1, nil, {})
+  CrownPointerThing.SavedVars = ZO_SavedVars:NewAccountWide("CrownPointerThingSavedVariables", 1, nil, ProvinatusConfig)
   EVENT_MANAGER:RegisterForEvent(
     CrownPointerThing.name,
     EVENT_PLAYER_ACTIVATED,
     CrownPointerThing.EVENT_PLAYER_ACTIVATED
-  )
-  EVENT_MANAGER:RegisterForEvent(
-    CrownPointerThing.name,
-    EVENT_PLAYER_COMBAT_STATE,
-    CrownPointerThing.EVENT_PLAYER_COMBAT_STATE
   )
 end
 
@@ -55,7 +50,4 @@ function CrownPointerThing.EVENT_ADD_ON_LOADED(event, addonName)
   if addonName == CrownPointerThing.name then
     CrownPointerThing:Initialize()
   end
-end
-
-function CrownPointerThing.EVENT_PLAYER_COMBAT_STATE(event, inCombat)
 end

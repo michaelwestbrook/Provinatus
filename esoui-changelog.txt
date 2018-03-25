@@ -1,0 +1,15 @@
+[SIZE="4"][U][B]24 March 2018[/B][/U][/SIZE]
+[SIZE="3"][B]Added settings menu[/B][/SIZE] [SIZE="2"](Settings are saved account wide.)[/SIZE]
+[B]Enable Crown Pointer[/B] => Enable / Disable Crown Pointer
+[B]Crown Pointer Transparency[/B] => Sets the alpha value of the Crown Pointer
+[B]Crown Pointer Size[/B] => Sets the size of the Crown Pointer
+[B]Enable Debug?[/B] = Force shows Crown Pointer. Can adjust angle with `/pangle <-pi to pi>` slash command
+
+[SIZE=2]minor fixes[/SIZE]
+Remove dead code
+Removed Provision's debug menu for now.
+
+---------------------------------------
+
+3 March 2018
+Settings were still showing Provision's Team Formation. Set it to match this mod's name. Don't want to confuse people and make them think there is a rogue mod installed.

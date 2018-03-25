@@ -53,8 +53,6 @@ ZO_CreateStringId("SI_TF_SETTING_YOURALPHA_TOOLTIP", "0 = Hidden\nChanges the tr
 ZO_CreateStringId("SI_TF_SETTING_ROLE", "Role icon")
 ZO_CreateStringId("SI_TF_SETTING_ROLE_TOOLTIP", "Show role icon instead of class icon.")
 
-ZO_CreateStringId("SI_TF_SETTING_HRADDON", "[NEW] Customize icon color with following parameters.");
-
 ZO_CreateStringId("SI_TF_SETTING_COLOROPTIONS", "Color customization")
 ZO_CreateStringId("SI_TF_SETTING_COLOROPTIONS_TOOLTIP", "Customize the color for the icons displayed in the TeamFormation.")
 ZO_CreateStringId("SI_TF_SETTING_COLORRESET", "Reset")

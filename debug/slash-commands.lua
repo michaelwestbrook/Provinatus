@@ -14,7 +14,7 @@ function DebugSlashCommands.SetDebugAngle(angle)
       error("number expected")
       return
     end
-    ProvinatusConfig.DebugSettings.Reticle.AngleToTarget = castedAngle
+    CrownPointerThing.SavedVars.DebugSettings.Reticle.AngleToTarget = castedAngle
   end
 end
 
@@ -23,10 +23,9 @@ function DebugSlashCommands:AddDebugSlashCommands()
   DebugSlashCommands:AddSlashCommand("/pangle", DebugSlashCommands.SetDebugAngle)
 end
 
--- TODO Obvs this don't belong here
 function DebugSlashCommands.SetDebug(arg)
-  ProvinatusConfig.Debug = arg
-  if ProvinatusConfig.Debug then
+  CrownPointerThing.SavedVars.Debug = arg
+  if CrownPointerThing.SavedVars.Debug then
     d("Enabled Provinatus debug")
     DebugSlashCommands.AddDebugSlashCommands()
   else

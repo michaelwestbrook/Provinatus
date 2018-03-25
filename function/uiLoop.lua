@@ -163,40 +163,38 @@ local function TeamFormation_UpdateIcon(index, sameZone, isDead, isInCombat)
 	-- Set Icon
 	if updateIsNecessary(index, "name", name) or updateIsNecessaryOnGrLeader or updateIsNecessaryOnDead then
 		local class = tostring(CLASS_ID2NAME[GetUnitClassId(unitTag)])
+		local isDps, isHealer, isTank = GetGroupMemberRoles(unitTag)
+		local role = "dps"
+			if isTank then
+				role = "tank"
+			elseif isHealer then
+				role = "healer"
+			end
+
 		ProvTF.UI.Player[index].Icon:SetColor(r, g, b, 1)
 		ProvTF.UI.Player[index].Icon:SetTextureRotation(0)
 		ProvTF.UI.Player[index].Icon:SetDimensions(24, 24)
 		ProvTF.UI.Player[index]:SetHidden(false)
 
 		if isDead then
-			local iconPath = "in"
-
-			if doesUnitHaveResurrectPending then
-				iconPath = ""
-			elseif not isUnitBeingResurrected then
+			if not isUnitBeingResurrected then
 				ProvTF.UI.Player[index].Icon:SetColor(1, 0, 0)
 			end
 
 			if isGroupLeader then
 				ProvTF.UI.Player[index].Icon:SetDimensions(48, 48)
-				ProvTF.UI.Player[index].Icon:SetTexture(ProvinatusConfig.PlayerIcons.Crown.Dead)
-				ProvTF.UI.Player[index].Icon:SetAlpha(ProvinatusConfig.CrownPointer.Alpha)
+				ProvTF.UI.Player[index].Icon:SetTexture(CrownPointerThing.SavedVars.PlayerIcons.Crown.Dead)
+				ProvTF.UI.Player[index].Icon:SetAlpha(CrownPointerThing.SavedVars.CrownPointer.Alpha)
 			else
+				ProvTF.UI.Player[index].Icon:SetTexture(CrownPointerThing.SavedVars.PlayerIcons[role].Dead)
 				ProvTF.UI.Player[index].Icon:SetDimensions(32, 32)
 			end
 		elseif ProvTF.vars.roleIcon then
-			local isDps, isHealer, isTank = GetGroupMemberRoles(unitTag)
-			local role = "dps"
-			if isTank then
-				role = "tank"
-			elseif isHealer then
-				role = "healer"
-			end
-			ProvTF.UI.Player[index].Icon:SetTexture(ProvinatusConfig.PlayerIcons[role])
+			ProvTF.UI.Player[index].Icon:SetTexture(CrownPointerThing.SavedVars.PlayerIcons[role].Alive)
 			ProvTF.UI.Player[index].Icon:SetDimensions(32, 32)
 			ProvTF.UI.Player[index].Icon:SetAlpha()
 		elseif isGroupLeader then
-			ProvTF.UI.Player[index].Icon:SetTexture(ProvinatusConfig.PlayerIcons.Crown.Alive)
+			ProvTF.UI.Player[index].Icon:SetTexture(CrownPointerThing.SavedVars.PlayerIcons.Crown.Alive)
 			ProvTF.UI.Player[index].Icon:SetDimensions(32, 32)
 		elseif class ~= "nil" then
 			ProvTF.UI.Player[index].Icon:SetTexture("/esoui/art/icons/class/class_" .. class .. ".dds")

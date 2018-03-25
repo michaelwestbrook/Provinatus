@@ -3,30 +3,29 @@ ArrowReticle = {}
 local Arrow
 function ArrowReticle.Initialize()
   Arrow = Arrow or WINDOW_MANAGER:CreateControl("Arrow", CrownPointerThingIndicator, CT_TEXTURE)
-  Arrow:SetDimensions(ProvinatusConfig.CrownPointer.Width, ProvinatusConfig.CrownPointer.Height)
-  Arrow:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, 0, ProvinatusConfig.CrownPointer.Height / 2)
-  Arrow:SetTexture(ProvinatusConfig.CrownPointer.Texture)
-  Arrow:SetAlpha(ProvinatusConfig.CrownPointer.Alpha)
+  Arrow:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, 0, CrownPointerThing.SavedVars.CrownPointer.Size / 2)
+  Arrow:SetTexture(CrownPointerThing.SavedVars.CrownPointer.Texture)
 end
 
 function ArrowReticle.UpdateTexture(DistanceToTarget, DX, DY, AngleToTarget, Linear, AbsoluteLinear)
-  if ProvinatusConfig.Debug then
-    DistanceToTarget = ProvinatusConfig.DebugSettings.Reticle.DistanceToTarget
-    DX = ProvinatusConfig.DebugSettings.Reticle.DX
-    DY = ProvinatusConfig.DebugSettings.Reticle.DY
-    AngleToTarget = ProvinatusConfig.DebugSettings.Reticle.AngleToTarget
-    Linear = ProvinatusConfig.DebugSettings.Reticle.Linear
-    AbsoluteLinear = ProvinatusConfig.DebugSettings.Reticle.AbsoluteLinear
-  end
-
-  if not Arrow then
+  if not Arrow or not CrownPointerThing.SavedVars.CrownPointer.Enabled then
     return
-  elseif ProvinatusConfig.Debug then
+  elseif CrownPointerThing.SavedVars.Debug then
     Arrow:SetAlpha(1)
   elseif IsUnitSoloOrGroupLeader("player") or ZO_ReticleContainer:IsHidden() then
     Arrow:SetAlpha(0)
     return
   end
+
+  if CrownPointerThing.SavedVars.Debug then
+    DistanceToTarget = CrownPointerThing.SavedVars.DebugSettings.Reticle.DistanceToTarget
+    DX = CrownPointerThing.SavedVars.DebugSettings.Reticle.DX
+    DY = CrownPointerThing.SavedVars.DebugSettings.Reticle.DY
+    AngleToTarget = CrownPointerThing.SavedVars.DebugSettings.Reticle.AngleToTarget
+    Linear = CrownPointerThing.SavedVars.DebugSettings.Reticle.Linear
+    AbsoluteLinear = CrownPointerThing.SavedVars.DebugSettings.Reticle.AbsoluteLinear
+  end
+  
   -- Why didn't I write a comment here?
   local AbsAngleToTarget = math.abs(AngleToTarget)
   local R = AbsAngleToTarget / 2
@@ -34,5 +33,6 @@ function ArrowReticle.UpdateTexture(DistanceToTarget, DX, DY, AngleToTarget, Lin
   local B = 0
   Arrow:SetTextureRotation(math.pi - AngleToTarget)
   Arrow:SetColor(R, G, B)
-  Arrow:SetAlpha(ProvinatusConfig.CrownPointer.Alpha)
+  Arrow:SetAlpha(CrownPointerThing.SavedVars.CrownPointer.Alpha)
+  Arrow:SetDimensions(CrownPointerThing.SavedVars.CrownPointer.Size, CrownPointerThing.SavedVars.CrownPointer.Size)
 end
