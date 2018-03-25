@@ -1,10 +1,10 @@
-﻿## Title: |c00C000Prov|r's |cFF9999Team|cFF0000Formation|r 1.2.5
+﻿## Title: |c00C000Prov|r's |cFF9999Team|cFF0000Formation|r 0.1.1
 ## Description: Adds a pointer to crown to Provisions Team Formation.
 ## Author: |c00C000Provision|r |cFF69B4AlbinoPython|r
 ## SavedVariables: ProvTFSV CrownPointerThingSavedVariables
 ## OptionalDependsOn: LibStub LibAddonMenu-2.0
 ## APIVersion: 100022
-## Version: 1.2.5
+## Version: 0.1.1
 
 ; LibAddonMenu-2.0 r25 : A library to aid in the creation of option panels.
 libs/LibStub/LibStub.lua

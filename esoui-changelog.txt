@@ -1,3 +1,9 @@
+[SIZE="4"][U][B]25 March 2018[/B][/U][/SIZE]
+Players that are being resurrected or have pending resurrection will now display a white icon.
+This is a fix to a breaking change to Team Formation.
+
+---------------------------------------
+
 [SIZE="4"][U][B]24 March 2018[/B][/U][/SIZE]
 [SIZE="3"][B]Added settings menu[/B][/SIZE] [SIZE="2"](Settings are saved account wide.)[/SIZE]
 [B]Enable Crown Pointer[/B] => Enable / Disable Crown Pointer

@@ -11,21 +11,19 @@ ProvinatusConfig = {
     NonCrownAlpha = 0.3
   },
   PlayerIcons = {
+    Dead = "/esoui/art/icons/poi/poi_groupboss_incomplete.dds",
+    ResurrectionPending = "/esoui/art/icons/poi/poi_groupboss_complete.dds",
     Crown = {
       Alive = "EsoUI/Art/Compass/groupLeader.dds",
-      Dead = "/esoui/art/icons/poi/poi_groupboss_incomplete.dds"
     },
     dps = {
       Alive = "/esoui/art/lfg/lfg_dps_up.dds",
-      Dead = "/esoui/art/icons/poi/poi_groupboss_incomplete.dds"
     },
     tank = {
       Alive = "/esoui/art/lfg/lfg_tank_up.dds",
-      Dead = "/esoui/art/icons/poi/poi_groupboss_incomplete.dds"
     },
     healer = {
       Alive = "/esoui/art/lfg/lfg_healer_up.dds",
-      Dead = "/esoui/art/icons/poi/poi_groupboss_incomplete.dds"
     }
   },
   Debug = false,

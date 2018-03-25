@@ -139,6 +139,47 @@ local function updateIsNecessary(index, key, value)
 	return (oldValue ~= value)
 end
 
+local function SetIcon(unitTag, icon)
+	local class = tostring(CLASS_ID2NAME[GetUnitClassId(unitTag)])
+
+	icon:SetTextureRotation(0)
+	icon:SetHidden(false)
+	if DoesUnitHaveResurrectPending(unitTag) or IsUnitBeingResurrected(unitTag) then
+		icon:SetTexture(CrownPointerThing.SavedVars.PlayerIcons.ResurrectionPending)
+		icon:SetColor(1, 1, 1)
+		-- TODO lower alpha if they are being helped already. icon:SetAlpha(0.5, 0.5)
+	elseif IsUnitDead(unitTag) then
+		icon:SetColor(1, 0, 0)
+		if IsUnitGroupLeader(unitTag) then
+			icon:SetDimensions(48, 48)
+			icon:SetTexture(CrownPointerThing.SavedVars.PlayerIcons.Dead)
+		else
+			icon:SetTexture(CrownPointerThing.SavedVars.PlayerIcons.Dead)
+			icon:SetDimensions(32, 32)
+		end
+	elseif ProvTF.vars.roleIcon then
+		local isDps, isHealer, isTank = GetGroupMemberRoles(unitTag)
+		local role = "dps"
+		if isTank then
+			role = "tank"
+		elseif isHealer then
+			role = "healer"
+		end
+		icon:SetTexture(CrownPointerThing.SavedVars.PlayerIcons[role].Alive)
+		icon:SetDimensions(32, 32)
+	elseif IsUnitGroupLeader(unitTag) then
+		icon:SetTexture(CrownPointerThing.SavedVars.PlayerIcons.Crown.Alive)
+		icon:SetDimensions(32, 32)
+	elseif class ~= "nil" then
+		icon:SetTexture("/esoui/art/icons/class/class_" .. class .. ".dds")
+	else
+		icon:SetTexture("/esoui/art/icons/mapkey/mapkey_groupmember.dds")
+		icon:SetDimensions(16, 16)
+		-- TODO Why is this needed? ProvTF.UI.Player[index].data.name = nil -- WHY?
+		--d("[TF] bug n69: " .. name .. " " .. unitTag)
+	end
+end
+
 local function TeamFormation_UpdateIcon(index, sameZone, isDead, isInCombat)
 	if GetUnitName(unitTag) == GetUnitName("player") then  return end
 	local unitTag = (index ~= 0) and ("group" .. index) or "player"
@@ -162,64 +203,14 @@ local function TeamFormation_UpdateIcon(index, sameZone, isDead, isInCombat)
 
 	-- Set Icon
 	if updateIsNecessary(index, "name", name) or updateIsNecessaryOnGrLeader or updateIsNecessaryOnDead then
-		local class = tostring(CLASS_ID2NAME[GetUnitClassId(unitTag)])
-		local isDps, isHealer, isTank = GetGroupMemberRoles(unitTag)
-		local role = "dps"
-			if isTank then
-				role = "tank"
-			elseif isHealer then
-				role = "healer"
-			end
-
-		ProvTF.UI.Player[index].Icon:SetColor(r, g, b, 1)
-		ProvTF.UI.Player[index].Icon:SetTextureRotation(0)
-		ProvTF.UI.Player[index].Icon:SetDimensions(24, 24)
-		ProvTF.UI.Player[index]:SetHidden(false)
-
-		if isDead then
-			if not isUnitBeingResurrected then
-				ProvTF.UI.Player[index].Icon:SetColor(1, 0, 0)
-			end
-
-			if isGroupLeader then
-				ProvTF.UI.Player[index].Icon:SetDimensions(48, 48)
-				ProvTF.UI.Player[index].Icon:SetTexture(CrownPointerThing.SavedVars.PlayerIcons.Crown.Dead)
-				ProvTF.UI.Player[index].Icon:SetAlpha(CrownPointerThing.SavedVars.CrownPointer.Alpha)
-			else
-				ProvTF.UI.Player[index].Icon:SetTexture(CrownPointerThing.SavedVars.PlayerIcons[role].Dead)
-				ProvTF.UI.Player[index].Icon:SetDimensions(32, 32)
-			end
-		elseif ProvTF.vars.roleIcon then
-			ProvTF.UI.Player[index].Icon:SetTexture(CrownPointerThing.SavedVars.PlayerIcons[role].Alive)
-			ProvTF.UI.Player[index].Icon:SetDimensions(32, 32)
-			ProvTF.UI.Player[index].Icon:SetAlpha()
-		elseif isGroupLeader then
-			ProvTF.UI.Player[index].Icon:SetTexture(CrownPointerThing.SavedVars.PlayerIcons.Crown.Alive)
-			ProvTF.UI.Player[index].Icon:SetDimensions(32, 32)
-		elseif class ~= "nil" then
-			ProvTF.UI.Player[index].Icon:SetTexture("/esoui/art/icons/class/class_" .. class .. ".dds")
-		else
-			ProvTF.UI.Player[index].Icon:SetTexture("/esoui/art/icons/mapkey/mapkey_groupmember.dds")
-			ProvTF.UI.Player[index].Icon:SetDimensions(16, 16)
-			ProvTF.UI.Player[index].data.name = nil
-			--d("[TF] bug n69: " .. name .. " " .. unitTag)
-		end
-	end
-
-	-- Set Icon Color
-	if updateIsNecessary(index, "colorIcon", tostring(r) .. tostring(g) .. tostring(b)) then
-		ProvTF.UI.Player[index].Icon:SetColor(r, g * health / maxHealth, b * health / maxHealth)
+		if updateIsNecessaryOnDead then ProvTF.UI.Player[index].LifeBar:SetHidden(isDead) end 
+		SetIcon(unitTag, ProvTF.UI.Player[index].Icon)
 	end
 
 	-- Set Life
 	if updateIsNecessary(index, "sizeHealthBar", sizeHealthBar) then
 		ProvTF.UI.Player[index].LifeBar:SetDimensions(sizeHealthBar, 1 / GetSetting(SETTING_TYPE_UI, UI_SETTING_CUSTOM_SCALE))
-
 		ProvTF.UI.Player[index].Icon:SetColor(r, g * health / maxHealth, b * health / maxHealth)
-	end
-
-	if updateIsNecessaryOnDead then
-		ProvTF.UI.Player[index].LifeBar:SetHidden(isDead)
 	end
 
 	-- Set Zone
