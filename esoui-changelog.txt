@@ -1,3 +1,9 @@
+[SIZE="4"][U][B]26 March 2018[/B][/U][/SIZE]
+[B]Minor fixes. (Thanks Tiara Ra)
+Crown life bar is no longer displayed.
+Player life bars only show when they are in combat.
+
+
 [SIZE="4"][U][B]25 March 2018[/B][/U][/SIZE]
 Players that are being resurrected or have pending resurrection will now display a white icon.
 This is a fix to a breaking change to Team Formation.

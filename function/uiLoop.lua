@@ -186,6 +186,7 @@ local function TeamFormation_UpdateIcon(index, sameZone, isDead, isInCombat)
 	local name = GetUnitName(unitTag)
 	if name == GetUnitName("player") then
 		ProvTF.UI.Player[index].Icon:SetAlpha(0) 
+		ProvTF.UI.Player[index].LifeBar:SetAlpha(0) 
 		return 
 	end
 	local health, maxHealth, _ = GetUnitPower(unitTag, POWERTYPE_HEALTH)
@@ -226,9 +227,10 @@ local function TeamFormation_UpdateIcon(index, sameZone, isDead, isInCombat)
 	-- Set LifeBar Color
 	if updateIsNecessary(index, "isInCombat", isInCombat) then
 		if isInCombat and name ~= GetUnitName("player") then
+			ProvTF.UI.Player[index].LifeBar:SetAlpha(1)
 			ProvTF.UI.Player[index].LifeBar:SetColor(1, 0, 0)
 		else
-			ProvTF.UI.Player[index].LifeBar:SetColor(.72, .24, .24)
+			ProvTF.UI.Player[index].LifeBar:SetAlpha(0)
 		end
 	end
 
