@@ -1,12 +1,12 @@
 [SIZE="7"]Provinatus[/SIZE]
 Modified [URL="http://www.esoui.com/downloads/info1135-ProvisionsTeamFormation.html"]Provision's Team Formation[/URL] to include a big fat arrow in the center of your screen that directs you to the team leader.
 
-[SIZE="5"][COLOR="Plum"]Now with more configurations![/COLOR][/SIZE]
+[SIZE="5"][COLOR="Plum"]Minor Bug Fixes[/COLOR][/SIZE]
 [LIST]
-[*]Edit the size of the crown pointer thing
-[*]Change the transparency of the crown pointer
-[*]Decide not to show the damn thing at all
-[*]Enable 'debug mode' that shows the crown and enables debug slash commands
+[*]Removed Players' Icon menu. Obsolete
+[*]Removed color picker menu. 
+[*]Added basic language support for French and German (Used Google Translate. Translations welcome)
+[*]Hide Crown Pointer in Battlegrounds. There is no 'Crown' in BG
 [/LIST]
 
 [SIZE="5"]Provision's Team Formation[/SIZE]

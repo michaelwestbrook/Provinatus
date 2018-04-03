@@ -24,6 +24,7 @@ local function ResetCrownPointer()
 	CrownPointerThing.SavedVars.CrownPointer.Alpha = ProvinatusConfig.CrownPointer.Alpha;
 	CrownPointerThing.SavedVars.CrownPointer.Size = ProvinatusConfig.CrownPointer.Size
 	CrownPointerThing.SavedVars.Debug = ProvinatusConfig.Debug;
+	CrownPointerThing.SavedVars.DebugSettings.Reticle.AngleToTarget = ProvinatusConfig.DebugSettings.Reticle.AngleToTarget
 end
 
 function TeamFormation_createLAM2Panel()
@@ -237,228 +238,12 @@ function TeamFormation_createLAM2Panel()
 		},
 		{
 			type = "submenu",
-			name = GetString(SI_TF_SETTING_PLAYERICON),
-			controls =
-			{
-				[1] = {
-					type = "description",
-					text = GetString(SI_TF_SETTING_PLAYERICON_TOOLTIP),
-				},
-				[2] = {
-					type = "slider",
-					name = GetString(SI_TF_SETTING_YOURALPHA) .. " (%)",
-					tooltip = GetString(SI_TF_SETTING_YOURALPHA_TOOLTIP),
-					min = 0, max = 100, step = 1,
-					getFunc = function() return ProvTF.vars.myAlpha * 100 end,
-					setFunc = function(value)
-						ProvTF.vars.myAlpha = value / 100
-					end,
-					width = "full",
-				},
-				[3] = {
-					type = "checkbox",
-					name = GetString(SI_TF_SETTING_ROLE),
-					tooltip = GetString(SI_TF_SETTING_ROLE_TOOLTIP),
-					getFunc = function() return ProvTF.vars.roleIcon end,
-					setFunc = function(value)
-						ProvTF.vars.roleIcon = value
-					end,
-					width = "full",
-				},
-			},
-		},
-		{
-			type = "submenu",
-			name = GetString(SI_TF_SETTING_COLOROPTIONS),
-			controls =
-			{
-				[1] = {
-					type = "description",
-					text = GetString(SI_TF_SETTING_COLOROPTIONS_TOOLTIP),
-				},
-				[2] = {
-					type = "description",
-					text = GetString(SI_TF_SETTING_COLORRESET_TOOLTIP),
-					width = "half",
-				},
-				[3] = {
-					type = "button",
-					name = GetString(SI_TF_SETTING_COLORRESET),
-					tooltip = GetString(SI_TF_SETTING_COLORRESET_TOOLTIP),
-					func = function()
-						ProvTF.vars.jRules = {}
-						WINDOW_MANAGER:GetControlByName("ProvTF#jRulesList"):UpdateChoices({})
-					end,
-					width = "half"
-				},
-				[4] = {
-					type = "header",
-					name = GetString(SI_TF_SETTING_JRULES),
-					width = "full",
-				},
-				[5] = {
-					type = "editbox",
-					name = GetString(SI_TF_SETTING_JRULES_PSEUDOADD), -- or string id or function returning a string
-					tooltip = GetString(SI_TF_SETTING_JRULES_PSEUDOADD_TOOLTIP),
-					getFunc = function()
-						return WINDOW_MANAGER:GetControlByName("ProvTF#jRulesBox").editbox:GetText()
-					end,
-					setFunc = function(pseudo)
-						if not ProvTF.vars.jRules then ProvTF.vars.jRules = {} end
-						if pseudo == "" then return end
-
-						ProvTF.vars.jRules[pseudo] = {1, 1, 1}
-
-						WINDOW_MANAGER:GetControlByName("ProvTF#jRulesBox").editbox:SetText("")
-
-						local ctrl_dropdown = WINDOW_MANAGER:GetControlByName("ProvTF#jRulesList")
-						ctrl_dropdown:UpdateChoices(TeamFormation_mapJRULES())
-						ctrl_dropdown.dropdown:SetSelectedItem(colorizePseudo({1, 1, 1}, pseudo))
-					end,
-					isMultiline = false,
-					isExtraWide = false,
-					width = "full",
-					reference = "ProvTF#jRulesBox",
-				},
-				[6] = {
-					type = "button",
-					name = GetString(SI_TF_SETTING_JRULES_ADD),
-					tooltip = GetString(SI_TF_SETTING_JRULES_PSEUDOADD_TOOLTIP),
-					func = function()
-						local editbox = WINDOW_MANAGER:GetControlByName("ProvTF#jRulesBox").editbox
-						local pseudo = editbox:GetText()
-						if pseudo ~= "" then
-							ProvTF.vars.jRules[pseudo] = {1, 1, 1}
-
-							editbox:SetText("")
-
-							local ctrl_dropdown = WINDOW_MANAGER:GetControlByName("ProvTF#jRulesList")
-							ctrl_dropdown:UpdateChoices(TeamFormation_mapJRULES())
-							ctrl_dropdown.dropdown:SetSelectedItem(colorizePseudo({1, 1, 1}, pseudo))
-						end
-					end,
-					width = "half",
-				},
-				[7] = {
-					type = "slider",
-					name = GetString(SI_TF_SETTING_JRULES_PICKPSEUDO),
-					tooltip = GetString(SI_TF_SETTING_JRULES_PICKPSEUDO_TOOLTIP),
-					min = 1, max = 24, step = 1,
-					getFunc = function()
-						return 0
-					end,
-					setFunc = function(value)
-						local control = WINDOW_MANAGER:GetControlByName("ZO_GroupListList1Row" .. value .. "CharacterName")
-						local text = control and control:GetText() or ""
-						local pseudo = string.match(text, "^[0-9]+\. [^ ]+ (.+)$") or GetUnitName("group" .. value)
-						if pseudo ~= "" then
-							WINDOW_MANAGER:GetControlByName("ProvTF#jRulesBox").editbox:SetText(pseudo)
-						end
-					end,
-					width = "half",
-					disabled = function() return not IsUnitGrouped("player") end,
-				},
-				[8] = {
-					type = "dropdown",
-					name = GetString(SI_TF_SETTING_JRULES_PSEUDOCHOICE),
-					tooltip = GetString(SI_TF_SETTING_JRULES_PSEUDOCHOICE_TOOLTIP),
-					choices = TeamFormation_mapJRULES(),
-					getFunc = function()
-						local selected = WINDOW_MANAGER:GetControlByName("ProvTF#jRulesList").combobox.m_comboBox:GetSelectedItem()
-						return selected
-					end,
-					setFunc = function(var) end,
-					width = "half",
-					reference = "ProvTF#jRulesList",
-				},
-				[9] = {
-					type = "colorpicker",
-					name = GetString(SI_TF_SETTING_JRULES_COLORCHOICE) .. " (RGB)",
-					tooltip = GetString(SI_TF_SETTING_JRULES_COLORCHOICE_TOOLTIP),
-					getFunc = function()
-						local ctrl_dropdown = WINDOW_MANAGER:GetControlByName("ProvTF#jRulesList")
-						local selected = ctrl_dropdown.combobox.m_comboBox:GetSelectedItem()
-						if selected ~= "" then
-							local pseudo = string.match(selected, "^.+\|t (.+)$")
-							return unpack(ProvTF.vars.jRules[pseudo])
-						else
-							return unpack({1, 1, 1, 1})
-						end
-						ctrl_dropdown:UpdateChoices(TeamFormation_mapJRULES())
-					end,
-					setFunc = function(r, g, b, a)
-						local ctrl_dropdown = WINDOW_MANAGER:GetControlByName("ProvTF#jRulesList")
-						local selected = ctrl_dropdown.combobox.m_comboBox:GetSelectedItem()
-						if selected == "" then return end
-
-						local pseudo = string.match(selected, "^.+\|t (.+)$")
-						if value == 0 then
-							r, g, b = 1, 1, 1
-						end
-						ProvTF.vars.jRules[pseudo] = {r, g, b}
-
-						ctrl_dropdown:UpdateChoices(TeamFormation_mapJRULES())
-						ctrl_dropdown.dropdown:SetSelectedItem(colorizePseudo({r, g, b}, pseudo))
-					end,
-					width = "half",
-					disabled = function()
-						local selected = WINDOW_MANAGER:GetControlByName("ProvTF#jRulesList").combobox.m_comboBox:GetSelectedItem()
-						return selected == ""
-					end,
-				},
-				[10] = {
-					type = "slider",
-					name = GetString(SI_TF_SETTING_JRULES_COLORCHOICE) .. " (HSL)",
-					tooltip = GetString(SI_TF_SETTING_JRULES_COLORCHOICE_TOOLTIP),
-					min = 0, max = 360, step = 1,
-					getFunc = function()
-						local ctrl_dropdown = WINDOW_MANAGER:GetControlByName("ProvTF#jRulesList")
-						local selected = ctrl_dropdown.combobox.m_comboBox:GetSelectedItem()
-						local pseudo = string.match(selected, "^.+\|t (.+)$")
-						if selected ~= "" and ProvTF.vars.jRules[pseudo] then
-							local r, g, b = unpack(ProvTF.vars.jRules[pseudo])
-							if r == 1 and g == 1 and b == 1 then
-								return 0
-							end
-							return zo_floor(RGB2HSL(r, g, b) * 360)
-						else
-							return 0
-						end
-						ctrl_dropdown:UpdateChoices(TeamFormation_mapJRULES())
-					end,
-					setFunc = function(value)
-						local r, g, b, a = HSL2RGB(value / 360, 1, .5)
-
-						local ctrl_dropdown = WINDOW_MANAGER:GetControlByName("ProvTF#jRulesList")
-						local selected = ctrl_dropdown.combobox.m_comboBox:GetSelectedItem()
-						if selected == "" then return end
-
-						local pseudo = string.match(selected, "^.+\|t (.+)$")
-						if value == 0 then
-							r, g, b = 1, 1, 1
-						end
-						ProvTF.vars.jRules[pseudo] = {r, g, b}
-
-						ctrl_dropdown:UpdateChoices(TeamFormation_mapJRULES())
-						ctrl_dropdown.dropdown:SetSelectedItem(colorizePseudo({r, g, b}, pseudo))
-					end,
-					width = "half",
-					disabled = function()
-						local selected = WINDOW_MANAGER:GetControlByName("ProvTF#jRulesList").combobox.m_comboBox:GetSelectedItem()
-						return selected == ""
-					end,
-				},
-			},
-		},
-		{
-			type = "submenu",
-			name = "Crown Pointer Thing",
+			name = GetString(CROWN_POINTER_THING),
 			controls ={
 			{
 				type = "checkbox",
-				name = "Enable Crown Pointer Thing?",
-				-- TODO I really need to get strings from configs.
-				-- tooltip = GetString(SI_TF_SETTING_ENABLED_TOOLTIP),
+				name = GetString(CROWN_POINTER_ENABLE),
+				tooltip = GetString(CROWN_POINTER_ENABLE_TOOLTIP),
 				getFunc = function() 
 					return CrownPointerThing.SavedVars.CrownPointer.Enabled
 				end,
@@ -469,10 +254,9 @@ function TeamFormation_createLAM2Panel()
 			},
 			{
 				type = "slider",
-				-- TODO still no config strings? jeeze
-				name = "Crown Pointer Transparency",
-				-- tooltip = GetString(SI_TF_SETTING_JRULES_PICKPSEUDO_TOOLTIP),
-				min = 10, max = 100, step = 1,
+				name = GetString(CROWN_POINTER_OPACITY),
+				tooltip = GetString(CROWN_POINTER_OPACITY_TOOLTIP),
+				min = 0, max = 100, step = 1,
 				getFunc = function()
 					return CrownPointerThing.SavedVars.CrownPointer.Alpha * 100
 				end,
@@ -486,9 +270,8 @@ function TeamFormation_createLAM2Panel()
 			},
 			{
 				type = "slider",
-				-- TODO still no config strings? jeeze
-				name = "Crown pointer size",
-				-- tooltip = GetString(SI_TF_SETTING_JRULES_PICKPSEUDO_TOOLTIP),
+				name = GetString(CROWN_POINTER_SIZE),
+				tooltip = GetString(CROWN_POINTER_SIZE_TOOLTIP),
 				min = 20, max = 100, step = 1,
 				getFunc = function()
 					return CrownPointerThing.SavedVars.CrownPointer.Size
@@ -502,10 +285,13 @@ function TeamFormation_createLAM2Panel()
 				end
 			},
 			{
+				type = "description",
+				text = GetString(CROWN_POINTER_DEBUG_SETTINGS),
+			},
+			{
 				type = "checkbox",
-				name = "Enable debug?",
-				-- TODO I really need to get strings from configs.
-				-- tooltip = GetString(SI_TF_SETTING_ENABLED_TOOLTIP),
+				name = GetString(CROWN_POINTER_ENABLE_DEBUG),
+				tooltip = GetString(CROWN_POINTER_ENABLE_DEBUG_TOOLTIP),
 				getFunc = function() 
 					return CrownPointerThing.SavedVars.Debug
 				end,
@@ -516,7 +302,24 @@ function TeamFormation_createLAM2Panel()
 				disabled = function() 
 					return not CrownPointerThing.SavedVars.CrownPointer.Enabled
 				end
-			}}
+			},
+			{
+					type = "slider",
+					name = GetString(CROWN_POINTER_DIRECTION),
+					tooltip = GetString(CROWN_POINTER_DIRECTION_TOOLTIP),
+					min = tonumber(string.format("%." .. (2 or 0) .. "f", -math.pi)), max = tonumber(string.format("%." .. (2 or 0) .. "f", math.pi)), step = math.pi / 16,
+					getFunc = function()
+						return tonumber(string.format("%." .. (2 or 0) .. "f", CrownPointerThing.SavedVars.DebugSettings.Reticle.AngleToTarget))
+					end,
+					setFunc = function(value)
+						CrownPointerThing.SavedVars.DebugSettings.Reticle.AngleToTarget = value
+					end,
+					width = "half",
+					disabled = function() 
+						return not CrownPointerThing.SavedVars.CrownPointer.Enabled or not CrownPointerThing.SavedVars.Debug
+					end
+			}
+		}
 		},
 	}
 
@@ -540,65 +343,3 @@ function TeamFormation_createLAM2Panel()
 	ProvTF.CPL = LAM2:RegisterAddonPanel(ProvTF.name .. "LAM2Panel", panelData)
 	LAM2:RegisterOptionControls(ProvTF.name .. "LAM2Panel", optionsData)
 end
-
--- local MyName = GetUnitName("player")
-
--- if MyName == "Elium" or MyName == "Elena d'Alizarine" or MyName == "Skit'tles" then -- Just for us ;) (Prevent crash)
--- 	table.insert(optionsData, {
--- 		type = "submenu",
--- 		name = "Espace de développement",
--- 		controls =
--- 		{
--- 			[1] =
--- 			{
--- 				type = "checkbox",
--- 				name = "Activer",
--- 				getFunc = function() return ProvTF.debug.enabled end,
--- 				setFunc = function(value) ProvTF.debug.enabled = value end,
--- 				width = "full",
--- 			},
--- 			[2] = {
--- 				type = "slider",
--- 				name = "Numéro",
--- 				min = 1, max = 24, step = 1,
--- 				getFunc = function() return zo_round(ProvTF.debug.pos.num) end,
--- 				setFunc = function(value) ProvTF.debug.pos.num = value end,
--- 				width = "half",
--- 			},
--- 			[3] = {
--- 				type = "button",
--- 				name = "Définir emplacement",
--- 				func = function()
--- 					local x, y, heading = GetMapPlayerPosition("player")
-
--- 					ProvTF.debug.pos.x = x
--- 					ProvTF.debug.pos.y = y
--- 					ProvTF.debug.pos.zone = GetUnitZone("player")
--- 					ProvTF.debug.pos.heading = heading
--- 				end,
--- 				width = "half",
--- 			},
--- 			[4] = {
--- 				type = "description",
--- 				text = "Où utiliser /tfdebug à la position voulue.",
--- 			},
--- 		},
--- 	})
-
--- 	SLASH_COMMANDS["/tfdebug"] = function()
--- 		local x, y, heading = GetMapPlayerPosition("player")
-
--- 		ProvTF.debug.enabled = true
--- 		ProvTF.debug.pos.x = x
--- 		ProvTF.debug.pos.y = y
--- 		ProvTF.debug.pos.zone = GetUnitZone("player")
--- 		ProvTF.debug.pos.heading = heading
-
--- 		for n = 1, GetGroupSize() do
--- 			if GetUnitName("group" .. n) ~= GetUnitName("player") then
--- 				ProvTF.debug.pos.num = n
--- 				break
--- 			end
--- 		end
--- 	end
--- end
