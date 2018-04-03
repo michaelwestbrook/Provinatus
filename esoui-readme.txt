@@ -1,7 +1,7 @@
-[SIZE="7"]Provinatus[/SIZE]
+[COLOR="Plum"][SIZE="7"]Provinatus[/SIZE][/COLOR]
 Modified [URL="http://www.esoui.com/downloads/info1135-ProvisionsTeamFormation.html"]Provision's Team Formation[/URL] to include a big fat arrow in the center of your screen that directs you to the team leader.
 
-[SIZE="5"][COLOR="Plum"]Minor Bug Fixes[/COLOR][/SIZE]
+[SIZE="5"]Minor Bug Fixes[/SIZE]
 [LIST]
 [*]Removed Players' Icon menu. Obsolete
 [*]Removed color picker menu. 
