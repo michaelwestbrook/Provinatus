@@ -4,7 +4,6 @@ ProvTF =
 	namePublic = "Provinatus",
 	nameColor = "|cFF9999Provinatus|r",
 	author = "|c00C000Provision|r |c00C0FFAlbinoPython|r",
-	version = "1.2.5", --3 endroits
 	CPL = nil,
 	defaults =
 	{

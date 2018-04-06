@@ -110,3 +110,17 @@ ZO_CreateStringId(
 )
 ZO_CreateStringId("CROWN_POINTER_DIRECTION", "Set Crown Pointer direction")
 ZO_CreateStringId("CROWN_POINTER_DIRECTION_TOOLTIP", "Set the Crown Pointer direction in debug mode")
+
+ZO_CreateStringId("LEADER_ICON_SETTINGS", "Leader Icon Settings")
+ZO_CreateStringId("LEADER_ICON_OPACITY", "Leader Icon Opacity")
+ZO_CreateStringId("LEADER_ICON_OPACITY_TOOLTIP", "Controls the transparency of the leader icon")
+
+ZO_CreateStringId("LEADER_DEAD_ICON_OPACITY", "Opacity of dead leader")
+ZO_CreateStringId("LEADER_DEAD_ICON_OPACITY_TOOLTIP", "Controls the transparency of the dearly departed leader's icon")
+
+ZO_CreateStringId("TEAMMATE_ICON_SETTINGS", "Teammate Icon Settings")
+ZO_CreateStringId("NON_LEADER_ICON_OPACITY", "Player Icon Opacity")
+ZO_CreateStringId("NON_LEADER_ICON_OPACITY_TOOLTIP", "Controls the transparency of non-leader icons")
+
+ZO_CreateStringId("DEAD_PLAYER_OPACITY", "Opacity of dead players")
+ZO_CreateStringId("DEAD_PLAYER_OPACITY_TOOLTIP", "Controls the transparency of any dead non-leader icons")

@@ -22,24 +22,6 @@ local function TeamFormation_MakeIcon(index)
 	ProvTF.UI.Player[index].LifeBar:SetDrawLevel(2)
 end
 
---[[local function recursive(control, str)
-	d(str .. " " .. control:GetName())
-	if control:GetNumChildren() == 0 or string.len(str) > 2 then return end
-	for i = 1, control:GetNumChildren() do recursive(control:GetChild(i), str .. "-") end
-end
-
-
-SLASH_COMMANDS["/12i"] = function()
-	recursive(WINDOW_MANAGER:GetControlByName("LAMAddonSettingsWindow"), "-")
-end
---]]
-
-
---[[SLASH_COMMANDS["/12"] = function()
-
-end
---]]
-
 local function outOfScreenRect(x1, y1, minX, minY, maxX, maxY)
 	if x1 > minX and x1 < maxX and y1 > minY and y1 < maxY then
 		return nil, nil
@@ -234,10 +216,20 @@ local function TeamFormation_UpdateIcon(index, sameZone, isDead, isInCombat)
 		end
 	end
 
-	if updateIsNecessary(index, "defAlpha", defAlpha) then
-		local defAlpha = sameZone and (ProvTF.UI.Player[index].data.isOut and 1 or 0.4) or 0.2
-		ProvTF.UI.Player[index]:SetAlpha(defAlpha)
+	local IconAlpha
+	if unitTag == GetGroupLeaderUnitTag() then
+		if isDead then
+			IconAlpha = CrownPointerThing.SavedVars.PlayerIconSettings.CrownDeadAlpha
+		else
+			IconAlpha = CrownPointerThing.SavedVars.PlayerIconSettings.CrownAlpha
+		end
+	elseif isDead then
+		IconAlpha = CrownPointerThing.SavedVars.PlayerIconSettings.NonCrownDeadAlpha
+	else
+		IconAlpha = CrownPointerThing.SavedVars.PlayerIconSettings.NonCrownAlpha
 	end
+
+	ProvTF.UI.Player[index]:SetAlpha(IconAlpha)
 end
 
 local function TeamFormation_CalculateXY(x, y)

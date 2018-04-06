@@ -25,6 +25,10 @@ local function ResetCrownPointer()
 	CrownPointerThing.SavedVars.CrownPointer.Size = ProvinatusConfig.CrownPointer.Size
 	CrownPointerThing.SavedVars.Debug = ProvinatusConfig.Debug;
 	CrownPointerThing.SavedVars.DebugSettings.Reticle.AngleToTarget = ProvinatusConfig.DebugSettings.Reticle.AngleToTarget
+	CrownPointerThing.SavedVars.PlayerIconSettings.CrownAlpha = ProvinatusConfig.PlayerIconSettings.CrownAlpha
+	CrownPointerThing.SavedVars.PlayerIconSettings.CrownDeadAlpha = ProvinatusConfig.PlayerIconSettings.CrownDeadAlpha
+	CrownPointerThing.SavedVars.PlayerIconSettings.NonCrownAlpha = ProvinatusConfig.PlayerIconSettings.NonCrownAlpha
+	CrownPointerThing.SavedVars.PlayerIconSettings.NonCrownDeadAlpha = ProvinatusConfig.PlayerIconSettings.NonCrownDeadAlpha
 end
 
 function TeamFormation_createLAM2Panel()
@@ -34,7 +38,6 @@ function TeamFormation_createLAM2Panel()
 		name = ProvTF.namePublic,
 		displayName = ProvTF.nameColor,
 		author = ProvTF.author,
-		version = ProvTF.version,
 		slashCommand = "/tf",
 		registerForRefresh = true,
 		registerForDefaults = true,
@@ -235,6 +238,73 @@ function TeamFormation_createLAM2Panel()
 					width = "full",
 				},
 			},
+		},
+		{
+			type = "submenu",
+			name = "Player Icon Settings",
+			controls = {
+				{
+					type = "description",
+					text = GetString(LEADER_ICON_SETTINGS),
+				},
+				{
+					type = "slider",
+					name = GetString(LEADER_ICON_OPACITY),
+					tooltip = GetString(LEADER_ICON_OPACITY_TOOLTIP),
+					min = 0, max = 100, step = 1,
+					getFunc = function() 
+						return CrownPointerThing.SavedVars.PlayerIconSettings.CrownAlpha * 100 
+					end,
+					setFunc = function(value)
+						CrownPointerThing.SavedVars.PlayerIconSettings.CrownAlpha = value / 100
+					end,
+					width = "half",
+				},
+				{
+					type = "slider",
+					name = GetString(LEADER_DEAD_ICON_OPACITY),
+					tooltip = GetString(LEADER_DEAD_ICON_OPACITY_TOOLTIP),
+					min = 0, max = 100, step = 1,
+					getFunc = function() 
+						return CrownPointerThing.SavedVars.PlayerIconSettings.CrownDeadAlpha * 100 
+					end,
+					setFunc = function(value)
+						d(CrownPointerThing.SavedVars.PlayerIconSettings.CrownDeadAlpha)
+						CrownPointerThing.SavedVars.PlayerIconSettings.CrownDeadAlpha = value / 100
+					end,
+					width = "half",
+				},
+				{
+					type = "description",
+					text = GetString(TEAMMATE_ICON_SETTINGS),
+				},
+				{
+					type = "slider",
+					name = GetString(NON_LEADER_ICON_OPACITY),
+					tooltip = GetString(NON_LEADER_ICON_OPACITY_TOOLTIP),
+					min = 0, max = 100, step = 1,
+					getFunc = function() 
+						return CrownPointerThing.SavedVars.PlayerIconSettings.NonCrownAlpha * 100 
+					end,
+					setFunc = function(value)
+						CrownPointerThing.SavedVars.PlayerIconSettings.NonCrownAlpha = value / 100
+					end,
+					width = "half",
+				},
+				{
+					type = "slider",
+					name = GetString(DEAD_PLAYER_OPACITY),
+					tooltip = GetString(DEAD_PLAYER_OPACITY_TOOLTIP),
+					min = 0, max = 100, step = 1,
+					getFunc = function() 
+						return CrownPointerThing.SavedVars.PlayerIconSettings.NonCrownDeadAlpha * 100 
+					end,
+					setFunc = function(value)
+						CrownPointerThing.SavedVars.PlayerIconSettings.NonCrownDeadAlpha = value / 100
+					end,
+					width = "half",
+				},
+			}
 		},
 		{
 			type = "submenu",
