@@ -38,4 +38,4 @@ If I could only run 2 mods, it would be Team Formation and [Exterminatus Group L
 ![Oh no! Crown is hurt!](images/full-size-images/crown-hurt.png)
 ### You can see the crown icon is a little red as he takes damage
 
-### Special thanks to Provision for letting me use their code. It was not trivial making the head's up display and it was implemented beautifully.
+### Special thanks to Provision for letting me use their code. It was not trivial making the heads up display and it was implemented beautifully.
