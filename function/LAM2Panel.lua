@@ -39,6 +39,7 @@ function TeamFormation_createLAM2Panel()
 		displayName = ProvTF.nameColor,
 		author = ProvTF.author,
 		slashCommand = "/tf",
+		version = "{{**DEVELOPMENTVERSION**}}",
 		registerForRefresh = true,
 		registerForDefaults = true,
 		resetFunc = function()
