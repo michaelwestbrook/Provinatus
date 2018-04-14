@@ -45,6 +45,6 @@ Note: Provision has given his/her blessing to modify their code as long as I pro
 [SIZE="3"][I][B][COLOR="Plum"]Now able to control size and transparency of the crown pointer.[/COLOR][/B][/I][/SIZE]
 
 [IMG]https://raw.githubusercontent.com/michaelwestbrook/Provinatus/master/images/icon-transparency-menu.png[/IMG]
-[SIZE="3"][I][B][COLOR="Plum"]Now able to control size and transparency of the crown pointer.[/COLOR][/B][/I][/SIZE]
+[SIZE="3"][I][B][COLOR="Plum"]Now able to control transparency of players' icons.[/COLOR][/B][/I][/SIZE]
 
 [SIZE=4]Source code is located on [URL="https://github.com/michaelwestbrook/Provinatus"]my GitHub page[/URL]. Now accepting pull requests. If you have any problems with this mod or how to make it better, please raise [URL="https://github.com/michaelwestbrook/Provinatus/issues"]an issue here[/URL].[/SIZE]

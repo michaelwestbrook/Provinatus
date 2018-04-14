@@ -402,13 +402,6 @@ local function TeamFormation_uiLoop()
 		end
 	end
 
-	local _, _, myHeading = GetMapPlayerPosition("player")
-	local myCamHeading = math.abs(myHeading - math.pi *2) + GetPlayerCameraHeading()
-	myCamHeading = (ProvTF.vars.camRotation and myCamHeading or 0)
-	if ProvTF.UI.Player[myIndex] and updateIsNecessary(myIndex, "MyCamHeading", myCamHeading) then
-		ProvTF.UI.Player[myIndex].Icon:SetTextureRotation(-myCamHeading)
-	end
-
 	TeamFormation_MakeIcon(100)
 	x, y = GetMapPlayerWaypoint()
 	if x ~= 0 and y ~= 0 then
@@ -426,7 +419,7 @@ local function TeamFormation_uiLoop()
 	local my = (ProvTF.vars.height / 2)
 
 	for i = 1, 4 do
-		ca = (i - 2) * math.pi / 2 + (ProvTF.vars.camRotation and GetPlayerCameraHeading() or myHeading)
+		ca = (i - 2) * math.pi / 2 + (ProvTF.vars.camRotation and GetPlayerCameraHeading() or GetMapPlayerPosition("player"))
 		cx = zo_round((ProvTF.vars.width / 2) * math.cos(ca))
 		cy = zo_round((ProvTF.vars.height / 2) * math.sin(ca))
 
