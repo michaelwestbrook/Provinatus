@@ -162,6 +162,9 @@ local function SetIcon(unitTag, icon)
 	end
 end
 
+-- Used to keep track of what mode we are in. Since we don't want to set the icon on every update,
+-- update icon if this value changes
+local RoleMode
 local function TeamFormation_UpdateIcon(index, sameZone, isDead, isInCombat)
 	if GetUnitName(unitTag) == GetUnitName("player") then  return end
 	local unitTag = (index ~= 0) and ("group" .. index) or "player"
@@ -185,8 +188,9 @@ local function TeamFormation_UpdateIcon(index, sameZone, isDead, isInCombat)
 	local r, g, b = unpack(ProvTF.vars.jRules[name] or {1, 1, 1})
 
 	-- Set Icon
-	if updateIsNecessary(index, "name", name) or updateIsNecessaryOnGrLeader or updateIsNecessaryOnDead then
+	if updateIsNecessary(index, "name", name) or updateIsNecessaryOnGrLeader or updateIsNecessaryOnDead or RoleMode ~= ProvTF.vars.roleIcon then
 		if updateIsNecessaryOnDead then ProvTF.UI.Player[index].LifeBar:SetHidden(isDead) end 
+		RoleMode = ProvTF.vars.roleIcon
 		SetIcon(unitTag, ProvTF.UI.Player[index].Icon)
 	end
 
