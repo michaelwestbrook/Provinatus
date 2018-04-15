@@ -3,9 +3,7 @@ Modified [URL="http://www.esoui.com/downloads/info1135-ProvisionsTeamFormation.h
 
 [SIZE="5"][COLOR="Plum"]Added player icon settings[/COLOR][/SIZE]
 [LIST]
-[*]Individually set transparency for dear leader and teammates
-[*]Dead player's transparency can be set. 
-[*]This enables you to hide teammates' icons while they are alive.
+[*]Fixed issue where icons would spin wildly
 [/LIST]
 
 [SIZE="5"]Provision's Team Formation[/SIZE]

@@ -1,11 +1,20 @@
 [SIZE="4"][U][B]5 April 2018[/B][/U][/SIZE]
+[B] Fixed issue where icons would spin wildly.
+
+---------------------------------------
+
+[SIZE="4"][U][B]5 April 2018[/B][/U][/SIZE]
 Enabled settings to control the transparency of icons. Transparency can be set based on if a player is alive or dead. Settings for leader and teammates can be set separately. 
+
+---------------------------------------
 
 [SIZE="4"][U][B]2 April 2018[/B][/U][/SIZE]
 [B]Removed Players' Icon menu. Obsolete
 [B]Removed color picker menu. 
 [B]Added basic language support for French and German (Used Google Translate. Translations welcome)
 [B]Hide Crown Pointer in Battlegrounds. There is no 'Crown' in BG
+
+---------------------------------------
 
 [SIZE="4"][U][B]26 March 2018[/B][/U][/SIZE]
 [B]Minor fixes. (Thanks Tiara Ra)[/B]
