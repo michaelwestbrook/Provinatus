@@ -237,17 +237,6 @@ function TeamFormation_createLAM2Panel()
 						ProvTF.vars.siege = value
 					end,
 					width = "full",
-				},
-				[9] = 
-				{
-					type = "checkbox",
-					name = GetString(SI_TF_SETTING_ROLE),
-					tooltip = GetString(SI_TF_SETTING_ROLE_TOOLTIP),
-					getFunc = function() return ProvTF.vars.roleIcon end,
-					setFunc = function(value)
-						ProvTF.vars.roleIcon = value
-					end,
-					width = "full",
 				}
 			},
 		},
