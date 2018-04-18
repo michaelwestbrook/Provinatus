@@ -1,3 +1,10 @@
+[SIZE="4"][U][B]18 April 2018[/B][/U][/SIZE]
+[B] Removed 'debug' folder and associated slash commands. No need to polute users' autocomplete.
+[B] Changed menu slash command to `/provinatus`. One slash command never killed anyone.
+[B] Debug Crown Pointer is now hidden when Crown Pointer Thing is disabled.
+
+---------------------------------------
+
 [SIZE="4"][U][B]16 April 2018[/B][/U][/SIZE]
 [B] Fixed issue where icons would spin wildly.
 

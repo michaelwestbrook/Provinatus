@@ -31,6 +31,15 @@ local function ResetCrownPointer()
 	CrownPointerThing.SavedVars.PlayerIconSettings.NonCrownDeadAlpha = ProvinatusConfig.PlayerIconSettings.NonCrownDeadAlpha
 end
 
+local function SetDebug(value)
+	CrownPointerThing.SavedVars.Debug = value
+  if CrownPointerThing.SavedVars.Debug then
+    d("Enabled Provinatus debug")
+  else
+    d("Disabled Provinatus debug")
+	end
+end
+
 function TeamFormation_createLAM2Panel()
 	local panelData =
 	{
@@ -38,7 +47,7 @@ function TeamFormation_createLAM2Panel()
 		name = ProvTF.namePublic,
 		displayName = ProvTF.nameColor,
 		author = ProvTF.author,
-		slashCommand = "/tf",
+		slashCommand = "/provinatus",
 		version = "{{**DEVELOPMENTVERSION**}}",
 		registerForRefresh = true,
 		registerForDefaults = true,
@@ -367,7 +376,7 @@ function TeamFormation_createLAM2Panel()
 					return CrownPointerThing.SavedVars.Debug
 				end,
 				setFunc = function(value)
-					DebugSlashCommands.SetDebug(value)
+					SetDebug(value)
 				end,
 				width = "full",
 				disabled = function() 
