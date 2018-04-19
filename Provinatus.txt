@@ -1,4 +1,4 @@
-﻿## Title: |c00C000Prov|r's |cFF9999Team|cFF0000Formation|r 0.1.1
+﻿## Title: |c00C000Provinatus|r {{**DEVELOPMENTVERSION**}}
 ## Description: Adds a pointer to crown to Provisions Team Formation.
 ## Author: |c00C000Provision|r |cFF69B4AlbinoPython|r
 ## SavedVariables: ProvTFSV CrownPointerThingSavedVariables
