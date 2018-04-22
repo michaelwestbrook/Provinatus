@@ -4,6 +4,9 @@ Modified [URL="http://www.esoui.com/downloads/info1135-ProvisionsTeamFormation.h
 [SIZE="5"][COLOR="Plum"]Added player icon settings[/COLOR][/SIZE]
 [LIST]
 [*] Currently installed version number is now correctly shown in Minion
+[*] Removed 'debug' folder and associated slash commands. No need to pollute users' autocomplete.
+[*] Changed menu slash command to `/provinatus`. One slash command never killed anyone.
+[*] Debug Crown Pointer is now hidden when Crown Pointer Thing is disabled.
 [/LIST]
 
 [SIZE="5"]Provision's Team Formation[/SIZE]
