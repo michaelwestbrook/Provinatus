@@ -3,7 +3,7 @@
 ## Author: |c00C000Provision|r & |cFF69B4AlbinoPython|r
 ## SavedVariables: ProvTFSV CrownPointerThingSavedVariables
 ## OptionalDependsOn: LibStub LibAddonMenu-2.0
-## APIVersion: 100022 100023
+## APIVersion: 100023
 ## Version: {{**DEVELOPMENTVERSION**}}
 
 ; LibAddonMenu-2.0 r25 : A library to aid in the creation of option panels.
