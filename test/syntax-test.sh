@@ -1,0 +1,1 @@
+find . -path ./lang -prune -o -name '*.lua' -print | while read -r fileName; do luac -p $fileName; done

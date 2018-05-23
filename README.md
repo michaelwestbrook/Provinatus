@@ -1,3 +1,6 @@
+[![Build Status](https://provinatus.visualstudio.com/_apis/public/build/definitions/75b411d1-717b-489a-9d0a-b476695ebb24/3/badge)](https://provinatus.visualstudio.com/_apis/public/build/definitions/75b411d1-717b-489a-9d0a-b476695ebb24/3/badge)
+
+[![Build Status](https://rmsprodscussu1.vsrm.visualstudio.com/Acd1f4d7d-4e91-4b21-8fef-1fe4fb691aff/_apis/public/Release/badge/75b411d1-717b-489a-9d0a-b476695ebb24/2/5)](https://rmsprodscussu1.vsrm.visualstudio.com/Acd1f4d7d-4e91-4b21-8fef-1fe4fb691aff/_apis/public/Release/badge/75b411d1-717b-489a-9d0a-b476695ebb24/2/5)
 ## Provinatus
 Added an arrow that continuously points to the group leader to [Provision's Team Formation](http://www.esoui.com/downloads/info1135-ProvisionsTeamFormation.html) (a mod that displays teammates position and health on a heads-up display).
 
