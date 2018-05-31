@@ -18,7 +18,7 @@ local function TeamFormation_mapChoices(func, array)
 end
 
 local function TeamFormation_mapJRULES()
-	return TeamFormation_mapChoices(colorizePseudo, ProvTF.vars.jRules)
+	return TeamFormation_mapChoices(colorizePseudo, CustomProvTF.vars.jRules)
 end
 
 local function ResetCrownPointer()
@@ -43,26 +43,27 @@ local function SetDebug(value)
 	end
 end
 
-function TeamFormation_createLAM2Panel()
-	local panelData = {
+function CustomTeamFormation_createLAM2Panel()
+	local panelData =
+	{
 		type = "panel",
-		name = ProvTF.namePublic,
-		displayName = ProvTF.nameColor,
-		author = ProvTF.author,
+		name = CustomProvTF.namePublic,
+		displayName = CustomProvTF.nameColor,
+		author = CustomProvTF.author,
 		slashCommand = "/provinatus",
 		version = "{{**DEVELOPMENTVERSION**}}",
 		registerForRefresh = true,
 		registerForDefaults = true,
 		resetFunc = function()
-			ProvTF.vars = nil
-			ProvTF.vars = ProvTF.defaults
-			ProvTF.vars.jRules = nil
-			ProvTF.vars.jRules = {}
+			CustomProvTF.vars = nil
+			CustomProvTF.vars = CustomProvTF.defaults
+			CustomProvTF.vars.jRules = nil
+			CustomProvTF.vars.jRules = {}
 
-			ProvTF.UI:SetAnchor(CENTER, GuiRoot, CENTER, ProvTF.vars.posx, ProvTF.vars.posy)
-			TeamFormation_SetHidden(not ProvTF.vars.enabled)
+			CustomProvTF.UI:SetAnchor(CENTER, GuiRoot, CENTER, CustomProvTF.vars.posx, CustomProvTF.vars.posy)
+			CustomTeamFormation_SetHidden(not CustomProvTF.vars.enabled)
 
-			TeamFormation_ResetRefreshRate()
+			CustomTeamFormation_ResetRefreshRate()
 			ResetCrownPointer()
 		end
 	}
@@ -76,12 +77,10 @@ function TeamFormation_createLAM2Panel()
 			type = "checkbox",
 			name = GetString(SI_TF_SETTING_ENABLED),
 			tooltip = GetString(SI_TF_SETTING_ENABLED_TOOLTIP),
-			getFunc = function()
-				return ProvTF.vars.enabled
-			end,
+			getFunc = function() return CustomProvTF.vars.enabled end,
 			setFunc = function(value)
-				ProvTF.vars.enabled = value
-				TeamFormation_SetHidden(not ProvTF.vars.enabled)
+				CustomProvTF.vars.enabled = value
+				CustomTeamFormation_SetHidden(not CustomProvTF.vars.enabled)
 			end,
 			width = "full"
 		},
@@ -95,8 +94,8 @@ function TeamFormation_createLAM2Panel()
 			name = GetString(SI_TF_SETTING_SHOWNOW),
 			tooltip = GetString(SI_TF_SETTING_SHOWNOW_TOOLTIP),
 			func = function()
-				if ProvTF.vars.enabled then
-					TeamFormation_SetHidden(false)
+				if CustomProvTF.vars.enabled then
+					CustomTeamFormation_SetHidden(false)
 				end
 			end,
 			width = "half"
@@ -113,15 +112,11 @@ function TeamFormation_createLAM2Panel()
 					type = "slider",
 					name = GetString(SI_TF_SETTING_X),
 					tooltip = GetString(SI_TF_SETTING_X_TOOLTIP),
-					min = -zo_round(GuiRoot:GetWidth() / 2),
-					max = zo_round(GuiRoot:GetWidth() / 2),
-					step = 1,
-					getFunc = function()
-						return ProvTF.vars.posx
-					end,
+					min = -zo_round(GuiRoot:GetWidth() / 2), max = zo_round(GuiRoot:GetWidth() / 2), step = 1,
+					getFunc = function() return CustomProvTF.vars.posx end,
 					setFunc = function(value)
-						ProvTF.vars.posx = value
-						ProvTF.UI:SetAnchor(CENTER, GuiRoot, CENTER, ProvTF.vars.posx, ProvTF.vars.posy)
+						CustomProvTF.vars.posx = value
+						CustomProvTF.UI:SetAnchor(CENTER, GuiRoot, CENTER, CustomProvTF.vars.posx, CustomProvTF.vars.posy)
 					end,
 					width = "half"
 				},
@@ -129,15 +124,11 @@ function TeamFormation_createLAM2Panel()
 					type = "slider",
 					name = GetString(SI_TF_SETTING_Y),
 					tooltip = GetString(SI_TF_SETTING_Y_TOOLTIP),
-					min = -zo_round(GuiRoot:GetHeight() / 2),
-					max = zo_round(GuiRoot:GetHeight() / 2),
-					step = 1,
-					getFunc = function()
-						return ProvTF.vars.posy
-					end,
+					min = -zo_round(GuiRoot:GetHeight() / 2), max = zo_round(GuiRoot:GetHeight() / 2), step = 1,
+					getFunc = function() return CustomProvTF.vars.posy end,
 					setFunc = function(value)
-						ProvTF.vars.posy = value
-						ProvTF.UI:SetAnchor(CENTER, GuiRoot, CENTER, ProvTF.vars.posx, ProvTF.vars.posy)
+						CustomProvTF.vars.posy = value
+						CustomProvTF.UI:SetAnchor(CENTER, GuiRoot, CENTER, CustomProvTF.vars.posx, CustomProvTF.vars.posy)
 					end,
 					width = "half"
 				},
@@ -145,15 +136,11 @@ function TeamFormation_createLAM2Panel()
 					type = "slider",
 					name = GetString(SI_TF_SETTING_WIDTH),
 					tooltip = GetString(SI_TF_SETTING_WIDTH_TOOLTIP),
-					min = 20,
-					max = zo_round(GuiRoot:GetWidth()),
-					step = 1,
-					getFunc = function()
-						return ProvTF.vars.width
-					end,
+					min = 20, max = zo_round(GuiRoot:GetWidth()), step = 1,
+					getFunc = function() return CustomProvTF.vars.width end,
 					setFunc = function(value)
-						ProvTF.vars.width = value
-						ProvTF.UI:SetDimensions(ProvTF.vars.width, ProvTF.vars.height)
+						CustomProvTF.vars.width = value
+						CustomProvTF.UI:SetDimensions(CustomProvTF.vars.width, CustomProvTF.vars.height)
 					end,
 					width = "half"
 				},
@@ -161,15 +148,11 @@ function TeamFormation_createLAM2Panel()
 					type = "slider",
 					name = GetString(SI_TF_SETTING_HEIGHT),
 					tooltip = GetString(SI_TF_SETTING_HEIGHT_TOOLTIP),
-					min = 20,
-					max = zo_round(GuiRoot:GetHeight()),
-					step = 1,
-					getFunc = function()
-						return ProvTF.vars.height
-					end,
+					min = 20, max = zo_round(GuiRoot:GetHeight()), step = 1,
+					getFunc = function() return CustomProvTF.vars.height end,
 					setFunc = function(value)
-						ProvTF.vars.height = value
-						ProvTF.UI:SetDimensions(ProvTF.vars.width, ProvTF.vars.height)
+						CustomProvTF.vars.height = value
+						CustomProvTF.UI:SetDimensions(CustomProvTF.vars.width, CustomProvTF.vars.height)
 					end,
 					width = "half"
 				}
@@ -188,16 +171,12 @@ function TeamFormation_createLAM2Panel()
 					name = GetString(SI_TF_SETTING_REFRESHRATE),
 					tooltip = GetString(SI_TF_SETTING_REFRESHRATE_TOOLTIP),
 					warning = GetString(SI_TF_SETTING_REFRESHRATE_WARNING),
-					min = 10,
-					max = 100,
-					step = 1,
-					getFunc = function()
-						return ProvTF.vars.refreshRate
-					end,
+					min = 10, max = 100, step = 1,
+					getFunc = function() return CustomProvTF.vars.refreshRate end,
 					setFunc = function(value)
-						ProvTF.vars.refreshRate = value
+						CustomProvTF.vars.refreshRate = value
 
-						TeamFormation_ResetRefreshRate()
+						CustomTeamFormation_ResetRefreshRate()
 					end,
 					width = "full"
 				},
@@ -207,22 +186,19 @@ function TeamFormation_createLAM2Panel()
 					tooltip = GetString(SI_TF_SETTING_SHAPE_TOOLTIP),
 					choices = {GetString(SI_TF_SETTING_SHAPE_RECTANGULAR), GetString(SI_TF_SETTING_SHAPE_CIRCULAR)},
 					getFunc = function()
-						return (ProvTF.vars.circle and GetString(SI_TF_SETTING_SHAPE_CIRCULAR) or
-							GetString(SI_TF_SETTING_SHAPE_RECTANGULAR))
+						return (CustomProvTF.vars.circle and GetString(SI_TF_SETTING_SHAPE_CIRCULAR) or GetString(SI_TF_SETTING_SHAPE_RECTANGULAR))
 					end,
 					setFunc = function(var)
-						ProvTF.vars.circle = (var == GetString(SI_TF_SETTING_SHAPE_CIRCULAR))
-					end
+						CustomProvTF.vars.circle = (var == GetString(SI_TF_SETTING_SHAPE_CIRCULAR))
+					end,
 				},
 				[4] = {
 					type = "checkbox",
 					name = GetString(SI_TF_SETTING_CAMROTATION),
 					tooltip = GetString(SI_TF_SETTING_CAMROTATION_TOOLTIP),
-					getFunc = function()
-						return ProvTF.vars.camRotation
-					end,
+					getFunc = function() return CustomProvTF.vars.camRotation end,
 					setFunc = function(value)
-						ProvTF.vars.camRotation = value
+						CustomProvTF.vars.camRotation = value
 					end,
 					width = "full"
 				},
@@ -230,14 +206,10 @@ function TeamFormation_createLAM2Panel()
 					type = "slider",
 					name = GetString(SI_TF_SETTING_SCALE),
 					tooltip = GetString(SI_TF_SETTING_SCALE_TOOLTIP),
-					min = 10,
-					max = 200,
-					step = 1,
-					getFunc = function()
-						return ProvTF.vars.scale
-					end,
+					min = 10, max = 200, step = 1,
+					getFunc = function() return CustomProvTF.vars.scale end,
 					setFunc = function(value)
-						ProvTF.vars.scale = value
+						CustomProvTF.vars.scale = value
 					end,
 					width = "full"
 				},
@@ -245,14 +217,10 @@ function TeamFormation_createLAM2Panel()
 					type = "slider",
 					name = GetString(SI_TF_SETTING_LOGDIST) .. " (%)",
 					tooltip = GetString(SI_TF_SETTING_LOGDIST_TOOLTIP),
-					min = 0,
-					max = 100,
-					step = 1,
-					getFunc = function()
-						return ProvTF.vars.logdist * 100
-					end,
+					min = 0, max = 100, step = 1,
+					getFunc = function() return CustomProvTF.vars.logdist * 100 end,
 					setFunc = function(value)
-						ProvTF.vars.logdist = value / 100
+						CustomProvTF.vars.logdist = value / 100
 					end,
 					width = "full"
 				},
@@ -260,14 +228,10 @@ function TeamFormation_createLAM2Panel()
 					type = "slider",
 					name = GetString(SI_TF_SETTING_CARDINAL) .. " (%)",
 					tooltip = GetString(SI_TF_SETTING_CARDINAL_TOOLTIP),
-					min = 0,
-					max = 100,
-					step = 1,
-					getFunc = function()
-						return ProvTF.vars.cardinal * 100
-					end,
+					min = 0, max = 100, step = 1,
+					getFunc = function() return CustomProvTF.vars.cardinal * 100 end,
 					setFunc = function(value)
-						ProvTF.vars.cardinal = value / 100
+						CustomProvTF.vars.cardinal = value / 100
 					end,
 					width = "full"
 				},
@@ -275,11 +239,9 @@ function TeamFormation_createLAM2Panel()
 					type = "checkbox",
 					name = GetString(SI_TF_SETTING_SIEGE),
 					tooltip = GetString(SI_TF_SETTING_SIEGE_TOOLTIP),
-					getFunc = function()
-						return ProvTF.vars.siege
-					end,
+					getFunc = function() return CustomProvTF.vars.siege end,
 					setFunc = function(value)
-						ProvTF.vars.siege = value
+						CustomProvTF.vars.siege = value
 					end,
 					width = "full"
 				}
@@ -461,17 +423,17 @@ function TeamFormation_createLAM2Panel()
 			pseudo = GetUnitName("group" .. i)
 			if pseudo ~= "" then
 				r, g, b = HSV2RGB(0.1 * ((i - 1) % 10), 0.5, 1.0)
-				ProvTF.vars.jRules[pseudo] = {r, g, b}
-				d(colorizePseudo({r, g, b}, pseudo))
+				CustomProvTF.vars.jRules[pseudo] = { r, g, b }
+				d(colorizePseudo({ r, g, b }, pseudo))
 			end
 		end
 
-		local ctrl_dropdown = WINDOW_MANAGER:GetControlByName("ProvTF#jRulesList")
+		local ctrl_dropdown = WINDOW_MANAGER:GetControlByName("CustomProvTF#jRulesList")
 		if ctrl_dropdown then
 			ctrl_dropdown:UpdateChoices(TeamFormation_mapJRULES())
 		end
 	end
 
-	ProvTF.CPL = LAM2:RegisterAddonPanel(ProvTF.name .. "LAM2Panel", panelData)
-	LAM2:RegisterOptionControls(ProvTF.name .. "LAM2Panel", optionsData)
+	CustomProvTF.CPL = LAM2:RegisterAddonPanel(CustomProvTF.name .. "LAM2Panel", panelData)
+	LAM2:RegisterOptionControls(CustomProvTF.name .. "LAM2Panel", optionsData)
 end

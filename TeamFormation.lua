@@ -1,78 +1,78 @@
-function TeamFormation_Keypress()
-	TeamFormation_SetHidden(ProvTF.vars.enabled)
-	ProvTF.vars.enabled = not ProvTF.vars.enabled
+function CustomTeamFormation_Keypress()
+	CustomTeamFormation_SetHidden(CustomProvTF.vars.enabled)
+	CustomProvTF.vars.enabled = not CustomProvTF.vars.enabled
 
-	if ProvTF.vars.enabled then
+	if CustomProvTF.vars.enabled then
 		d(GetString(SI_TF_ENABLED))
 	else
 		d(GetString(SI_TF_DISABLED))
 	end
 end
 
-function TeamFormation_SetHidden(bool)
-	ProvTF.UI:SetHidden(GetGroupSize() == 0 or bool)
+function CustomTeamFormation_SetHidden(bool)
+	CustomProvTF.UI:SetHidden(GetGroupSize() == 0 or bool)
 end
 
-function TeamFormation_ResetRefreshRate()
-	EVENT_MANAGER:UnregisterForEvent(ProvTF.name .. "Update")
-	EVENT_MANAGER:RegisterForUpdate(ProvTF.name .. "Update", ProvTF.vars.refreshRate, function() TeamFormation_OnUpdate() end)
+function CustomTeamFormation_ResetRefreshRate()
+	EVENT_MANAGER:UnregisterForEvent(CustomProvTF.name .. "Update")
+	EVENT_MANAGER:RegisterForUpdate(CustomProvTF.name .. "Update", CustomProvTF.vars.refreshRate, function() CustomTeamFormation_OnUpdate() end)
 end
 
 local function TeamFormation_OnAddOnLoad(eventCode, addOnName)
-	if (ProvTF.name ~= addOnName) then return end
+	if (CustomProvTF.name ~= addOnName) then return end
 
 	CrownPointerThing.EVENT_ADD_ON_LOADED(eventCode, addOnName)
-	ProvTF.vars = ZO_SavedVars:NewAccountWide("ProvTFSV", 1, nil, ProvTF.defaults)
+	CustomProvTF.vars = ZO_SavedVars:NewAccountWide("CustomProvTFSV", 1, nil, CustomProvTF.defaults)
 
 	SLASH_COMMANDS["/tf"] = function()
-		LAM2:OpenToPanel(ProvTF.CPL)
+		LAM2:OpenToPanel(CustomProvTF.CPL)
 	end
 
-	ProvTF.UI = WINDOW_MANAGER:CreateControl(nil, GuiRoot, CT_TOPLEVELCONTROL)
-	ProvTF.UI:SetMouseEnabled(false)
-	ProvTF.UI:SetClampedToScreen(true)
-	ProvTF.UI:SetDimensions(ProvTF.vars.width, ProvTF.vars.height)
-	ProvTF.UI:SetDrawLevel(0)
-	ProvTF.UI:SetDrawLayer(0)
-	ProvTF.UI:SetDrawTier(0)
+	CustomProvTF.UI = WINDOW_MANAGER:CreateControl(nil, GuiRoot, CT_TOPLEVELCONTROL)
+	CustomProvTF.UI:SetMouseEnabled(false)
+	CustomProvTF.UI:SetClampedToScreen(true)
+	CustomProvTF.UI:SetDimensions(CustomProvTF.vars.width, CustomProvTF.vars.height)
+	CustomProvTF.UI:SetDrawLevel(0)
+	CustomProvTF.UI:SetDrawLayer(0)
+	CustomProvTF.UI:SetDrawTier(0)
 
-	ProvTF.UI:SetHidden(not ProvTF.vars.enabled)
-	ProvTF.UI:ClearAnchors()
-	ProvTF.UI:SetAnchor(CENTER, GuiRoot, CENTER, ProvTF.vars.posx, ProvTF.vars.posy)
+	CustomProvTF.UI:SetHidden(not CustomProvTF.vars.enabled)
+	CustomProvTF.UI:ClearAnchors()
+	CustomProvTF.UI:SetAnchor(CENTER, GuiRoot, CENTER, CustomProvTF.vars.posx, CustomProvTF.vars.posy)
 
-	ProvTF.UI.Cardinal = {}
+	CustomProvTF.UI.Cardinal = {}
 	for i = 1, 4 do
-		ProvTF.UI.Cardinal[i] = WINDOW_MANAGER:CreateControl(nil, ProvTF.UI, CT_LABEL)
-		ProvTF.UI.Cardinal[i]:SetAnchor(CENTER, ProvTF.UI, CENTER, 0, 0)
-		ProvTF.UI.Cardinal[i]:SetFont("ZoFontHeader4")
-		ProvTF.UI.Cardinal[i]:SetDrawLevel(0)
-		ProvTF.UI.Cardinal[i]:SetAlpha(ProvTF.vars.cardinal)
+		CustomProvTF.UI.Cardinal[i] = WINDOW_MANAGER:CreateControl(nil, CustomProvTF.UI, CT_LABEL)
+		CustomProvTF.UI.Cardinal[i]:SetAnchor(CENTER, CustomProvTF.UI, CENTER, 0, 0)
+		CustomProvTF.UI.Cardinal[i]:SetFont("ZoFontHeader4")
+		CustomProvTF.UI.Cardinal[i]:SetDrawLevel(0)
+		CustomProvTF.UI.Cardinal[i]:SetAlpha(CustomProvTF.vars.cardinal)
 	end
 
-	ProvTF.UI.Cardinal[1]:SetText(GetString(SI_COMPASS_NORTH_ABBREVIATION))
-	ProvTF.UI.Cardinal[2]:SetText(GetString(SI_COMPASS_EAST_ABBREVIATION))
-	ProvTF.UI.Cardinal[3]:SetText(GetString(SI_COMPASS_SOUTH_ABBREVIATION))
-	ProvTF.UI.Cardinal[4]:SetText(GetString(SI_COMPASS_WEST_ABBREVIATION))
+	CustomProvTF.UI.Cardinal[1]:SetText(GetString(SI_COMPASS_NORTH_ABBREVIATION))
+	CustomProvTF.UI.Cardinal[2]:SetText(GetString(SI_COMPASS_EAST_ABBREVIATION))
+	CustomProvTF.UI.Cardinal[3]:SetText(GetString(SI_COMPASS_SOUTH_ABBREVIATION))
+	CustomProvTF.UI.Cardinal[4]:SetText(GetString(SI_COMPASS_WEST_ABBREVIATION))
 
 
-	ProvTF.UI.Player = {}
+	CustomProvTF.UI.Player = {}
 
-	local fragment = ZO_SimpleSceneFragment:New(ProvTF.UI)
+	local fragment = ZO_SimpleSceneFragment:New(CustomProvTF.UI)
 	SCENE_MANAGER:GetScene('hud'):AddFragment(fragment)
 	SCENE_MANAGER:GetScene('hudui'):AddFragment(fragment)
 
-	EVENT_MANAGER:UnregisterForEvent(ProvTF.name, EVENT_ADD_ON_LOADED)
+	EVENT_MANAGER:UnregisterForEvent(CustomProvTF.name, EVENT_ADD_ON_LOADED)
 
-	TeamFormation_createLAM2Panel()
-	EVENT_MANAGER:RegisterForUpdate(ProvTF.name .. "Update", ProvTF.vars.refreshRate, function() TeamFormation_OnUpdate() end)
+	CustomTeamFormation_createLAM2Panel()
+	EVENT_MANAGER:RegisterForUpdate(CustomProvTF.name .. "Update", CustomProvTF.vars.refreshRate, function() CustomTeamFormation_OnUpdate() end)
 
-	EVENT_MANAGER:RegisterForEvent(ProvTF.name, EVENT_BEGIN_SIEGE_CONTROL, function()
-		if ProvTF.vars.enabled then
-			TeamFormation_SetHidden(not ProvTF.vars.siege)
+	EVENT_MANAGER:RegisterForEvent(CustomProvTF.name, EVENT_BEGIN_SIEGE_CONTROL, function()
+		if CustomProvTF.vars.enabled then
+			CustomTeamFormation_SetHidden(not CustomProvTF.vars.siege)
 		end
 	end)
 end
 
-function TeamFormation_OnInitialized()
-	EVENT_MANAGER:RegisterForEvent(ProvTF.name, EVENT_ADD_ON_LOADED, function(...) TeamFormation_OnAddOnLoad(...) end)
+function CustomTeamFormation_OnInitialized()
+	EVENT_MANAGER:RegisterForEvent(CustomProvTF.name, EVENT_ADD_ON_LOADED, function(...) TeamFormation_OnAddOnLoad(...) end)
 end

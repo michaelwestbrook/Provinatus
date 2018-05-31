@@ -1,6 +1,6 @@
 CrownPointerThing = {}
 
-CrownPointerThing.name = ProvTF.name
+CrownPointerThing.name = CustomProvTF.name
 
 CrownPointerThing.reticle = ArrowReticle
 
@@ -46,8 +46,22 @@ function CrownPointerThing.onUpdate()
   CrownPointerThing.reticle.UpdateTexture(D, DX, DY, Angle, Linear, AbsoluteLinear)
 end
 
-function CrownPointerThing.EVENT_ADD_ON_LOADED(event, addonName)
-  if addonName == CrownPointerThing.name then
-    CrownPointerThing:Initialize()
+local function IsTFPresent()
+  local manager = GetAddOnManager()
+  for i = 1, manager:GetNumAddOns() do
+    local name, _, _, _, _, state = manager:GetAddOnInfo(i)
+    if name == "ProvisionsTeamFormation" and state == ADDON_STATE_ENABLED then
+      return true
+    end
+  end
+  return false
+end
+
+function CrownPointerThing.EVENT_ADD_ON_LOADED()
+  CrownPointerThing:Initialize()
+  if IsTFPresent() then
+    d("Provinatus works best with 'ProvisionsTeamFormation' disabled")
+  else
+    CustomTeamFormation_OnInitialized()
   end
 end

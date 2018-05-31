@@ -1,4 +1,4 @@
-ProvTF =
+CustomProvTF =
 {
 	name = "Provinatus",
 	namePublic = "Provinatus",

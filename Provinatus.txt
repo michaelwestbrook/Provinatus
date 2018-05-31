@@ -1,7 +1,7 @@
 ﻿## Title: |c00C000Provinatus|r {{**DEVELOPMENTVERSION**}}
 ## Description: Adds a pointer to crown to Provisions Team Formation.
 ## Author: |c00C000Provision|r & |cFF69B4AlbinoPython|r
-## SavedVariables: ProvTFSV CrownPointerThingSavedVariables
+## SavedVariables: CustomProvTFSV CrownPointerThingSavedVariables
 ## OptionalDependsOn: LibStub LibAddonMenu-2.0
 ## APIVersion: 100023
 ## Version: {{**DEVELOPMENTVERSION**}}
@@ -31,12 +31,6 @@ lang/$(language).lua
 
 config.lua
 header.lua
-
-reticles/arrow.lua
-reticles/elastic-arrows.lua
-CrownPointerThing.lua
-CrownPointerThing.xml
-
 function/Error.lua
 function/Color.lua
 function/LAM2Panel.lua
@@ -45,3 +39,9 @@ TeamFormation.lua
 TeamFormation.xml
 
 Bindings.xml
+
+reticles/arrow.lua
+reticles/elastic-arrows.lua
+CrownPointerThing.lua
+CrownPointerThing.xml
+
