@@ -25,7 +25,7 @@ function CrownPointerThing:Initialize()
 end
 
 function CrownPointerThing.EVENT_PLAYER_ACTIVATED(eventCode, initial)
-  CrownPointerThingIndicator:SetAnchor(CENTER, GuiRoot, CENTER, 0, 0)
+  CrownPointerThingIndicator:SetAnchor(CENTER, GuiRoot, CENTER, 0, CrownPointerThing.SavedVars.CrownPointer.Size / 2)
   CrownPointerThing.reticle.Initialize()
 end
 
