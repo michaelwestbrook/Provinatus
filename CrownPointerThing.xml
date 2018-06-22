@@ -2,8 +2,6 @@
   <Controls>
     <TopLevelControl name="CrownPointerThingIndicator" clampedToScreen="true">
       <Anchor point="CENTER" relativeTo="GuiRoot" relativePoint="CENTER" />
-      <OnUpdate>CrownPointerThing.onUpdate()</OnUpdate>
-      <OnInitialized>CrownPointerThing.EVENT_ADD_ON_LOADED()</OnInitialized>
     </TopLevelControl>
   </Controls>
 </GuiXml>

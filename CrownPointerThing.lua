@@ -1,6 +1,6 @@
 CrownPointerThing = {}
 
-CrownPointerThing.name = CustomProvTF.name
+CrownPointerThing.name = ProvinatusConfig.Name
 
 CrownPointerThing.reticle = ArrowReticle
 
@@ -17,23 +17,20 @@ end
 
 function CrownPointerThing:Initialize()
   CrownPointerThing.SavedVars = ZO_SavedVars:NewAccountWide("CrownPointerThingSavedVariables", 1, nil, ProvinatusConfig)
-  EVENT_MANAGER:RegisterForEvent(
-    CrownPointerThing.name,
-    EVENT_PLAYER_ACTIVATED,
-    CrownPointerThing.EVENT_PLAYER_ACTIVATED
-  )
-end
-
-function CrownPointerThing.EVENT_PLAYER_ACTIVATED(eventCode, initial)
-  CrownPointerThingIndicator:SetAnchor(CENTER, GuiRoot, CENTER, 0, CrownPointerThing.SavedVars.CrownPointer.Size / 2)
+  CrownPointerThingIndicator:SetAnchor(CENTER, GuiRoot, CENTER, 0, -CrownPointerThing.SavedVars.CrownPointer.Size / 2)
   CrownPointerThing.reticle.Initialize()
 end
 
-function CrownPointerThing.onUpdate()
+function CrownPointerThing.OnUpdate()
   local leader = GetGroupLeaderUnitTag()
   local Px, Py, Ph = GetMapPlayerPosition("player")
   local Tx, Ty, Th = GetMapPlayerPosition(leader)
   local Heading = GetPlayerCameraHeading()
+  local CrownTargetOverride = CrownPointerThing.SavedVars.Debug and CrownPointerThing.SavedVars.DebugSettings.CrownPositionOverride
+  if CrownTargetOverride then
+    Tx = CrownPointerThing.SavedVars.DebugSettings.TargetX
+    Ty = CrownPointerThing.SavedVars.DebugSettings.TargetY
+  end
 
   local DX = Px - Tx
   local DY = Py - Ty
@@ -43,25 +40,10 @@ function CrownPointerThing.onUpdate()
   local Linear = Angle / math.pi
   local AbsoluteLinear = math.abs(Linear)
 
+  if CrownTargetOverride then
+    -- Set debug angle now so it does not have to be calculated again. 
+    CrownPointerThing.SavedVars.DebugSettings.Reticle.AngleToTarget = Angle
+  end
+
   CrownPointerThing.reticle.UpdateTexture(D, DX, DY, Angle, Linear, AbsoluteLinear)
-end
-
-local function IsTFPresent()
-  local manager = GetAddOnManager()
-  for i = 1, manager:GetNumAddOns() do
-    local name, _, _, _, _, state = manager:GetAddOnInfo(i)
-    if name == "ProvisionsTeamFormation" and state == ADDON_STATE_ENABLED then
-      return true
-    end
-  end
-  return false
-end
-
-function CrownPointerThing.EVENT_ADD_ON_LOADED()
-  CrownPointerThing:Initialize()
-  if IsTFPresent() then
-    d("Provinatus works best with 'ProvisionsTeamFormation' disabled")
-  else
-    CustomTeamFormation_OnInitialized()
-  end
 end

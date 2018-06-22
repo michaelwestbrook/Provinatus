@@ -25,12 +25,7 @@ function ArrowReticle.UpdateTexture(DistanceToTarget, DX, DY, AngleToTarget, Lin
   end
 
   if CrownPointerThing.SavedVars.Debug then
-    DistanceToTarget = CrownPointerThing.SavedVars.DebugSettings.Reticle.DistanceToTarget
-    DX = CrownPointerThing.SavedVars.DebugSettings.Reticle.DX
-    DY = CrownPointerThing.SavedVars.DebugSettings.Reticle.DY
     AngleToTarget = CrownPointerThing.SavedVars.DebugSettings.Reticle.AngleToTarget
-    Linear = CrownPointerThing.SavedVars.DebugSettings.Reticle.Linear
-    AbsoluteLinear = CrownPointerThing.SavedVars.DebugSettings.Reticle.AbsoluteLinear
   end
   
   -- Why didn't I write a comment here?

@@ -1,3 +1,4 @@
-[submodule "lib"]
-	path = lib
+
+[submodule "libs/ESO-LibAddonMenu"]
+	path = libs/ESO-LibAddonMenu
 	url = https://github.com/sirinsidiator/ESO-LibAddonMenu.git
