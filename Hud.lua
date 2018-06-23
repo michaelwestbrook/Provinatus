@@ -137,8 +137,9 @@ function ProvinatusHud:OnUpdate()
       self.Players[i].Icon:SetDimensions(IconX, IconY)
       self.Players[i].Icon:SetColor(GetIconColor(UnitTag))
       self.Players[i].Icon:SetAlpha(IconAlpha)
-
-      self.Players[i].LifeBar:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected)
+      
+      self.Players[i].LifeBar:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected + IconY * 0.4
+    )
       self.Players[i].LifeBar:SetDimensions(GetLifeBarDimensions(UnitTag, IconX, IconY))
       self.Players[i].LifeBar:SetAlpha(GetLifeBarAlpha(UnitTag, IconAlpha))
     end
