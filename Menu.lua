@@ -4,10 +4,11 @@ local function reset()
   CrownPointerThing.SavedVars.HUD.PlayerIconAlpha = ProvinatusConfig.HUD.PlayerIconAlpha
   CrownPointerThing.SavedVars.HUD.TargetIconSize = ProvinatusConfig.HUD.TargetIconSize
   CrownPointerThing.SavedVars.HUD.TargetIconAlpha = ProvinatusConfig.HUD.TargetIconAlpha
-  CrownPointerThing.SavedVars.HUD.Compass.Always = ProvinatusConfig.HUD.Compass.AlwaysOn
+  CrownPointerThing.SavedVars.HUD.Compass.AlwaysOn = ProvinatusConfig.HUD.Compass.AlwaysOn
   CrownPointerThing.SavedVars.HUD.Compass.Alpha = ProvinatusConfig.HUD.Compass.Alpha
   CrownPointerThing.SavedVars.HUD.RefreshRate = ProvinatusConfig.HUD.RefreshRate
   CrownPointerThing.SavedVars.CrownPointer.Enabled = ProvinatusConfig.CrownPointer.Enabled
+  CrownPointerThing.SavedVars.Debug = ProvinatusConfig.Debug
 end
 
 local function GetWarning()
@@ -90,7 +91,34 @@ function ProvinatusMenu:Initialize()
       controls = {
         [1] = {
           type = "submenu",
-          name = GetString(PROVINATUS_TEAM_ICON),
+          name = PROVINATUS_DISPLAY,
+          controls = {
+            [1] = {
+              type = "slider",
+              name = PROVINATUS_HUD_SIZE,
+              getFunc = function()
+                return CrownPointerThing.SavedVars.HUD.Size
+              end,
+              setFunc = function(value)
+                CrownPointerThing.SavedVars.HUD.Size = value
+              end,
+              -- TODO set min max in config
+              min = 100,
+              max = 500,
+              step = 1,
+              clampInput = true,
+              decimals = 0,
+              autoSelect = true,
+              inputLocation = "below",
+              width = "full",
+              disabled = ProvTF ~= nil,
+              default = ProvinatusConfig.HUD.Size
+            }
+          }
+        },
+        [2] = {
+          type = "submenu",
+          name = PROVINATUS_TEAM_ICON,
           controls = GetIconSettingsMenu(
             TEAMMATE_ICON_SETTINGS,
             function()
@@ -107,9 +135,9 @@ function ProvinatusMenu:Initialize()
             end
           )
         },
-        [2] = {
+        [3] = {
           type = "submenu",
-          name = GetString(PROVINATUS_LEADER_ICON),
+          name = PROVINATUS_LEADER_ICON,
           controls = GetIconSettingsMenu(
             LEADER_ICON_SETTINGS,
             function()
@@ -126,9 +154,9 @@ function ProvinatusMenu:Initialize()
             end
           )
         },
-        [3] = {
+        [4] = {
           type = "submenu",
-          name = GetString(PROVINATUS_COMPASS_SETTINGS),
+          name = PROVINATUS_COMPASS_SETTINGS,
           controls = {
             [1] = {
               type = "slider",
