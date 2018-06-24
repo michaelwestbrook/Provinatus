@@ -9,6 +9,8 @@ local function reset()
   CrownPointerThing.SavedVars.HUD.RefreshRate = ProvinatusConfig.HUD.RefreshRate
   CrownPointerThing.SavedVars.CrownPointer.Enabled = ProvinatusConfig.CrownPointer.Enabled
   CrownPointerThing.SavedVars.Debug = ProvinatusConfig.Debug
+  CrownPointerThing.SavedVars.CrownPointer.Size = ProvinatusConfig.CrownPointer.Size
+  CrownPointerThing.SavedVars.CrownPointer.Alpha = ProvinatusConfig.CrownPointer.Alpha
 end
 
 local function GetWarning()
@@ -113,6 +115,26 @@ function ProvinatusMenu:Initialize()
               width = "full",
               disabled = ProvTF ~= nil,
               default = ProvinatusConfig.HUD.Size
+            },
+            [2] = {
+              type = "slider",
+              name = PROVINATUS_REFRESH_RATE,
+              getFunc = function()
+                return CrownPointerThing.SavedVars.HUD.RefreshRate
+              end,
+              setFunc = function(value)
+                CrownPointerThing.SavedVars.HUD.RefreshRate = value
+              end,
+              -- TODO set min max in config
+              min = 24,
+              max = 60,
+              step = 1,
+              clampInput = true,
+              decimals = 0,
+              requiresReload = true,
+              autoSelect = true,
+              inputLocation = "below",
+              width = "full"
             }
           }
         },
@@ -194,27 +216,6 @@ function ProvinatusMenu:Initialize()
             }
           }
         }
-        -- TODO Put refresh rate into a submenu
-        -- [4] = {
-        --   type = "slider",
-        --   name = PROVINATUS_REFRESH_RATE,
-        --   getFunc = function()
-        --     return CrownPointerThing.SavedVars.HUD.RefreshRate
-        --   end,
-        --   setFunc = function(value)
-        --     CrownPointerThing.SavedVars.HUD.RefreshRate = value
-        --   end,
-        --   -- TODO set min max in config
-        --   min = 24,
-        --   max = 144,
-        --   step = 1,
-        --   clampInput = true,206) 588-1577
-        --   decimals = 0,
-        --   requiresReload = true,
-        --   autoSelect = true,
-        --   inputLocation = "below",
-        --   width = "full"
-        -- }
       }
     },
     [2] = {
@@ -222,6 +223,25 @@ function ProvinatusMenu:Initialize()
       name = CROWN_POINTER_THING,
       controls = {
         [1] = {
+          type = "submenu",
+          name = "Icon",
+          controls = GetIconSettingsMenu(
+            PROVINATUS_INDICATOR_SETTINGS,
+            function()
+              return CrownPointerThing.SavedVars.CrownPointer.Size
+            end,
+            function(value)
+              CrownPointerThing.SavedVars.CrownPointer.Size = value
+            end,
+            function()
+              return CrownPointerThing.SavedVars.CrownPointer.Alpha * 100
+            end,
+            function(value)
+              CrownPointerThing.SavedVars.CrownPointer.Alpha = value / 100
+            end
+          )
+        },
+        [2] = {
           type = "submenu",
           name = "Debug",
           controls = {
