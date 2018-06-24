@@ -73,7 +73,7 @@ end
 
 local function GetIconAlpha(UnitTag)
   local Apha
-  if not IsUnitOnline(UnitTag) then
+  if not IsUnitOnline(UnitTag) or ZO_ReticleContainer:IsHidden() then
     Alpha = 0
   elseif IsUnitGroupLeader(UnitTag) then
     Alpha = CrownPointerThing.SavedVars.HUD.TargetIconAlpha
