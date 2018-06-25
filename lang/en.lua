@@ -1,4 +1,3 @@
-﻿-- Ye be warned! Thar be no grammar checks here!
 ZO_CreateStringId("CROWN_POINTER_THING", "Crown Pointer Thing")
 ZO_CreateStringId("CROWN_POINTER_ENABLE_DEBUG", "Enable debug?")
 ZO_CreateStringId("CROWN_POINTER_ENABLE_DEBUG_TOOLTIP", "Draws the crown pointer thing and lets you control some settings of it")
@@ -16,7 +15,7 @@ ZO_CreateStringId("PROVINATUS_LEADER_ICON", "Leader Icon")
 ZO_CreateStringId("PROVINATUS_ICON_SIZE", "Icon Size")
 ZO_CreateStringId("PROVINATUS_ICON_SIZE_TT", "Sets the icon's size on the HUD")
 ZO_CreateStringId("PROVINATUS_TRANSPARENCY", "Icon Transparency")
-ZO_CreateStringId("PROVINATUS_TRANSPARENCY_TT", "Set how transparent the icon is")
+ZO_CreateStringId("PROVINATUS_TRANSPARENCY_TT", "Set how transparent the icon is. Setting to zero hides the icon.")
 ZO_CreateStringId("PROVINATUS_REFRESH_RATE", "Refresh Rate")
 ZO_CreateStringId("PROVINATUS_HUD_SIZE", "Heads Up Display Size")
 ZO_CreateStringId("PROVINATUS_DISPLAY", "Display")

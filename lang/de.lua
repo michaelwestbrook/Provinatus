@@ -1,36 +1,22 @@
-﻿-- Ye be warned! Thar be no grammar checks here, only Google translations!
-ZO_CreateStringId("CROWN_POINTER_THING", "Krone-Zeiger-Sache")
-ZO_CreateStringId("CROWN_POINTER_ENABLE", "Aktivieren Crown Pointer Thing?")
-ZO_CreateStringId(
-    "CROWN_POINTER_ENABLE_TOOLTIP",
-    "Aktiviert oder deaktiviert den großen Pfeil in der Mitte des Bildschirms, der zeigt, wo Crown ist"
-)
-ZO_CreateStringId("CROWN_POINTER_OPACITY", "Crown Pointer Opazität")
-ZO_CreateStringId(
-    "CROWN_POINTER_OPACITY_TOOLTIP",
-    "Unterer Wert, um die Transparenz des großen Pfeils auf Ihrem Bildschirm zu erhöhen"
-)
-ZO_CreateStringId("CROWN_POINTER_SIZE", "Krone Zeigergröße")
-ZO_CreateStringId("CROWN_POINTER_SIZE_TOOLTIP", "Steuert die Größe des großen Pfeils auf Ihrem Bildschirm")
-ZO_CreateStringId("CROWN_POINTER_DEBUG_SETTINGS", "Debug-Einstellungen")
-ZO_CreateStringId("CROWN_POINTER_ENABLE_DEBUG", "Debuggen aktivieren?")
-ZO_CreateStringId(
-    "CROWN_POINTER_ENABLE_DEBUG_TOOLTIP",
-    "Zeichnet das Crown-Pointer-Ding und lässt einige Einstellungen davon zu"
-)
-ZO_CreateStringId("CROWN_POINTER_DIRECTION", "Stellen Sie Crown Pointer ein")
-ZO_CreateStringId("CROWN_POINTER_DIRECTION_TOOLTIP", "Stellen Sie den Crown Pointer im Debug-Modus ein")
-
-ZO_CreateStringId("LEADER_ICON_SETTINGS", "Leader Icon Einstellungen")
-ZO_CreateStringId("LEADER_ICON_OPACITY", "Führer Icon Opazität")
-ZO_CreateStringId("LEADER_ICON_OPACITY_TOOLTIP", "Steuert die Transparenz des Führungssymbols")
-
-ZO_CreateStringId("LEADER_DEAD_ICON_OPACITY", "Opazität des toten Anführers")
-ZO_CreateStringId("LEADER_DEAD_ICON_OPACITY_TOOLTIP", "Steuert die Transparenz des Symbols des abgebrannten Anführers")
-
-ZO_CreateStringId("TEAMMATE_ICON_SETTINGS", "TeamMate Icon Einstellungen")
-ZO_CreateStringId("NON_LEADER_ICON_OPACITY", "Player-Symbol-Deckkraft")
-ZO_CreateStringId("NON_LEADER_ICON_OPACITY_TOOLTIP", "Steuert die Transparenz von nicht führenden Symbolen")
-
-ZO_CreateStringId("DEAD_PLAYER_OPACITY", "Opazität von toten Spielern")
-ZO_CreateStringId("DEAD_PLAYER_OPACITY_TOOLTIP", "Gilt nicht für den Anführer")
+ZO_CreateStringId("CROWN_POINTER_THING", "Crown Pointer Sache")
+ZO_CreateStringId("CROWN_POINTER_ENABLE_DEBUG", "Debug aktivieren?")
+ZO_CreateStringId("CROWN_POINTER_ENABLE_DEBUG_TOOLTIP", "Zeichnet die Krone Zeiger Sache und können Sie steuern einige Einstellungen davon")
+ZO_CreateStringId("CROWN_POINTER_DIRECTION", "Kronen Zeiger Richtung festlegen")
+ZO_CreateStringId("CROWN_POINTER_DIRECTION_TOOLTIP", "Legen Sie die Krone Zeiger Richtung im Debug-Modus")
+ZO_CreateStringId("LEADER_ICON_SETTINGS", "Symbol Einstellungen für Führungslinien")
+ZO_CreateStringId("TEAMMATE_ICON_SETTINGS", "Einstellungen des Teamkollegen-Symbols")
+ZO_CreateStringId("PROVINATUS_HUD", "Heads-Up-Display")
+ZO_CreateStringId("PROVINATUS_COMPASS_SETTINGS", "Kompasseinstellungen")
+ZO_CreateStringId("PROVINATUS_ENABLE", "Aktivieren")
+ZO_CreateStringId("PROVINATUS_ALWAYS_ON", "Immer auf")
+ZO_CreateStringId("PROVINATUS_ALWAYS_ON_TT", "Kompass anzeigen, auch wenn nicht in einer Gruppe")
+ZO_CreateStringId("PROVINATUS_TEAM_ICON", "Teamkollegen Icons")
+ZO_CreateStringId("PROVINATUS_LEADER_ICON", "Führungs Symbol")
+ZO_CreateStringId("PROVINATUS_ICON_SIZE", "Symbolgröße")
+ZO_CreateStringId("PROVINATUS_ICON_SIZE_TT", "Legt die Größe des Symbols auf dem HUD fest.")
+ZO_CreateStringId("PROVINATUS_TRANSPARENCY", "Icon Transparenz")
+ZO_CreateStringId("PROVINATUS_TRANSPARENCY_TT", "Legen Sie fest, wie transparent das Symbol ist. Die Einstellung auf NULL blendet das Symbol aus.")
+ZO_CreateStringId("PROVINATUS_REFRESH_RATE", "Bildwiederholrate")
+ZO_CreateStringId("PROVINATUS_HUD_SIZE", "Heads-Up Display-Größe")
+ZO_CreateStringId("PROVINATUS_DISPLAY", "Anzeigen")
+ZO_CreateStringId("PROVINATUS_INDICATOR_SETTINGS", "Zeigereinstellungen")
