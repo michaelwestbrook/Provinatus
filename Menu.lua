@@ -96,6 +96,20 @@ function ProvinatusMenu:Initialize()
           name = PROVINATUS_DISPLAY,
           controls = {
             [1] = {
+              type = "checkbox",
+              name = PROVINATUS_SHOW_ROLE_ICONS,
+              getFunc = function()
+                return CrownPointerThing.SavedVars.HUD.ShowRoleIcons
+              end,
+              setFunc = function(value)
+                CrownPointerThing.SavedVars.HUD.ShowRoleIcons = value
+              end,
+              tooltip = PROVINATUS_SHOW_ROLE_ICONS_TT,
+              width = "full",
+              disabled = ProvTF ~= nil,
+              default = ProvinatusConfig.HUD.ShowRoleIconsf
+            },
+            [2] = {
               type = "slider",
               name = PROVINATUS_HUD_SIZE,
               getFunc = function()
@@ -116,7 +130,7 @@ function ProvinatusMenu:Initialize()
               disabled = ProvTF ~= nil,
               default = ProvinatusConfig.HUD.Size
             },
-            [2] = {
+            [3] = {
               type = "slider",
               name = PROVINATUS_REFRESH_RATE,
               getFunc = function()
