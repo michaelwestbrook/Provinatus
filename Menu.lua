@@ -119,7 +119,7 @@ function ProvinatusMenu:Initialize()
                 CrownPointerThing.SavedVars.HUD.Size = value
               end,
               -- TODO set min max in config
-              min = 100,
+              min = 25,
               max = 500,
               step = 1,
               clampInput = true,
@@ -149,6 +149,58 @@ function ProvinatusMenu:Initialize()
               autoSelect = true,
               inputLocation = "below",
               width = "full"
+            },
+            [4] = {
+              type = "slider",
+              name = PROVINATUS_HORIZONTAL_POSITION,
+              getFunc = function()
+                return CrownPointerThing.SavedVars.HUD.PositionX
+              end,
+              setFunc = function(value)
+                CrownPointerThing.SavedVars.HUD.PositionX = value
+              end,
+              min = -GuiRoot:GetWidth() / 2,
+              max = GuiRoot:GetWidth() / 2,
+              step = 1,
+              clampInput = true,
+              decimals = 0,
+              autoSelect = true,
+              inputLocation = "below",
+              width = "half",
+              default = ProvinatusConfig.HUD.PositionX
+            },
+            [5] = {
+              type = "slider",
+              name = PROVINATUS_VERTICAL_POSITION,
+              getFunc = function()
+                return CrownPointerThing.SavedVars.HUD.PositionY
+              end,
+              setFunc = function(value)
+                CrownPointerThing.SavedVars.HUD.PositionY = value
+              end,
+              min = -GuiRoot:GetHeight() / 2,
+              max = GuiRoot:GetHeight() / 2,
+              step = 1,
+              clampInput = true,
+              decimals = 0,
+              autoSelect = true,
+              inputLocation = "below",
+              width = "half",
+              default = ProvinatusConfig.HUD.PositionY
+            },
+            [6] = {
+              type = "checkbox",
+              name = PROVINATUS_OFFSET_CENTER,
+              getFunc = function()
+                return CrownPointerThing.SavedVars.HUD.Offset
+              end,
+              setFunc = function(value)
+                CrownPointerThing.SavedVars.HUD.Offset = value
+              end,
+              tooltip = PROVINATUS_OFFSET_CENTER_TT,
+              width = "full",
+              disabled = ProvTF ~= nil,
+              default = ProvinatusConfig.HUD.Offset
             }
           }
         },

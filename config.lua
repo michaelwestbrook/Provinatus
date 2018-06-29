@@ -17,12 +17,14 @@ ProvinatusConfig = {
   },
   HUD = {
     Size = 350,
-    -- TODO enable role icons
+    Offset = true,
     ShowRoleIcons = false,
     TargetIconAlpha = 1,
     TargetIconSize = 48,
     PlayerIconAlpha = 0.75,
     PlayerIconSize = 24,
+    PositionX = 0,
+    PositionY = 0,
     Compass = {
       AlwaysOn = false,
       Alpha = 1

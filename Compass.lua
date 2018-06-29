@@ -21,8 +21,11 @@ function ProvinatusCompass:OnUpdate()
     -- Only show compass if player is in group or if AlwaysOn is selected in the menu.
     if (IsUnitGrouped("player") or CrownPointerThing.SavedVars.HUD.Compass.AlwaysOn) and not ZO_ReticleContainer:IsHidden() then
       local heading = (i - 2) * math.pi / 2 + CameraHeading
-      local CardinalDirectionX = CrownPointerThing.SavedVars.HUD.Size * math.cos(heading)
-      local CardinalDirectionY = CrownPointerThing.SavedVars.HUD.Size * math.sin(heading)
+      local CardinalDirectionX = CrownPointerThing.SavedVars.HUD.Size * math.cos(heading) + CrownPointerThing.SavedVars.HUD.PositionX
+      local CardinalDirectionY = CrownPointerThing.SavedVars.HUD.Size * math.sin(heading) + CrownPointerThing.SavedVars.HUD.PositionY
+      if CrownPointerThing.SavedVars.HUD.Offset then
+        CardinalDirectionY = CardinalDirectionY + CrownPointerThing.SavedVars.CrownPointer.Size / 2
+      end
       self.CardinalPoints[i]:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, CardinalDirectionX, CardinalDirectionY)
       self.CardinalPoints[i]:SetAlpha(CrownPointerThing.SavedVars.HUD.Compass.Alpha)
     elseif  self.CardinalPoints[i]:GetAlpha() ~= 0 then

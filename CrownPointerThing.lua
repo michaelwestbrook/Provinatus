@@ -17,7 +17,6 @@ end
 
 function CrownPointerThing:Initialize()
   CrownPointerThing.SavedVars = ZO_SavedVars:NewAccountWide("CrownPointerThingSavedVariables", 1, nil, ProvinatusConfig)
-  CrownPointerThingIndicator:SetAnchor(CENTER, GuiRoot, CENTER, 0, -CrownPointerThing.SavedVars.CrownPointer.Size / 2)
   CrownPointerThing.reticle.Initialize()
 end
 

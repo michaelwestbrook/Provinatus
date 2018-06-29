@@ -124,9 +124,11 @@ function ProvinatusHud:OnUpdate()
       -- The closer the target the more exaggerated the movement becomes.
       local DistanceProjected = math.atan(math.sqrt((DistanceX * DistanceX) + (DistanceY * DistanceY)) * 250) * (CrownPointerThing.SavedVars.HUD.Size / 2)
       -- Calculates where to draw on the screen.
-      local XProjected = -DistanceProjected * math.cos(Phi)
-      local YProjected = DistanceProjected * math.sin(Phi) + CrownPointerThing.SavedVars.CrownPointer.Size / 2
-
+      local XProjected = -DistanceProjected * math.cos(Phi) + CrownPointerThing.SavedVars.HUD.PositionX
+      local YProjected = DistanceProjected * math.sin(Phi) + CrownPointerThing.SavedVars.HUD.PositionY
+      if CrownPointerThing.SavedVars.HUD.Offset then
+        YProjected = YProjected + CrownPointerThing.SavedVars.CrownPointer.Size / 2
+      end
       -- Get icon dimensions
       local IconX, IconY = GetIconDimensions(UnitTag)
       local IconAlpha = GetIconAlpha(UnitTag)
@@ -138,8 +140,7 @@ function ProvinatusHud:OnUpdate()
       self.Players[i].Icon:SetColor(GetIconColor(UnitTag))
       self.Players[i].Icon:SetAlpha(IconAlpha)
       
-      self.Players[i].LifeBar:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected + IconY * 0.4
-    )
+      self.Players[i].LifeBar:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected)
       self.Players[i].LifeBar:SetDimensions(GetLifeBarDimensions(UnitTag, IconX, IconY))
       self.Players[i].LifeBar:SetAlpha(GetLifeBarAlpha(UnitTag, IconAlpha))
     end
