@@ -24,8 +24,8 @@ end
 local function GetIconColor(UnitTag)
   local R, G, B = 1, 1, 1
   if IsUnitDead(UnitTag) and not UnitHasBeenTendedTo(UnitTag) then
-      G = 0
-      B = 0
+    G = 0
+    B = 0
   else
     local health, maxHealth, effectiveMaxHealth = GetUnitPower(UnitTag, POWERTYPE_HEALTH)
     local ratio = health / maxHealth
@@ -37,28 +37,31 @@ end
 
 local function GetIconTexture(UnitTag)
   local Texture
-  -- TODO this logic could prolly be handled more better
-  if UnitHasBeenTendedTo(UnitTag) then
-    Texture = CrownPointerThing.SavedVars.PlayerIcons.ResurrectionPending
-  elseif IsUnitDead(UnitTag) then
-    Texture = CrownPointerThing.SavedVars.PlayerIcons.Dead
-  elseif IsUnitGroupLeader(UnitTag) then
-    Texture = CrownPointerThing.SavedVars.PlayerIcons.Crown.Alive
-  elseif CrownPointerThing.SavedVars.HUD.ShowRoleIcons then
-    local IsDps, IsHealer, IsTank = GetGroupMemberRoles(UnitTag)
-    local Role = "dps"
-    if IsTank then
-      Role = "tank"
-    elseif IsHealer then
-      Role = "healer"
-    end
-    Texture = "/esoui/art/lfg/lfg_" .. Role .. "_up.dds"
-  else
-    local Class = ClassMapping[GetUnitClassId(UnitTag)]
-    if Class == nil then
-      Texture = "/esoui/art/icons/mapkey/mapkey_groupmember.dds"
+  if IsUnitDead(UnitTag) then
+    if UnitHasBeenTendedTo(UnitTag) then
+      Texture = CrownPointerThing.SavedVars.PlayerIcons.ResurrectionPending
     else
-      Texture = "esoui/art/contacts/social_classicon_" .. Class .. ".dds"
+      Texture = CrownPointerThing.SavedVars.PlayerIcons.Dead
+    end
+  else
+    if IsUnitGroupLeader(UnitTag) then
+      Texture = CrownPointerThing.SavedVars.PlayerIcons.Crown.Alive
+    elseif CrownPointerThing.SavedVars.HUD.ShowRoleIcons then
+      local IsDps, IsHealer, IsTank = GetGroupMemberRoles(UnitTag)
+      local Role = "dps"
+      if IsTank then
+        Role = "tank"
+      elseif IsHealer then
+        Role = "healer"
+      end
+      Texture = "/esoui/art/lfg/lfg_" .. Role .. "_up.dds"
+    else
+      local Class = ClassMapping[GetUnitClassId(UnitTag)]
+      if Class == nil then
+        Texture = "/esoui/art/icons/mapkey/mapkey_groupmember.dds"
+      else
+        Texture = "esoui/art/contacts/social_classicon_" .. Class .. ".dds"
+      end
     end
   end
   return Texture
@@ -73,7 +76,7 @@ end
 
 local function GetIconAlpha(UnitTag)
   local Apha
-  if not IsUnitOnline(UnitTag) or ZO_ReticleContainer:IsHidden() then
+  if not IsUnitOnline(UnitTag) or (ZO_ReticleContainer:IsHidden() and not Provinatus.PerformingResurrection) then
     Alpha = 0
   elseif IsUnitGroupLeader(UnitTag) then
     Alpha = CrownPointerThing.SavedVars.HUD.TargetIconAlpha
@@ -109,7 +112,10 @@ function ProvinatusHud:OnUpdate()
     end
     local UnitTag = "group" .. i
     -- If unit not in group, unit is me, or unit in a different zone than me...  hide icon
-    if (not IsPlayerInGroup(GetUnitName(UnitTag)) or GetUnitName(UnitTag) == GetUnitName("player") or GetUnitZone(UnitTag) ~= GetUnitZone("player")) and self.Players[i] ~= nil then
+    if
+      (not IsPlayerInGroup(GetUnitName(UnitTag)) or GetUnitName(UnitTag) == GetUnitName("player") or GetUnitZone(UnitTag) ~= GetUnitZone("player") or not IsUnitOnline(UnitTag)) and
+        self.Players[i] ~= nil
+     then
       self.Players[i].Icon:SetAlpha(0)
       self.Players[i].LifeBar:SetAlpha(0)
     elseif GetUnitName(UnitTag) ~= GetUnitName("player") then
@@ -139,8 +145,8 @@ function ProvinatusHud:OnUpdate()
       self.Players[i].Icon:SetDimensions(IconX, IconY)
       self.Players[i].Icon:SetColor(GetIconColor(UnitTag))
       self.Players[i].Icon:SetAlpha(IconAlpha)
-      
-      self.Players[i].LifeBar:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected)
+
+      self.Players[i].LifeBar:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected + self.Players[i].Icon:GetWidth() / 2)
       self.Players[i].LifeBar:SetDimensions(GetLifeBarDimensions(UnitTag, IconX, IconY))
       self.Players[i].LifeBar:SetAlpha(GetLifeBarAlpha(UnitTag, IconAlpha))
     end

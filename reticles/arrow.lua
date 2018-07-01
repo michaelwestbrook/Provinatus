@@ -17,7 +17,7 @@ function ArrowReticle.UpdateTexture(DistanceToTarget, DX, DY, AngleToTarget, Lin
     return
   end
   
-  if IsUnitSoloOrGroupLeader("player") or ZO_ReticleContainer:IsHidden() or IsActiveWorldBattleground() then
+  if IsUnitSoloOrGroupLeader("player") or (ZO_ReticleContainer:IsHidden() and Provinatus.PerformingResurrection == false) or IsActiveWorldBattleground() then
     Arrow:SetAlpha(0)
     if not CrownPointerThing.SavedVars.Debug then
       return
