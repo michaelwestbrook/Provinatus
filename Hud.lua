@@ -76,7 +76,9 @@ end
 
 local function GetIconAlpha(UnitTag)
   local Alpha
-  if IsUnitGroupLeader(UnitTag) then
+  if not IsUnitGrouped(UnitTag) or not IsUnitOnline(UnitTag) then
+    Alpha = 0
+  elseif IsUnitGroupLeader(UnitTag) then
     Alpha = CrownPointerThing.SavedVars.HUD.TargetIconAlpha
   else
     Alpha = CrownPointerThing.SavedVars.HUD.PlayerIconAlpha
