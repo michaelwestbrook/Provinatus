@@ -23,14 +23,14 @@ end
 
 local function GetIconColor(UnitTag)
   local R, G, B = 1, 1, 1
-  if IsUnitDead(UnitTag) and not UnitHasBeenTendedTo(UnitTag) then
-    G = 0
-    B = 0
-  else
+  if not IsUnitDead(UnitTag) then
     local health, maxHealth, effectiveMaxHealth = GetUnitPower(UnitTag, POWERTYPE_HEALTH)
     local ratio = health / maxHealth
     G = ratio
     B = ratio
+  elseif not DoesUnitHaveResurrectPending(UnitTag) then
+    G = 0
+    B = 0
   end
   return R, G, B
 end
@@ -75,10 +75,8 @@ local function GetLifeBarDimensions(UnitTag, IconX, IconY)
 end
 
 local function GetIconAlpha(UnitTag)
-  local Apha
-  if not IsUnitOnline(UnitTag) or (ZO_ReticleContainer:IsHidden() and not Provinatus.PerformingResurrection) then
-    Alpha = 0
-  elseif IsUnitGroupLeader(UnitTag) then
+  local Alpha
+  if IsUnitGroupLeader(UnitTag) then
     Alpha = CrownPointerThing.SavedVars.HUD.TargetIconAlpha
   else
     Alpha = CrownPointerThing.SavedVars.HUD.PlayerIconAlpha
@@ -112,13 +110,7 @@ function ProvinatusHud:OnUpdate()
     end
     local UnitTag = "group" .. i
     -- If unit not in group, unit is me, or unit in a different zone than me...  hide icon
-    if
-      (not IsPlayerInGroup(GetUnitName(UnitTag)) or GetUnitName(UnitTag) == GetUnitName("player") or GetUnitZone(UnitTag) ~= GetUnitZone("player") or not IsUnitOnline(UnitTag)) and
-        self.Players[i] ~= nil
-     then
-      self.Players[i].Icon:SetAlpha(0)
-      self.Players[i].LifeBar:SetAlpha(0)
-    elseif GetUnitName(UnitTag) ~= GetUnitName("player") then
+    if GetUnitName(UnitTag) ~= GetUnitName("player") then
       local X, Y, Heading = GetMapPlayerPosition(UnitTag)
       local MyX, MyY, MyHeading = GetMapPlayerPosition("player")
       -- Horizontal distance to target

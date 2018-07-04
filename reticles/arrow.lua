@@ -12,12 +12,7 @@ function ArrowReticle.UpdateTexture(DistanceToTarget, DX, DY, AngleToTarget, Lin
     return
   end
 
-  if not CrownPointerThing.SavedVars.CrownPointer.Enabled then
-    Arrow:SetAlpha(0)
-    return
-  end
-  
-  if IsUnitSoloOrGroupLeader("player") or (ZO_ReticleContainer:IsHidden() and Provinatus.PerformingResurrection == false) or IsActiveWorldBattleground() then
+  if not CrownPointerThing.SavedVars.CrownPointer.Enabled or IsUnitSoloOrGroupLeader("player") or IsActiveWorldBattleground() then
     Arrow:SetAlpha(0)
     if not CrownPointerThing.SavedVars.Debug then
       return
@@ -27,7 +22,7 @@ function ArrowReticle.UpdateTexture(DistanceToTarget, DX, DY, AngleToTarget, Lin
   if CrownPointerThing.SavedVars.Debug then
     AngleToTarget = CrownPointerThing.SavedVars.DebugSettings.Reticle.AngleToTarget
   end
-  
+
   -- Why didn't I write a comment here?
   local AbsAngleToTarget = math.abs(AngleToTarget)
   local R = AbsAngleToTarget / 2

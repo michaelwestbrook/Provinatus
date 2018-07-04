@@ -1,7 +1,6 @@
-Provinatus = {}
+local Provinatus = {}
 
 Provinatus.UpdateFunctions = {}
-Provinatus.PerformingResurrection = false
 
 function Provinatus.OnUpdate()
   for key, UpdateFunction in pairs(Provinatus.UpdateFunctions) do
@@ -42,21 +41,12 @@ function Provinatus.EVENT_ADD_ON_LOADED(eventCode, addonName)
     end
 
     EVENT_MANAGER:RegisterForUpdate(CrownPointerThing.name .. "Update", 1000 / CrownPointerThing.SavedVars.HUD.RefreshRate, Provinatus.OnUpdate)
-    EVENT_MANAGER:RegisterForEvent(
-      CrownPointerThing.name,
-      EVENT_START_SOUL_GEM_RESURRECTION,
-      function(eventId, duration)
-        Provinatus.PerformingResurrection = true
-      end
-    )
-    EVENT_MANAGER:RegisterForEvent(
-      CrownPointerThing.name,
-      EVENT_END_SOUL_GEM_RESURRECTION,
-      function(eventId, duration)
-        Provinatus.PerformingResurrection = false
-      end
-    )
   end
+
+  local fragment = ZO_SimpleSceneFragment:New(CrownPointerThingIndicator)
+  HUD_SCENE:AddFragment(fragment)
+  HUD_UI_SCENE:AddFragment(fragment)
+  SIEGE_BAR_SCENE:AddFragment(fragment)
 end
 
 -- TODO load addon more smarter so others can use it
