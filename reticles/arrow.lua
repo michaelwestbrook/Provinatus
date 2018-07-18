@@ -1,6 +1,11 @@
 ArrowReticle = {}
 
 local Arrow
+
+function ArrowReticle.Hide(ShouldHide)
+  Arrow:SetHidden(ShouldHide)
+end
+
 function ArrowReticle.Initialize()
   Arrow = Arrow or WINDOW_MANAGER:CreateControl("Arrow", CrownPointerThingIndicator, CT_TEXTURE)
   Arrow:SetDrawLevel(1)
@@ -12,7 +17,7 @@ function ArrowReticle.UpdateTexture(DistanceToTarget, DX, DY, AngleToTarget, Lin
     return
   end
 
-  if not CrownPointerThing.SavedVars.CrownPointer.Enabled or IsUnitSoloOrGroupLeader("player") or IsActiveWorldBattleground() then
+  if not CrownPointerThing.SavedVars.CrownPointer.Enabled or GetGroupSize() == 0 or IsActiveWorldBattleground() then
     Arrow:SetAlpha(0)
     if not CrownPointerThing.SavedVars.Debug then
       return

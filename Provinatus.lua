@@ -37,7 +37,7 @@ function Provinatus.EVENT_ADD_ON_LOADED(eventCode, addonName)
         end
       )
     else
-      d("Disabling Provinatus HUD while Provision's Team Formation active")
+      d(GetString(PROVINATUS_DISABLE))
     end
 
     EVENT_MANAGER:RegisterForUpdate(CrownPointerThing.name .. "Update", 1000 / CrownPointerThing.SavedVars.HUD.RefreshRate, Provinatus.OnUpdate)

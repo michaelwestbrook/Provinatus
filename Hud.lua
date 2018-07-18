@@ -9,8 +9,7 @@ local ClassMapping = {
 }
 
 local function GetIconDimensions(UnitTag)
-  -- TODO Leader might not be the 'group' leader
-  if IsUnitGroupLeader(UnitTag) then
+  if IsUnitGroupLeader(UnitTag) or GetUnitName(UnitTag) == CrownPointerThing.CustomTarget then
     return CrownPointerThing.SavedVars.HUD.TargetIconSize, CrownPointerThing.SavedVars.HUD.TargetIconSize
   else
     return CrownPointerThing.SavedVars.HUD.PlayerIconSize, CrownPointerThing.SavedVars.HUD.PlayerIconSize
@@ -78,7 +77,7 @@ local function GetIconAlpha(UnitTag)
   local Alpha
   if not IsUnitGrouped(UnitTag) or not IsUnitOnline(UnitTag) then
     Alpha = 0
-  elseif IsUnitGroupLeader(UnitTag) then
+  elseif IsUnitGroupLeader(UnitTag) or GetUnitName(UnitTag) == CrownPointerThing.CustomTarget then
     Alpha = CrownPointerThing.SavedVars.HUD.TargetIconAlpha
   else
     Alpha = CrownPointerThing.SavedVars.HUD.PlayerIconAlpha
@@ -98,6 +97,7 @@ function ProvinatusHud:Initialize()
   self.Players = {}
 end
 
+-- TODO Targeted icon should draw on top.
 function ProvinatusHud:OnUpdate()
   if not CrownPointerThing or not CrownPointerThing.SavedVars then
     return

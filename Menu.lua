@@ -71,6 +71,44 @@ local function GetIconSettingsMenu(DescriptionText, GetSizeFunction, SetSizeFunc
   return Settings
 end
 
+local function GetPointerIconSettings()
+  local Menu =
+    GetIconSettingsMenu(
+    PROVINATUS_INDICATOR_SETTINGS,
+    function()
+      return CrownPointerThing.SavedVars.CrownPointer.Size
+    end,
+    function(value)
+      CrownPointerThing.SavedVars.CrownPointer.Size = value
+    end,
+    function()
+      return CrownPointerThing.SavedVars.CrownPointer.Alpha * 100
+    end,
+    function(value)
+      CrownPointerThing.SavedVars.CrownPointer.Alpha = value / 100
+    end
+  )
+  -- TODO Use strings file for all controls
+  local Button = {
+    type = "button",
+    name = "My Button",
+    func = function()
+      CrownPointerThing.CustomTarget = nil
+    end,
+    tooltip = function()
+      if CrownPointerThing.CustomTarget == nil then
+        return "'/settarget <group number>' to set custom target"
+      else
+        return "Clears the custom target"
+      end
+    end,
+    width = "full",
+  }
+
+  table.insert(Menu, Button)
+  return Menu
+end
+
 function ProvinatusMenu:Initialize()
   local panelData = {
     type = "panel",
@@ -291,21 +329,7 @@ function ProvinatusMenu:Initialize()
         [1] = {
           type = "submenu",
           name = "Icon",
-          controls = GetIconSettingsMenu(
-            PROVINATUS_INDICATOR_SETTINGS,
-            function()
-              return CrownPointerThing.SavedVars.CrownPointer.Size
-            end,
-            function(value)
-              CrownPointerThing.SavedVars.CrownPointer.Size = value
-            end,
-            function()
-              return CrownPointerThing.SavedVars.CrownPointer.Alpha * 100
-            end,
-            function(value)
-              CrownPointerThing.SavedVars.CrownPointer.Alpha = value / 100
-            end
-          )
+          controls = GetPointerIconSettings()
         },
         [2] = {
           type = "submenu",

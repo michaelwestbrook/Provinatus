@@ -35,3 +35,4 @@ Menu.lua
 CrownPointerThing.lua
 Provinatus.lua
 CrownPointerThing.xml
+bindings.xml
