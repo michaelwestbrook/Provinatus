@@ -91,15 +91,15 @@ local function GetPointerIconSettings()
   -- TODO Use strings file for all controls
   local Button = {
     type = "button",
-    name = "My Button",
+    name = PROVINATUS_RESET_CUSTOM_TARGET,
     func = function()
       CrownPointerThing.CustomTarget = nil
     end,
     tooltip = function()
       if CrownPointerThing.CustomTarget == nil then
-        return "'/settarget <group number>' to set custom target"
+        return "'/settarget <group number>' " .. GetString(PROVINATUS_TO_SET_CUSTOM_TARGET)
       else
-        return "Clears the custom target"
+        return GetString(PROVINATUS_CLEARS_CUSTOM_TARGET)
       end
     end,
     width = "full",
@@ -328,12 +328,12 @@ function ProvinatusMenu:Initialize()
       controls = {
         [1] = {
           type = "submenu",
-          name = "Icon",
+          name = PROVINATUS_TARGET_INDICATOR,
           controls = GetPointerIconSettings()
         },
         [2] = {
           type = "submenu",
-          name = "Debug",
+          name = PROVINATUS_DEBUG,
           controls = {
             [1] = {
               type = "checkbox",
@@ -371,8 +371,8 @@ function ProvinatusMenu:Initialize()
             [3] = {
               -- TODO strings file
               type = "checkbox",
-              name = "Set Crown Position",
-              tooltip = "Overrides 'Crown Pointer direction' setting",
+              name = PROVINATUS_SET_CROWN_POSITION,
+              tooltip = PROVINATUS_SET_CROWN_POSITION_TT,
               getFunc = function()
                 return CrownPointerThing.SavedVars.DebugSettings.CrownPositionOverride
               end,
@@ -386,13 +386,13 @@ function ProvinatusMenu:Initialize()
             },
             [4] = {
               type = "button",
-              name = "Snap to me",
+              name = PROVINATUS_SNAP_TO_ME,
               func = function()
                 local PlayerX, PlayerY, PlayerHeading = GetMapPlayerPosition("player")
                 CrownPointerThing.SavedVars.DebugSettings.TargetX = PlayerX
                 CrownPointerThing.SavedVars.DebugSettings.TargetY = PlayerY
               end,
-              tooltip = "Set Crown Pointer to your current location",
+              tooltip = PROVINATUS_SNAP_TO_ME_TT,
               width = "half",
               disabled = function()
                 return not CrownPointerThing.SavedVars.CrownPointer.Enabled or not CrownPointerThing.SavedVars.Debug or not CrownPointerThing.SavedVars.DebugSettings.CrownPositionOverride
@@ -400,7 +400,7 @@ function ProvinatusMenu:Initialize()
             },
             [5] = {
               type = "slider",
-              name = "Set Crown X",
+              name = PROVINATUS_SET_X,
               -- TODO use zo_round() to
               min = tonumber(string.format("%." .. (2 or 0) .. "f", 0)),
               max = tonumber(string.format("%." .. (2 or 0) .. "f", 1)),
@@ -418,7 +418,7 @@ function ProvinatusMenu:Initialize()
             },
             [6] = {
               type = "slider",
-              name = "Set Crown Y",
+              name = PROVINATUS_SET_Y,
               min = tonumber(string.format("%." .. (2 or 0) .. "f", 0)),
               max = tonumber(string.format("%." .. (2 or 0) .. "f", 1)),
               step = 1 / 100,
