@@ -41,5 +41,6 @@ ZO_CreateStringId("PROVINATUS_DETECTED_YAC", "Detected Yet Another Compass. Disa
 ZO_CreateStringId("PROVINATUS_CANNOT_SET_TARGET", "Cannot set that target")
 ZO_CreateStringId("PROVINATUS_CLEARED_CUSTOM_TARGET", "Cleared Provinatus custom target")
 ZO_CreateStringId("PROVINATUS_NEED_TWO_MEMBERS", "Need at least two members to set a custom target")
+ZO_CreateStringId("PROVINATUS_DISABLE", "Disabling Provinatus HUD while Provision's Team Formation is running")
 ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_NEXT_TARGET", "Next target")
 ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_CLEAR_TARGET", "Clear custom target")

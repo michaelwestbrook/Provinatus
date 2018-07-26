@@ -41,5 +41,6 @@ ZO_CreateStringId("PROVINATUS_DETECTED_YAC", "Noch einen Kompass entdeckt. Deakt
 ZO_CreateStringId("PROVINATUS_CANNOT_SET_TARGET", "Dieses Ziel kann nicht festgelegt werden")
 ZO_CreateStringId("PROVINATUS_CLEARED_CUSTOM_TARGET", "Gelöschtes Provinatus benutzerdefiniertes Ziel")
 ZO_CreateStringId("PROVINATUS_NEED_TWO_MEMBERS", "Mindestens zwei Mitglieder benötigen, um ein benutzerdefiniertes Ziel festzulegen")
+ZO_CreateStringId("PROVINATUS_DISABLE", "Deaktivieren Provinatus HUD während Provision Team Bildung läuft")
 ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_NEXT_TARGET", "Nächstes Ziel")
 ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_CLEAR_TARGET", "Benutzerdefiniertes Ziel löschen")

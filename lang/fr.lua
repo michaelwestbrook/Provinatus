@@ -41,5 +41,6 @@ ZO_CreateStringId("PROVINATUS_DETECTED_YAC", "Détecté la présence d'une autre
 ZO_CreateStringId("PROVINATUS_CANNOT_SET_TARGET", "Impossible de choisir cette cible")
 ZO_CreateStringId("PROVINATUS_CLEARED_CUSTOM_TARGET", "Efface la cible personnalisée de Provinatus")
 ZO_CreateStringId("PROVINATUS_NEED_TWO_MEMBERS", "Besoin d'au moins deux membres pour définir une cible personnalisée")
+ZO_CreateStringId("PROVINATUS_DISABLE", "Désactiver Provinatus HUD alors que la formation de l'équipe de provision est en cours d'exécution")
 ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_NEXT_TARGET", "Prochaine cible")
 ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_CLEAR_TARGET", "Effacer la cible personnalisée")
