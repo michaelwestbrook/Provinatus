@@ -29,13 +29,17 @@ function Provinatus.EVENT_ADD_ON_LOADED(eventCode, addonName)
         end
       )
 
-      ProvinatusCompass:Initialize()
-      table.insert(
-        Provinatus.UpdateFunctions,
-        function()
-          ProvinatusCompass:OnUpdate()
-        end
-      )
+      if (YACS == nil) then
+        ProvinatusCompass:Initialize()
+        table.insert(
+          Provinatus.UpdateFunctions,
+          function()
+            ProvinatusCompass:OnUpdate()
+          end
+        )
+      else
+        d(GetString(PROVINATUS_DETECTED_YAC))
+      end
     else
       d(GetString(PROVINATUS_DISABLE))
     end
