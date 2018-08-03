@@ -44,3 +44,4 @@ ZO_CreateStringId("PROVINATUS_NEED_TWO_MEMBERS", "Besoin d'au moins deux membres
 ZO_CreateStringId("PROVINATUS_DISABLE", "Désactiver Provinatus HUD alors que la formation de l'équipe de provision est en cours d'exécution")
 ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_NEXT_TARGET", "Prochaine cible")
 ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_CLEAR_TARGET", "Effacer la cible personnalisée")
+ZO_CreateStringId("PROVINATUS_NO_TARGET_PROVIDED", "Aucune cible valide n'est fournie")

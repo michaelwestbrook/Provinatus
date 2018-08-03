@@ -44,3 +44,4 @@ ZO_CreateStringId("PROVINATUS_NEED_TWO_MEMBERS", "Need at least two members to s
 ZO_CreateStringId("PROVINATUS_DISABLE", "Disabling Provinatus HUD while Provision's Team Formation is running")
 ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_NEXT_TARGET", "Next target")
 ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_CLEAR_TARGET", "Clear custom target")
+ZO_CreateStringId("PROVINATUS_NO_TARGET_PROVIDED", "No valid target provided")
