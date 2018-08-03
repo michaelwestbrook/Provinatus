@@ -45,3 +45,4 @@ ZO_CreateStringId("PROVINATUS_DISABLE", "Die Deaktivierung von provinatus HUD w�
 ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_NEXT_TARGET", "Nächste Ziel")
 ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_CLEAR_TARGET", "Klares Ziel")
 ZO_CreateStringId("PROVINATUS_NO_TARGET_PROVIDED", "Kein gültiges Ziel vorgesehen")
+ZO_CreateStringId("PROVINATUS_NO_SUITABLE_TARGET", "Kein geeignetes Ziel gefunden")
