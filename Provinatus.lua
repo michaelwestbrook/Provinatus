@@ -44,13 +44,12 @@ function Provinatus.EVENT_ADD_ON_LOADED(eventCode, addonName)
       d(GetString(PROVINATUS_DISABLE))
     end
 
+    local fragment = ZO_SimpleSceneFragment:New(CrownPointerThingIndicator)
+    HUD_SCENE:AddFragment(fragment)
+    HUD_UI_SCENE:AddFragment(fragment)
+    SIEGE_BAR_SCENE:AddFragment(fragment)
     EVENT_MANAGER:RegisterForUpdate(CrownPointerThing.name .. "Update", 1000 / CrownPointerThing.SavedVars.HUD.RefreshRate, Provinatus.OnUpdate)
   end
-
-  local fragment = ZO_SimpleSceneFragment:New(CrownPointerThingIndicator)
-  HUD_SCENE:AddFragment(fragment)
-  HUD_UI_SCENE:AddFragment(fragment)
-  SIEGE_BAR_SCENE:AddFragment(fragment)
 end
 
 -- TODO load addon more smarter so others can use it
