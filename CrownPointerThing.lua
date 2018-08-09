@@ -26,10 +26,11 @@ end
 
 -- Group number can be found in the "Group & Activity Finder" menu.
 local function SetTarget(GroupNumber)
+  local UnitTag = GetGroupUnitTagByIndex(GroupNumber)
   if GetGroupSize() > 0 and GroupNumber then
     if IsValidTarget(GroupNumber) then
-      TargetUnitName = GetUnitName(GetGroupUnitTagByIndex(GroupNumber))
-      d(GetString(PROVINATUS_SET_CUSTOM_TARGET) .. ": " .. TargetUnitName)
+      TargetUnitName = GetUnitName(UnitTag)
+      d(TargetUnitName .. GetUnitDisplayName(UnitTag))
       CrownPointerThing.CustomTarget = TargetUnitName
     else
       d(GetString(PROVINATUS_CANNOT_SET_TARGET))
