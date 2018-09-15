@@ -93,6 +93,14 @@ local function GetLifeBarAlpha(UnitTag, SuggestedAlpha)
   return Alpha
 end
 
+local function GetDrawLevel(UnitTag)
+  if IsUnitGroupLeader(UnitTag) or GetUnitName(UnitTag) == CrownPointerThing.CustomTarget then
+    return 1
+  else
+    return 0
+  end
+end
+
 function ProvinatusHud:Initialize()
   self.Players = {}
 end
@@ -133,16 +141,21 @@ function ProvinatusHud:OnUpdate()
       local IconX, IconY = GetIconDimensions(UnitTag)
       local IconAlpha = GetIconAlpha(UnitTag)
 
+      -- Get icon draw level
+      local DrawLevel = GetDrawLevel(UnitTag)
+
       -- Need to flip the x axis.
       self.Players[i].Icon:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected)
       self.Players[i].Icon:SetTexture(GetIconTexture(UnitTag))
       self.Players[i].Icon:SetDimensions(IconX, IconY)
       self.Players[i].Icon:SetColor(GetIconColor(UnitTag))
       self.Players[i].Icon:SetAlpha(IconAlpha)
+      self.Players[i].Icon:SetDrawLevel(DrawLevel)
 
       self.Players[i].LifeBar:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected + self.Players[i].Icon:GetWidth() / 2)
       self.Players[i].LifeBar:SetDimensions(GetLifeBarDimensions(UnitTag, IconX, IconY))
       self.Players[i].LifeBar:SetAlpha(GetLifeBarAlpha(UnitTag, IconAlpha))
+      self.Players[i].LifeBar:SetDrawLevel(DrawLevel)
     end
   end
 
