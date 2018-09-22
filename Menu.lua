@@ -102,7 +102,7 @@ local function GetPointerIconSettings()
         return GetString(PROVINATUS_CLEARS_CUSTOM_TARGET)
       end
     end,
-    width = "full",
+    width = "full"
   }
 
   table.insert(Menu, Button)
@@ -327,7 +327,7 @@ function ProvinatusMenu:Initialize()
               inputLocation = "below",
               tooltip = "How far apart the compass points are",
               width = "full",
-              disabled = function ()
+              disabled = function()
                 return ProvTF ~= nil or CrownPointerThing.SavedVars.HUD.Compass.LockToHUD
               end
             },
@@ -359,6 +359,23 @@ function ProvinatusMenu:Initialize()
               tooltip = PROVINATUS_ALWAYS_ON_TT,
               width = "full",
               disabled = ProvTF ~= nil
+            },
+            [5] = {
+              type = "colorpicker",
+              name = "Compass Color",
+              getFunc = function()
+                return CrownPointerThing.SavedVars.HUD.Compass.Color.r, CrownPointerThing.SavedVars.HUD.Compass.Color.g, CrownPointerThing.SavedVars.HUD.Compass.Color.b, CrownPointerThing.SavedVars.HUD.Compass.Alpha
+              end,
+              setFunc = function(Red, Green, Blue, Alpha)
+                CrownPointerThing.SavedVars.HUD.Compass.Color.r = Red
+                CrownPointerThing.SavedVars.HUD.Compass.Color.g = Green
+                CrownPointerThing.SavedVars.HUD.Compass.Color.b = Blue
+                CrownPointerThing.SavedVars.HUD.Compass.Alpha = Alpha
+              end,
+              tooltip = "Color Picker's tooltip text.",
+              width = "full",
+              disabled = ProvTF ~= nil,
+              default = ProvinatusConfig.HUD.Compass.Color
             }
           }
         }

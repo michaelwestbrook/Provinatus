@@ -33,7 +33,12 @@ ProvinatusConfig = {
       Alpha = 1,
       Size = 350,
       LockToHUD = true,
-      DrawLevel = 2
+      DrawLevel = 2,
+      Color = {
+        r = 255,
+        g = 255,
+        b = 255
+      }
     },
     RefreshRate = 60
   },

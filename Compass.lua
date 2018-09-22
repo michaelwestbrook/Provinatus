@@ -27,8 +27,13 @@ function ProvinatusCompass:OnUpdate()
         CardinalDirectionY = CardinalDirectionY + CrownPointerThing.SavedVars.CrownPointer.Size / 2
       end
       self.CardinalPoints[i]:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, CardinalDirectionX, CardinalDirectionY)
-      self.CardinalPoints[i]:SetAlpha(CrownPointerThing.SavedVars.HUD.Compass.Alpha)
       self.CardinalPoints[i]:SetDrawLevel(CrownPointerThing.SavedVars.HUD.Compass.DrawLevel)
+      self.CardinalPoints[i]:SetColor(
+        CrownPointerThing.SavedVars.HUD.Compass.Color.r,
+        CrownPointerThing.SavedVars.HUD.Compass.Color.g,
+        CrownPointerThing.SavedVars.HUD.Compass.Color.b,
+        CrownPointerThing.SavedVars.HUD.Compass.Alpha
+      )
     elseif  self.CardinalPoints[i]:GetAlpha() ~= 0 then
       self.CardinalPoints[i]:SetAlpha(0)
     end
