@@ -310,7 +310,7 @@ function ProvinatusMenu:Initialize()
             },
             [2] = {
               type = "slider",
-              name = "Compass Size",
+              name = PROVINATUS_COMPASS_SIZE,
               getFunc = function()
                 return CrownPointerThing.SavedVars.HUD.Compass.Size
               end,
@@ -325,7 +325,7 @@ function ProvinatusMenu:Initialize()
               decimals = 0,
               autoSelect = true,
               inputLocation = "below",
-              tooltip = "How far apart the compass points are",
+              tooltip = PROVINATUS_COMPASS_SIZE_TT,
               width = "full",
               disabled = function()
                 return ProvTF ~= nil or CrownPointerThing.SavedVars.HUD.Compass.LockToHUD
@@ -333,7 +333,7 @@ function ProvinatusMenu:Initialize()
             },
             [3] = {
               type = "checkbox",
-              name = "Lock to HUD",
+              name = PROVINATUS_LOCK_TO_HUD,
               getFunc = function()
                 return CrownPointerThing.SavedVars.HUD.Compass.LockToHUD
               end,
@@ -343,7 +343,7 @@ function ProvinatusMenu:Initialize()
                   CrownPointerThing.SavedVars.HUD.Compass.Size = CrownPointerThing.SavedVars.HUD.Size
                 end
               end,
-              tooltip = "Force Compass to be same size as radar screen",
+              tooltip = PROVINATUS_LOCK_TO_HUD_TT,
               width = "full",
               default = ProvinatusConfig.HUD.Compass.LockToHUD,
               disabled = ProvTF ~= nil
@@ -363,7 +363,7 @@ function ProvinatusMenu:Initialize()
             },
             [5] = {
               type = "colorpicker",
-              name = "Compass Color",
+              name = PROVINATUS_COMPASS_COLOR,
               getFunc = function()
                 return CrownPointerThing.SavedVars.HUD.Compass.Color.r, CrownPointerThing.SavedVars.HUD.Compass.Color.g, CrownPointerThing.SavedVars.HUD.Compass.Color.b, CrownPointerThing.SavedVars.HUD.Compass.Alpha
               end,
@@ -373,7 +373,7 @@ function ProvinatusMenu:Initialize()
                 CrownPointerThing.SavedVars.HUD.Compass.Color.b = Blue
                 CrownPointerThing.SavedVars.HUD.Compass.Alpha = Alpha
               end,
-              tooltip = "Color Picker's tooltip text.",
+              tooltip = PROVINATUS_COMPASS_COLOR_TT,
               width = "full",
               disabled = ProvTF ~= nil,
               default = ProvinatusConfig.HUD.Compass.Color
