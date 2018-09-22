@@ -169,7 +169,7 @@ function ProvinatusMenu:Initialize()
               inputLocation = "below",
               width = "full",
               disabled = ProvTF ~= nil,
-              default = ProvinatusConfig.HUD.Size
+              default = ProvinatusConfig.HUD.Compass.Size
             },
             [3] = {
               type = "slider",
@@ -345,6 +345,7 @@ function ProvinatusMenu:Initialize()
               end,
               tooltip = "Force Compass to be same size as radar screen",
               width = "full",
+              default = ProvinatusConfig.HUD.Compass.LockToHUD,
               disabled = ProvTF ~= nil
             },
             [4] = {
