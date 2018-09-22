@@ -155,6 +155,9 @@ function ProvinatusMenu:Initialize()
               end,
               setFunc = function(value)
                 CrownPointerThing.SavedVars.HUD.Size = value
+                if CrownPointerThing.SavedVars.HUD.Compass.LockToHUD then
+                  CrownPointerThing.SavedVars.HUD.Compass.Size = value
+                end
               end,
               -- TODO set min max in config
               min = 25,
@@ -306,6 +309,45 @@ function ProvinatusMenu:Initialize()
               disabled = ProvTF ~= nil
             },
             [2] = {
+              type = "slider",
+              name = "Compass Size",
+              getFunc = function()
+                return CrownPointerThing.SavedVars.HUD.Compass.Size
+              end,
+              setFunc = function(value)
+                CrownPointerThing.SavedVars.HUD.Compass.Size = value
+              end,
+              -- TODO set min max in config
+              min = 25,
+              max = 500,
+              step = 1,
+              clampInput = true,
+              decimals = 0,
+              autoSelect = true,
+              inputLocation = "below",
+              tooltip = "How far apart the compass points are",
+              width = "full",
+              disabled = function ()
+                return ProvTF ~= nil or CrownPointerThing.SavedVars.HUD.Compass.LockToHUD
+              end
+            },
+            [3] = {
+              type = "checkbox",
+              name = "Lock to HUD",
+              getFunc = function()
+                return CrownPointerThing.SavedVars.HUD.Compass.LockToHUD
+              end,
+              setFunc = function(value)
+                CrownPointerThing.SavedVars.HUD.Compass.LockToHUD = value
+                if CrownPointerThing.SavedVars.HUD.Compass.LockToHUD then
+                  CrownPointerThing.SavedVars.HUD.Compass.Size = CrownPointerThing.SavedVars.HUD.Size
+                end
+              end,
+              tooltip = "Force Compass to be same size as radar screen",
+              width = "full",
+              disabled = ProvTF ~= nil
+            },
+            [4] = {
               type = "checkbox",
               name = PROVINATUS_ALWAYS_ON,
               getFunc = function()

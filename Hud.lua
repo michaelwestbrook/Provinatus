@@ -95,9 +95,9 @@ end
 
 local function GetDrawLevel(UnitTag)
   if IsUnitGroupLeader(UnitTag) or GetUnitName(UnitTag) == CrownPointerThing.CustomTarget then
-    return 1
+    return CrownPointerThing.SavedVars.HUD.TargetIconDrawLevel
   else
-    return 0
+    return CrownPointerThing.SavedVars.HUD.PlayerIconDrawLevel
   end
 end
 

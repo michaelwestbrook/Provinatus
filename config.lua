@@ -22,15 +22,18 @@ ProvinatusConfig = {
     ShowRoleIcons = false,
     TargetIconAlpha = 1,
     TargetIconSize = 48,
-    TargetDrawLayer = 2,
+    TargetIconDrawLevel = 3,
     PlayerIconAlpha = 0.75,
     PlayerIconSize = 24,
-    PlayerDrawLevel = 0,
+    PlayerIconDrawLevel = 0,
     PositionX = 0,
     PositionY = 0,
     Compass = {
       AlwaysOn = false,
-      Alpha = 1
+      Alpha = 1,
+      Size = 350,
+      LockToHUD = true,
+      DrawLevel = 2
     },
     RefreshRate = 60
   },

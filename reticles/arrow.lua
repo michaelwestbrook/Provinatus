@@ -8,7 +8,7 @@ end
 
 function ArrowReticle.Initialize()
   Arrow = Arrow or WINDOW_MANAGER:CreateControl("Arrow", CrownPointerThingIndicator, CT_TEXTURE)
-  Arrow:SetDrawLevel(1)
+  Arrow:SetDrawLevel(CrownPointerThing.SavedVars.CrownPointer.DrawLevel)
   Arrow:SetTexture(CrownPointerThing.SavedVars.CrownPointer.Texture)
 end
 
