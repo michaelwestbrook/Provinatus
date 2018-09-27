@@ -1,0 +1,11 @@
+# https://provinatus.visualstudio.com/Provinatus/_build?definitionId=16
+pool: Provinatus
+
+steps:
+- task: ShellScript@2
+  displayName: 'Shell Script ./test/syntax-test.sh'
+  inputs:
+    scriptPath: './test/syntax-test.sh'
+    disableAutoCwd: true
+    cwd: '$(System.DefaultWorkingDirectory)'
+    failOnStandardError: true
