@@ -1,6 +1,6 @@
 # https://provinatus.visualstudio.com/Provinatus/_build?definitionId=16
 pool: Provinatus
-
+trigger: none
 steps:
 - task: ShellScript@2
   displayName: 'Shell Script ./test/syntax-test.sh'
