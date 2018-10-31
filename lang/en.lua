@@ -44,7 +44,7 @@ ZO_CreateStringId("PROVINATUS_NEED_TWO_MEMBERS", "Need at least two members to s
 ZO_CreateStringId("PROVINATUS_DISABLE", "Disabling Provinatus HUD while Provision's Team Formation is running")
 ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_NEXT_TARGET", "Next target")
 ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_CLEAR_TARGET", "Clear custom target")
-ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_NEAREST_DEAD", "Clear custom target")
+ZO_CreateStringId("SI_BINDING_NAME_PROVINATUS_NEAREST_DEAD", "Find nearest dead player")
 ZO_CreateStringId("PROVINATUS_NO_TARGET_PROVIDED", "No valid target provided")
 ZO_CreateStringId("PROVINATUS_NO_SUITABLE_TARGET", "No suitable target found")
 ZO_CreateStringId("PROVINATUS_LOCK_TO_HUD", "Lock screen size to HUD")
