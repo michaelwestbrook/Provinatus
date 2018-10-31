@@ -4,7 +4,7 @@
 ## Provinatus
 This addon is inspired by [Provision's Team Formation] and [Exterminatus Group Leader](http://www.esoui.com/downloads/info329-0.1.html) and [Provision's Team Formation](http://www.esoui.com/downloads/info1135-ProvisionsTeamFormation.html).
 
-![Whoops, cant find the amazing screenshot.](images/full-size-images/action-shot2.png)
+![Whoops, cant find the amazing screenshot.](images/pvp.gif)
 
 ##### Warning: If Provision's Team Formation is running at the same time as Provinatus, only the target arrow will display. 
 

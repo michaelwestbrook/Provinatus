@@ -57,7 +57,6 @@ end
 function CrownPointerThing:NextTarget()
   local GroupSize = GetGroupSize()
   if GroupSize < 2 then
-    -- TODO strings
     d(GetString(PROVINATUS_NEED_TWO_MEMBERS))
     return
   end
@@ -74,6 +73,40 @@ function CrownPointerThing:NextTarget()
     end
   end
   d(GetString(PROVINATUS_NO_SUITABLE_TARGET))
+end
+
+function CrownPointerThing:SnapToNearestDeadTarget()
+  -- Get list of dead units
+  local Deadies = {}
+  for i = 1, GetGroupSize() do
+    local UnitTag = "group" .. i
+    if IsUnitDead(UnitTag) then
+      table.insert(Deadies, UnitTag)
+    end
+  end
+
+  -- iterate list and find closest
+  local ClosestUnitTag, ClosestDistance
+  local MyX, MyY, MyHeading = GetMapPlayerPosition("player")
+  for i = 1, #Deadies do
+    local UnitTag = Deadies[i]
+    local X, Y, Heading = GetMapPlayerPosition(UnitTag)
+    local Distance = math.sqrt(math.pow(MyX - X, 2) + math.pow(MyY - Y, 2))
+    if ClosestDistance == nil or ClosestDistance > Distance then
+      ClosestUnitTag = UnitTag
+      ClosestDistance = Distance
+    end
+  end
+
+  -- snap to that unit
+  if ClosestUnitTag then
+    TargetUnitName = GetUnitName(ClosestUnitTag)
+    -- TODO localized strings
+    d(TargetUnitName .. GetUnitDisplayName(ClosestUnitTag) .. " is dead!")
+    CrownPointerThing.CustomTarget = TargetUnitName
+  else
+    d("No one is dead!")
+  end
 end
 
 function CrownPointerThing:Initialize()

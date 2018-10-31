@@ -2,10 +2,15 @@
   <Layer name="SI_KEYBINDINGS_CATEGORY_GENERAL">
     <Category name="|cFF69B4Provinatus Custom Target|r">
       <Action name="PROVINATUS_NEXT_TARGET">
-		    <Down>CrownPointerThing:NextTarget()</Down>
+        <Down>CrownPointerThing:NextTarget()</Down>
       </Action>
       <Action name="PROVINATUS_CLEAR_TARGET">
-		    <Down>CrownPointerThing.ClearTarget()</Down>
+        <Down>CrownPointerThing.ClearTarget()</Down>
+      </Action>
+    </Category>
+    <Category>
+      <Action name="PROVINATUS_NEAREST_DEAD">
+        <Down>CrownPointerThing:SnapToNearestDeadTarget()</Down>
       </Action>
     </Category>
   </Layer>
