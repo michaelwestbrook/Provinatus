@@ -111,6 +111,8 @@ function ProvinatusHud:OnUpdate()
     return
   end
 
+  local MyX, MyY, MyHeading = GetMapPlayerPosition("player")
+  local MyCameraHeading = GetPlayerCameraHeading()
   for i = 1, GetGroupSize() do
     if self.Players[i] == nil then
       self.Players[i] = {}
@@ -122,13 +124,12 @@ function ProvinatusHud:OnUpdate()
     -- If unit not in group, unit is me, or unit in a different zone than me...  hide icon
     if GetUnitName(UnitTag) ~= GetUnitName("player") then
       local X, Y, Heading = GetMapPlayerPosition(UnitTag)
-      local MyX, MyY, MyHeading = GetMapPlayerPosition("player")
       -- Horizontal distance to target
       local DistanceX = MyX - X
       -- Vertical distance to target
       local DistanceY = MyY - Y
       -- Angle to target. ¯\_(ツ)_/¯
-      local Phi = -1 * GetPlayerCameraHeading() - math.atan2(DistanceY, DistanceX)
+      local Phi = -1 * MyCameraHeading - math.atan2(DistanceY, DistanceX)
       -- The closer the target the more exaggerated the movement becomes.
       local DistanceProjected = math.atan(math.sqrt((DistanceX * DistanceX) + (DistanceY * DistanceY)) * 250) * (CrownPointerThing.SavedVars.HUD.Size / 2)
       -- Calculates where to draw on the screen.
