@@ -75,7 +75,7 @@ end
 
 local function GetIconAlpha(UnitTag)
   local Alpha
-  if not IsUnitGrouped(UnitTag) or not IsUnitOnline(UnitTag) then
+  if not IsUnitGrouped(UnitTag) or not IsUnitOnline(UnitTag) or GetUnitZoneIndex("player") ~= GetUnitZoneIndex(UnitTag) then
     Alpha = 0
   elseif IsUnitGroupLeader(UnitTag) or GetUnitName(UnitTag) == CrownPointerThing.CustomTarget then
     Alpha = CrownPointerThing.SavedVars.HUD.TargetIconAlpha
@@ -101,68 +101,96 @@ local function GetDrawLevel(UnitTag)
   end
 end
 
+local function GetProjectedCoordinates(X1, Y1, X2, Y2, CameraHeading)
+  -- Horizontal distance to target
+  local DistanceX = X1 - X2
+  -- Vertical distance to target
+  local DistanceY = Y1 - Y2
+  -- Angle to target.
+  local Phi = -1 * CameraHeading - math.atan2(DistanceY, DistanceX)
+  -- The closer the target the more exaggerated the movement becomes. See 3d chart here https://www.wolframalpha.com/input/?i=atan(sqrt(x%5E2+%2B+y%5E2))
+  local DistanceProjected = math.atan(math.sqrt((DistanceX * DistanceX) + (DistanceY * DistanceY)) * 250) * (CrownPointerThing.SavedVars.HUD.Size / 2)
+  -- Calculates where to draw on the screen.
+  local XProjected = -DistanceProjected * math.cos(Phi) + CrownPointerThing.SavedVars.HUD.PositionX
+  local YProjected = DistanceProjected * math.sin(Phi) + CrownPointerThing.SavedVars.HUD.PositionY
+  if CrownPointerThing.SavedVars.HUD.Offset then
+    YProjected = YProjected + CrownPointerThing.SavedVars.CrownPointer.Size / 2
+  end
+
+  return XProjected, YProjected
+end
+
 function ProvinatusHud:Initialize()
   self.Players = {}
 end
 
--- TODO Targeted icon should draw on top.
+function ProvinatusHud:DrawWaypoint(MyX, MyY, CameraHeading)
+  local WaypointX, WaypointY = GetMapPlayerWaypoint()
+  if (WaypointX ~= 0 or WaypointY ~= 0) and CrownPointerThing.SavedVars.HUD.ShowMapPlayerWaypoint then
+    local XProjected, YProjected = GetProjectedCoordinates(MyX, MyY, WaypointX, WaypointY, CameraHeading)
+    if self.Waypoint == nil then
+      self.Waypoint = {}
+      self.Waypoint.Icon = WINDOW_MANAGER:CreateControl(nil, CrownPointerThingIndicator, CT_TEXTURE)
+      self.Waypoint.Icon:SetTexture("esoui/art/compass/compass_waypoint.dds")
+    end
+
+    self.Waypoint.Icon:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected)
+    self.Waypoint.Icon:SetAlpha(CrownPointerThing.SavedVars.HUD.PlayerWaypointIconAlpha)
+    self.Waypoint.Icon:SetDimensions(CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize, CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize)
+  elseif self.Waypoint ~= nil and self.Waypoint.Icon ~= nil and self.Waypoint.Icon:GetAlpha() ~= 0 then
+    self.Waypoint.Icon:SetAlpha(0)
+  end
+end
+
+function ProvinatusHud:DrawUnit(MyX, MyY, CameraHeading, UnitIndex)
+  local UnitTag = "group" .. UnitIndex
+
+  -- If unit not in group, unit is me, or unit in a different zone than me...  hide icon
+  if GetUnitName(UnitTag) ~= GetUnitName("player") then
+    if self.Players[UnitIndex] == nil then
+      self.Players[UnitIndex] = {}
+      self.Players[UnitIndex].Icon = WINDOW_MANAGER:CreateControl(nil, CrownPointerThingIndicator, CT_TEXTURE)
+      self.Players[UnitIndex].LifeBar = WINDOW_MANAGER:CreateControl(nil, CrownPointerThingIndicator, CT_TEXTURE)
+      self.Players[UnitIndex].LifeBar:SetColor(1, 0, 0)
+    end
+    local X, Y, Heading = GetMapPlayerPosition(UnitTag)
+    local XProjected, YProjected = GetProjectedCoordinates(MyX, MyY, X, Y, CameraHeading)
+    -- Get icon dimensions
+    local IconX, IconY = GetIconDimensions(UnitTag)
+    local IconAlpha = GetIconAlpha(UnitTag)
+
+    -- Get icon draw level
+    local DrawLevel = GetDrawLevel(UnitTag)
+
+    -- Need to flip the x axis.
+    self.Players[UnitIndex].Icon:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected)
+    self.Players[UnitIndex].Icon:SetTexture(GetIconTexture(UnitTag))
+    self.Players[UnitIndex].Icon:SetDimensions(IconX, IconY)
+    self.Players[UnitIndex].Icon:SetColor(GetIconColor(UnitTag))
+    self.Players[UnitIndex].Icon:SetAlpha(IconAlpha)
+    self.Players[UnitIndex].Icon:SetDrawLevel(DrawLevel)
+
+    self.Players[UnitIndex].LifeBar:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected + self.Players[UnitIndex].Icon:GetWidth() / 2)
+    self.Players[UnitIndex].LifeBar:SetDimensions(GetLifeBarDimensions(UnitTag, IconX, IconY))
+    self.Players[UnitIndex].LifeBar:SetAlpha(GetLifeBarAlpha(UnitTag, IconAlpha))
+    self.Players[UnitIndex].LifeBar:SetDrawLevel(DrawLevel)
+  end
+end
+
 function ProvinatusHud:OnUpdate()
   if not CrownPointerThing or not CrownPointerThing.SavedVars then
     return
   end
 
   local MyX, MyY, MyHeading = GetMapPlayerPosition("player")
-  local MyCameraHeading = GetPlayerCameraHeading()
+  local CameraHeading = GetPlayerCameraHeading()
+  self:DrawWaypoint(MyX, MyY, CameraHeading)
   for i = 1, GetGroupSize() do
-    if self.Players[i] == nil then
-      self.Players[i] = {}
-      self.Players[i].Icon = WINDOW_MANAGER:CreateControl(nil, CrownPointerThingIndicator, CT_TEXTURE)
-      self.Players[i].LifeBar = WINDOW_MANAGER:CreateControl(nil, CrownPointerThingIndicator, CT_TEXTURE)
-      self.Players[i].LifeBar:SetColor(1, 0, 0)
-    end
-    local UnitTag = "group" .. i
-    -- If unit not in group, unit is me, or unit in a different zone than me...  hide icon
-    if GetUnitName(UnitTag) ~= GetUnitName("player") then
-      local X, Y, Heading = GetMapPlayerPosition(UnitTag)
-      -- Horizontal distance to target
-      local DistanceX = MyX - X
-      -- Vertical distance to target
-      local DistanceY = MyY - Y
-      -- Angle to target. ¯\_(ツ)_/¯
-      local Phi = -1 * MyCameraHeading - math.atan2(DistanceY, DistanceX)
-      -- The closer the target the more exaggerated the movement becomes.
-      local DistanceProjected = math.atan(math.sqrt((DistanceX * DistanceX) + (DistanceY * DistanceY)) * 250) * (CrownPointerThing.SavedVars.HUD.Size / 2)
-      -- Calculates where to draw on the screen.
-      local XProjected = -DistanceProjected * math.cos(Phi) + CrownPointerThing.SavedVars.HUD.PositionX
-      local YProjected = DistanceProjected * math.sin(Phi) + CrownPointerThing.SavedVars.HUD.PositionY
-      if CrownPointerThing.SavedVars.HUD.Offset then
-        YProjected = YProjected + CrownPointerThing.SavedVars.CrownPointer.Size / 2
-      end
-      -- Get icon dimensions
-      local IconX, IconY = GetIconDimensions(UnitTag)
-      local IconAlpha = GetIconAlpha(UnitTag)
-
-      -- Get icon draw level
-      local DrawLevel = GetDrawLevel(UnitTag)
-
-      -- Need to flip the x axis.
-      self.Players[i].Icon:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected)
-      self.Players[i].Icon:SetTexture(GetIconTexture(UnitTag))
-      self.Players[i].Icon:SetDimensions(IconX, IconY)
-      self.Players[i].Icon:SetColor(GetIconColor(UnitTag))
-      self.Players[i].Icon:SetAlpha(IconAlpha)
-      self.Players[i].Icon:SetDrawLevel(DrawLevel)
-
-      self.Players[i].LifeBar:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected + self.Players[i].Icon:GetWidth() / 2)
-      self.Players[i].LifeBar:SetDimensions(GetLifeBarDimensions(UnitTag, IconX, IconY))
-      self.Players[i].LifeBar:SetAlpha(GetLifeBarAlpha(UnitTag, IconAlpha))
-      self.Players[i].LifeBar:SetDrawLevel(DrawLevel)
-    end
+    ProvinatusHud:DrawUnit(MyX, MyY, CameraHeading, i)
   end
 
   for i = GetGroupSize() + 1, #self.Players do
-    -- TODO only hide if not already hidden.
-    if self.Players[i] ~= nil and self.Players[i].Icon ~= nil then
+    if self.Players[i] ~= nil and self.Players[i].Icon ~= nil and self.Players[i].Icon:GetAlpha() ~= 0 then
       self.Players[i].Icon:SetAlpha(0)
       self.Players[i].LifeBar:SetAlpha(0)
     end

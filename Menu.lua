@@ -17,9 +17,8 @@ local function GetWarning()
   if (ProvTF ~= nil) then
     return {
       type = "description",
-      -- TODO Get string from lang file
-      title = "Detected Provision's Team Formation",
-      text = "Disable Team Formation for the full Provinatus experience!",
+      title = PROVINATUS_DETECTED_TF,
+      text = PROVINATUS_DETECTED_TF_TEXT,
       width = "full"
     }
   end
@@ -88,7 +87,6 @@ local function GetPointerIconSettings()
       CrownPointerThing.SavedVars.CrownPointer.Alpha = value / 100
     end
   )
-  -- TODO Use strings file for all controls
   local Button = {
     type = "button",
     name = PROVINATUS_RESET_CUSTOM_TARGET,
@@ -145,7 +143,7 @@ function ProvinatusMenu:Initialize()
               tooltip = PROVINATUS_SHOW_ROLE_ICONS_TT,
               width = "full",
               disabled = ProvTF ~= nil,
-              default = ProvinatusConfig.HUD.ShowRoleIconsf
+              default = ProvinatusConfig.HUD.ShowRoleIcons
             },
             [2] = {
               type = "slider",
@@ -242,6 +240,39 @@ function ProvinatusMenu:Initialize()
               width = "full",
               disabled = ProvTF ~= nil,
               default = ProvinatusConfig.HUD.Offset
+            },
+            [7] = {
+              type = "checkbox",
+              name = PROVINATUS_SHOW_WAYPOINT,
+              getFunc = function()
+                return CrownPointerThing.SavedVars.HUD.ShowMapPlayerWaypoint
+              end,
+              setFunc = function(value)
+                CrownPointerThing.SavedVars.HUD.ShowMapPlayerWaypoint = value
+              end,
+              tooltip = PROVINATUS_SHOW_WAYPOINT_TT,
+              width = "full",
+              disabled = ProvTF ~= nil,
+              default = ProvinatusConfig.HUD.ShowRoleIcons
+            },
+            [8] = {
+              type = "submenu",
+              name = PROVINATUS_WAYPOINT_ICON,
+              controls = GetIconSettingsMenu(
+                PROVINATUS_WAYPOINT_SETTINGS,
+                function()
+                  return CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize
+                end,
+                function(value)
+                  CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize = value
+                end,
+                function()
+                  return CrownPointerThing.SavedVars.HUD.PlayerWaypointIconAlpha * 100
+                end,
+                function(value)
+                  CrownPointerThing.SavedVars.HUD.PlayerWaypointIconAlpha = value / 100
+                end
+              )
             }
           }
         },
@@ -429,7 +460,6 @@ function ProvinatusMenu:Initialize()
               end
             },
             [3] = {
-              -- TODO strings file
               type = "checkbox",
               name = PROVINATUS_SET_CROWN_POSITION,
               tooltip = PROVINATUS_SET_CROWN_POSITION_TT,
