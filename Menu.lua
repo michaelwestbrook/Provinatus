@@ -11,6 +11,10 @@ local function reset()
   CrownPointerThing.SavedVars.Debug = ProvinatusConfig.Debug
   CrownPointerThing.SavedVars.CrownPointer.Size = ProvinatusConfig.CrownPointer.Size
   CrownPointerThing.SavedVars.CrownPointer.Alpha = ProvinatusConfig.CrownPointer.Alpha
+  CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize = ProvinatusConfig.HUD.PlayerWaypointIconSize
+  CrownPointerThing.SavedVars.HUD.PlayerWaypointIconAlpha = ProvinatusConfig.HUD.PlayerWaypointIconAlpha
+  CrownPointerThing.SavedVars.HUD.RallyPointIconSize = ProvinatusConfig.HUD.RallyPointIconSize
+  CrownPointerThing.SavedVars.HUD.RallyPointIconAlpha = ProvinatusConfig.HUD.RallyPointIconAlpha
 end
 
 local function GetWarning()
@@ -240,39 +244,6 @@ function ProvinatusMenu:Initialize()
               width = "full",
               disabled = ProvTF ~= nil,
               default = ProvinatusConfig.HUD.Offset
-            },
-            [7] = {
-              type = "checkbox",
-              name = PROVINATUS_SHOW_WAYPOINT,
-              getFunc = function()
-                return CrownPointerThing.SavedVars.HUD.ShowMapPlayerWaypoint
-              end,
-              setFunc = function(value)
-                CrownPointerThing.SavedVars.HUD.ShowMapPlayerWaypoint = value
-              end,
-              tooltip = PROVINATUS_SHOW_WAYPOINT_TT,
-              width = "full",
-              disabled = ProvTF ~= nil,
-              default = ProvinatusConfig.HUD.ShowRoleIcons
-            },
-            [8] = {
-              type = "submenu",
-              name = PROVINATUS_WAYPOINT_ICON,
-              controls = GetIconSettingsMenu(
-                PROVINATUS_WAYPOINT_SETTINGS,
-                function()
-                  return CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize
-                end,
-                function(value)
-                  CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize = value
-                end,
-                function()
-                  return CrownPointerThing.SavedVars.HUD.PlayerWaypointIconAlpha * 100
-                end,
-                function(value)
-                  CrownPointerThing.SavedVars.HUD.PlayerWaypointIconAlpha = value / 100
-                end
-              )
             }
           }
         },
@@ -315,6 +286,44 @@ function ProvinatusMenu:Initialize()
           )
         },
         [4] = {
+          type = "submenu",
+          name = PROVINATUS_WAYPOINT_ICON,
+          controls = GetIconSettingsMenu(
+            PROVINATUS_WAYPOINT_SETTINGS,
+            function()
+              return CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize
+            end,
+            function(value)
+              CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize = value
+            end,
+            function()
+              return CrownPointerThing.SavedVars.HUD.PlayerWaypointIconAlpha * 100
+            end,
+            function(value)
+              CrownPointerThing.SavedVars.HUD.PlayerWaypointIconAlpha = value / 100
+            end
+          )
+        },
+        [5] = {
+          type = "submenu",
+          name = PROVINATUS_RALLYPOINT,
+          controls = GetIconSettingsMenu(
+            PROVINATUS_RALLYPOINT_SETTINGS,
+            function()
+              return CrownPointerThing.SavedVars.HUD.RallyPointIconSize
+            end,
+            function(value)
+              CrownPointerThing.SavedVars.HUD.RallyPointIconSize = value
+            end,
+            function()
+              return CrownPointerThing.SavedVars.HUD.RallyPointIconAlpha * 100
+            end,
+            function(value)
+              CrownPointerThing.SavedVars.HUD.RallyPointIconAlpha = value / 100
+            end
+          )
+        },
+        [6] = {
           type = "submenu",
           name = PROVINATUS_COMPASS_SETTINGS,
           controls = {

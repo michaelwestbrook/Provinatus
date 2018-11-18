@@ -108,7 +108,7 @@ local function GetProjectedCoordinates(X1, Y1, X2, Y2, CameraHeading)
   local DistanceY = Y1 - Y2
   -- Angle to target.
   local Phi = -1 * CameraHeading - math.atan2(DistanceY, DistanceX)
-  -- The closer the target the more exaggerated the movement becomes. See 3d chart here https://www.wolframalpha.com/input/?i=atan(sqrt(x%5E2+%2B+y%5E2))
+  -- The closer the target the more exaggerated the movement becomes. See 3d chart here https://www.wolframalpha.com/input/?i=arctan(sqrt(add(x%5E2,+y%5E2)))
   local DistanceProjected = math.atan(math.sqrt((DistanceX * DistanceX) + (DistanceY * DistanceY)) * 250) * (CrownPointerThing.SavedVars.HUD.Size / 2)
   -- Calculates where to draw on the screen.
   local XProjected = -DistanceProjected * math.cos(Phi) + CrownPointerThing.SavedVars.HUD.PositionX
@@ -139,6 +139,29 @@ function ProvinatusHud:DrawWaypoint(MyX, MyY, CameraHeading)
     self.Waypoint.Icon:SetDimensions(CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize, CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize)
   elseif self.Waypoint ~= nil and self.Waypoint.Icon ~= nil and self.Waypoint.Icon:GetAlpha() ~= 0 then
     self.Waypoint.Icon:SetAlpha(0)
+  end
+end
+
+function ProvinatusHud:DrawRallyPoint(MyX, MyY, CameraHeading)
+  local RallyX, RallyY = GetMapRallyPoint()
+  if (RallyX ~= 0 or RallyY ~= 0) and CrownPointerThing.SavedVars.HUD.ShowMapRallyPoint then
+    local XProjected, YProjected = GetProjectedCoordinates(MyX, MyY, RallyX, RallyY, CameraHeading)
+    if self.RallyPoint == nil then
+      self.RallyPoint = {}
+      self.RallyPoint.Icon = WINDOW_MANAGER:CreateControl(nil, CrownPointerThingIndicator, CT_TEXTURE)
+      self.RallyPoint.Icon:SetTexture("esoui/art/mappins/maprallypoint.dds")
+      local animation, timeline = CreateSimpleAnimation(ANIMATION_TEXTURE, self.RallyPoint.Icon)
+      animation:SetImageData(32, 1)
+      animation:SetFramerate(CrownPointerThing.SavedVars.HUD.RefreshRate)
+      timeline:SetPlaybackType(ANIMATION_PLAYBACK_LOOP, LOOP_INDEFINITELY)
+      timeline:PlayFromStart()
+    end
+
+    self.RallyPoint.Icon:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected)
+    self.RallyPoint.Icon:SetAlpha(CrownPointerThing.SavedVars.HUD.RallyPointIconAlpha)
+    self.RallyPoint.Icon:SetDimensions(CrownPointerThing.SavedVars.HUD.RallyPointIconSize, CrownPointerThing.SavedVars.HUD.RallyPointIconSize)
+  elseif self.RallyPoint ~= nil and self.RallyPoint.Icon ~= nil and self.RallyPoint.Icon:GetAlpha() ~= 0 then
+    self.RallyPoint.Icon:SetAlpha(0)
   end
 end
 
@@ -185,6 +208,7 @@ function ProvinatusHud:OnUpdate()
   local MyX, MyY, MyHeading = GetMapPlayerPosition("player")
   local CameraHeading = GetPlayerCameraHeading()
   self:DrawWaypoint(MyX, MyY, CameraHeading)
+  self:DrawRallyPoint(MyX, MyY, CameraHeading)
   for i = 1, GetGroupSize() do
     ProvinatusHud:DrawUnit(MyX, MyY, CameraHeading, i)
   end

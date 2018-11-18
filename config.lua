@@ -43,7 +43,11 @@ ProvinatusConfig = {
     RefreshRate = 60,
     ShowMapPlayerWaypoint = true,
     PlayerWaypointIconSize = 24,
-    PlayerWaypointIconAlpha = 1
+    PlayerWaypointIconAlpha = 1,
+    ShowMapRallyPoint = true,
+    RallyPointIconSize = 50,
+    RallyPointIconAlpha = 1,
+
   },
   Debug = false,
   DebugSettings = {
