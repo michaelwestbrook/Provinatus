@@ -2,7 +2,7 @@
 
 [![Build Status](https://rmsprodscussu1.vsrm.visualstudio.com/Acd1f4d7d-4e91-4b21-8fef-1fe4fb691aff/_apis/public/Release/badge/75b411d1-717b-489a-9d0a-b476695ebb24/2/5)](https://rmsprodscussu1.vsrm.visualstudio.com/Acd1f4d7d-4e91-4b21-8fef-1fe4fb691aff/_apis/public/Release/badge/75b411d1-717b-489a-9d0a-b476695ebb24/2/5)
 ## Provinatus
-This addon is inspired by [Provision's Team Formation] and [Exterminatus Group Leader](http://www.esoui.com/downloads/info329-0.1.html) and [Provision's Team Formation](http://www.esoui.com/downloads/info1135-ProvisionsTeamFormation.html).
+This addon is inspired by [Exterminatus Group Leader](http://www.esoui.com/downloads/info329-0.1.html) and [Provision's Team Formation](http://www.esoui.com/downloads/info1135-ProvisionsTeamFormation.html).
 
 ![Whoops, cant find the amazing screenshot.](images/pvp.gif)
 
