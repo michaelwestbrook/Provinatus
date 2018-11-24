@@ -141,14 +141,13 @@ end
 
 function CrownPointerThing.OnUpdate()
   local leader = CrownPointerThing.GetGroupLeaderUnitTag()
-  if leader ~= nil then
+  if leader ~= nil or CrownPointerThing.SavedVars.Debug then
     CrownPointerThing.reticle.Hide(false)
     local Px, Py, Ph = GetMapPlayerPosition("player")
     local Tx, Ty, Th = GetMapPlayerPosition(leader)
     local Heading = GetPlayerCameraHeading()
     -- Debug override
-    local CrownTargetOverride = CrownPointerThing.SavedVars.Debug and CrownPointerThing.SavedVars.DebugSettings.CrownPositionOverride
-    if CrownTargetOverride then
+    if CrownPointerThing.SavedVars.Debug then
       Tx = CrownPointerThing.SavedVars.DebugSettings.TargetX
       Ty = CrownPointerThing.SavedVars.DebugSettings.TargetY
     end
@@ -161,7 +160,7 @@ function CrownPointerThing.OnUpdate()
     local Linear = Angle / math.pi
     local AbsoluteLinear = math.abs(Linear)
 
-    if CrownTargetOverride then
+    if CrownPointerThing.SavedVars.DebugSettings.CrownPositionOverride then
       -- Set debug angle now so it does not have to be calculated again.
       CrownPointerThing.SavedVars.DebugSettings.Reticle.AngleToTarget = Angle
     end

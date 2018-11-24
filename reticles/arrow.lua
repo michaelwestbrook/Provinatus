@@ -17,7 +17,7 @@ function ArrowReticle.UpdateTexture(DistanceToTarget, DX, DY, AngleToTarget, Lin
     return
   end
 
-  if not CrownPointerThing.SavedVars.CrownPointer.Enabled or GetGroupSize() == 0 or IsActiveWorldBattleground() then
+  if (not CrownPointerThing.SavedVars.CrownPointer.Enabled or GetGroupSize() == 0 or IsActiveWorldBattleground()) and not CrownPointerThing.SavedVars.Debug then
     Arrow:SetAlpha(0)
     if not CrownPointerThing.SavedVars.Debug then
       return
