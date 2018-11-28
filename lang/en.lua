@@ -61,3 +61,7 @@ ZO_CreateStringId("PROVINATUS_DETECTED_TF", "Detected Provision's Team Formation
 ZO_CreateStringId("PROVINATUS_DETECTED_TF_TEXT", "Some features will not run while Team Formation is enabled")
 ZO_CreateStringId("PROVINATUS_RALLYPOINT", "Rally Point")
 ZO_CreateStringId("PROVINATUS_RALLYPOINT_SETTINGS", "Rally Point Settings")
+ZO_CreateStringId("PROVINATUS_QUEST_MARKER", "Quest Marker")
+ZO_CreateStringId("PROVINATUS_SHOW_QUEST_MARKER_TT", "Display active quest markers on the HUD")
+ZO_CreateStringId("PROVINATUS_SHOW_QUEST_MARKER", "Show quest marker")
+ZO_CreateStringId("PROVINATUS_ICON_SETTINGS", "Icon Settings")

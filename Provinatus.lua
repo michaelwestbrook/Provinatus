@@ -52,5 +52,4 @@ function Provinatus.EVENT_ADD_ON_LOADED(eventCode, addonName)
   end
 end
 
--- TODO load addon more smarter so others can use it
 EVENT_MANAGER:RegisterForEvent(CrownPointerThing.name, EVENT_ADD_ON_LOADED, Provinatus.EVENT_ADD_ON_LOADED)

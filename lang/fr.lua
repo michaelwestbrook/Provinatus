@@ -61,3 +61,7 @@ ZO_CreateStringId("PROVINATUS_DETECTED_TF", "Formation de l'équipe de provision
 ZO_CreateStringId("PROVINATUS_DETECTED_TF_TEXT", "Certaines fonctionnalités ne s'exécutent pas pendant que la formation d'équipe est activée")
 ZO_CreateStringId("PROVINATUS_RALLYPOINT", "Point de ralliement")
 ZO_CreateStringId("PROVINATUS_RALLYPOINT_SETTINGS", "Paramètres du point de ralliement")
+ZO_CreateStringId("PROVINATUS_QUEST_MARKER", "Marqueur de quête")
+ZO_CreateStringId("PROVINATUS_SHOW_QUEST_MARKER_TT", "Afficher les marqueurs de quête active sur le HUD")
+ZO_CreateStringId("PROVINATUS_SHOW_QUEST_MARKER", "Afficher le marqueur Quest")
+ZO_CreateStringId("PROVINATUS_ICON_SETTINGS", "Paramètres de l'icône")

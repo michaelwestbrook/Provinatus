@@ -120,6 +120,47 @@ local function GetProjectedCoordinates(X1, Y1, X2, Y2, CameraHeading)
   return XProjected, YProjected
 end
 
+local function GetQuestPins()
+  local pins = ZO_WorldMap_GetPinManager():GetActiveObjects()
+  local questPins = {}
+  for pinKey, pin in pairs(pins) do
+    local curIndex = pin:GetQuestIndex()
+    if curIndex == QUEST_JOURNAL_MANAGER:GetFocusedQuestIndex() then
+      table.insert(questPins, pin)
+    end
+  end
+
+  return questPins
+end
+
+-- Copied from esoui source code compass.lua
+local function IsPlayerInsideJournalQuestConditionGoalArea(journalIndex, stepIndex, conditionIndex)
+  journalIndex = journalIndex - 1
+  stepIndex = stepIndex - 1
+  conditionIndex = conditionIndex - 1
+  return IsPlayerInsidePinArea(MAP_PIN_TYPE_ASSISTED_QUEST_CONDITION, journalIndex, stepIndex, conditionIndex) or
+    IsPlayerInsidePinArea(MAP_PIN_TYPE_ASSISTED_QUEST_OPTIONAL_CONDITION, journalIndex, stepIndex, conditionIndex) or
+    IsPlayerInsidePinArea(MAP_PIN_TYPE_ASSISTED_QUEST_REPEATABLE_CONDITION, journalIndex, stepIndex, conditionIndex) or
+    IsPlayerInsidePinArea(MAP_PIN_TYPE_ASSISTED_QUEST_REPEATABLE_OPTIONAL_CONDITION, journalIndex, stepIndex, conditionIndex) or
+    IsPlayerInsidePinArea(MAP_PIN_TYPE_TRACKED_QUEST_CONDITION, journalIndex, stepIndex, conditionIndex) or
+    IsPlayerInsidePinArea(MAP_PIN_TYPE_TRACKED_QUEST_OPTIONAL_CONDITION, journalIndex, stepIndex, conditionIndex) or
+    IsPlayerInsidePinArea(MAP_PIN_TYPE_TRACKED_QUEST_REPEATABLE_CONDITION, journalIndex, stepIndex, conditionIndex) or
+    IsPlayerInsidePinArea(MAP_PIN_TYPE_TRACKED_QUEST_REPEATABLE_OPTIONAL_CONDITION, journalIndex, stepIndex, conditionIndex)
+end
+
+local function IsPlayerInAreaPin()
+  local _, visibility, stepType, stepOverrideText, conditionCount = GetJournalQuestStepInfo(QUEST_JOURNAL_MANAGER:GetFocusedQuestIndex(), QUEST_MAIN_STEP_INDEX)
+  local Result = false
+  for ConditionIndex = 1, conditionCount do
+    if IsPlayerInsideJournalQuestConditionGoalArea(QUEST_JOURNAL_MANAGER:GetFocusedQuestIndex(), QUEST_MAIN_STEP_INDEX, ConditionIndex) then
+      Result = true
+      break
+    end
+  end
+
+  return Result
+end
+
 function ProvinatusHud:Initialize()
   self.Players = {}
 end
@@ -132,6 +173,7 @@ function ProvinatusHud:DrawWaypoint(MyX, MyY, CameraHeading)
       self.Waypoint = {}
       self.Waypoint.Icon = WINDOW_MANAGER:CreateControl(nil, CrownPointerThingIndicator, CT_TEXTURE)
       self.Waypoint.Icon:SetTexture("esoui/art/compass/compass_waypoint.dds")
+      self.Waypoint.Icon:SetDrawLevel(1)
     end
 
     self.Waypoint.Icon:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected)
@@ -162,6 +204,68 @@ function ProvinatusHud:DrawRallyPoint(MyX, MyY, CameraHeading)
     self.RallyPoint.Icon:SetDimensions(CrownPointerThing.SavedVars.HUD.RallyPointIconSize, CrownPointerThing.SavedVars.HUD.RallyPointIconSize)
   elseif self.RallyPoint ~= nil and self.RallyPoint.Icon ~= nil and self.RallyPoint.Icon:GetAlpha() ~= 0 then
     self.RallyPoint.Icon:SetAlpha(0)
+  end
+end
+
+function ProvinatusHud:DrawQuestMarker(MyX, MyY, CameraHeading)
+  if CrownPointerThing.SavedVars.HUD.ShowQuestMarker then
+    if self.QuestMarkers == nil then
+      self.QuestMarkers = {}
+    end
+
+    -- TODO cache this and use events to get quest pins
+    local QuestPins = GetQuestPins()
+    for i = 1, #QuestPins do
+      if self.QuestMarkers[i] == nil then
+        self.QuestMarkers[i] = {}
+        self.QuestMarkers[i].Icon = WINDOW_MANAGER:CreateControl(nil, CrownPointerThingIndicator, CT_TEXTURE)
+        self.QuestMarkers[i].Icon:SetDrawLevel(0)
+      end
+
+      if QuestPins[i] then
+        local QuestTexture = QuestPins[i]:GetQuestIcon()
+        local ProjectedX, ProjectedY = GetProjectedCoordinates(MyX, MyY, QuestPins[i].normalizedX, QuestPins[i].normalizedY, CameraHeading)
+        self.QuestMarkers[i].Icon:SetDimensions(CrownPointerThing.SavedVars.HUD.QuestMarkerIconSize, CrownPointerThing.SavedVars.HUD.QuestMarkerIconSize)
+        self.QuestMarkers[i].Icon:SetTexture(QuestTexture)
+        self.QuestMarkers[i].Icon:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, ProjectedX, ProjectedY)
+        self.QuestMarkers[i].Icon:SetAlpha(CrownPointerThing.SavedVars.HUD.QuestMarkerIconAlpha)
+
+        if QuestPins[i]:IsAreaPin() then
+          if self.QuestMarkers[i].AreaIcon == nil then
+            self.QuestMarkers[i].AreaIcon = WINDOW_MANAGER:CreateControl(nil, CrownPointerThingIndicator, CT_TEXTURE)
+          end
+
+          self.QuestMarkers[i].AreaIcon:SetDimensions(CrownPointerThing.SavedVars.HUD.QuestMarkerIconSize, CrownPointerThing.SavedVars.HUD.QuestMarkerIconSize)
+          if IsPlayerInAreaPin() then
+            self.QuestMarkers[i].AreaIcon:SetTexture("esoui/art/mappins/map_assistedareapin.dds")
+          else
+            self.QuestMarkers[i].AreaIcon:SetTexture("esoui/art/mappins/map_areapin.dds")
+          end
+          self.QuestMarkers[i].AreaIcon:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, ProjectedX, ProjectedY)
+          self.QuestMarkers[i].AreaIcon:SetAlpha(CrownPointerThing.SavedVars.HUD.QuestMarkerIconAlpha)
+        elseif self.QuestMarkers[i].AreaIcon then
+          self.QuestMarkers[i].AreaIcon:SetAlpha(0)
+        end
+      else
+        self.QuestMarkers[i]:SetAlpha(0)
+        if self.QuestMarkers[i].AreaIcon then
+          self.QuestMarkers[i].AreaIcon:SetAlpha(0)
+        end
+      end
+    end
+
+    for i = #QuestPins + 1, #self.QuestMarkers do
+      self.QuestMarkers[i].Icon:SetAlpha(0)
+      if self.QuestMarkers[i].AreaIcon then
+        self.QuestMarkers[i].AreaIcon:SetAlpha(0)
+      end
+    end
+  elseif self.QuestMarkers then
+    for i = 1, #self.QuestMarkers do
+      if self.QuestMarkers[i] ~= nil and self.QuestMarkers[i]:GetAlpha() ~= 0 then
+        self.QuestMarkers[i]:SetAlpha(0)
+      end
+    end
   end
 end
 
@@ -209,6 +313,7 @@ function ProvinatusHud:OnUpdate()
   local CameraHeading = GetPlayerCameraHeading()
   self:DrawWaypoint(MyX, MyY, CameraHeading)
   self:DrawRallyPoint(MyX, MyY, CameraHeading)
+  self:DrawQuestMarker(MyX, MyY, CameraHeading)
   for i = 1, GetGroupSize() do
     ProvinatusHud:DrawUnit(MyX, MyY, CameraHeading, i)
   end

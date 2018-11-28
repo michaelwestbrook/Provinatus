@@ -15,6 +15,9 @@ local function reset()
   CrownPointerThing.SavedVars.HUD.PlayerWaypointIconAlpha = ProvinatusConfig.HUD.PlayerWaypointIconAlpha
   CrownPointerThing.SavedVars.HUD.RallyPointIconSize = ProvinatusConfig.HUD.RallyPointIconSize
   CrownPointerThing.SavedVars.HUD.RallyPointIconAlpha = ProvinatusConfig.HUD.RallyPointIconAlpha
+  CrownPointerThing.SavedVars.HUD.ShowQuestMarker = ProvinatusConfig.HUD.ShowQuestMarker
+  CrownPointerThing.SavedVars.HUD.QuestMarkerIconSize = ProvinatusConfig.HUD.QuestMarkerIconSize
+  CrownPointerThing.SavedVars.HUD.QuestMarkerIconAlpha = ProvinatusConfig.HUD.QuestMarkerIconAlpha
 end
 
 local function GetWarning()
@@ -324,6 +327,45 @@ function ProvinatusMenu:Initialize()
           )
         },
         [6] = {
+          type = "submenu",
+          name = PROVINATUS_QUEST_MARKER,
+          controls = {
+            [1] = {
+              type = "checkbox",
+              name = PROVINATUS_SHOW_QUEST_MARKER,
+              getFunc = function()
+                return CrownPointerThing.SavedVars.HUD.ShowQuestMarker
+              end,
+              setFunc = function(value)
+                CrownPointerThing.SavedVars.HUD.ShowQuestMarker = value
+              end,
+              tooltip = PROVINATUS_SHOW_QUEST_MARKER_TT,
+              width = "full",
+              disabled = ProvTF ~= nil,
+              default = ProvinatusConfig.HUD.ShowQuestMarker
+            },
+            [2] = {
+              type = "submenu",
+              name = PROVINATUS_ICON_SETTINGS,
+              controls = GetIconSettingsMenu(
+                "",
+                function()
+                  return CrownPointerThing.SavedVars.HUD.QuestMarkerIconSize
+                end,
+                function(value)
+                  CrownPointerThing.SavedVars.HUD.QuestMarkerIconSize = value
+                end,
+                function()
+                  return CrownPointerThing.SavedVars.HUD.QuestMarkerIconAlpha * 100
+                end,
+                function(value)
+                  CrownPointerThing.SavedVars.HUD.QuestMarkerIconAlpha = value / 100
+                end
+              )
+            }
+          }
+        },
+        [7] = {
           type = "submenu",
           name = PROVINATUS_COMPASS_SETTINGS,
           controls = {

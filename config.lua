@@ -47,7 +47,9 @@ ProvinatusConfig = {
     ShowMapRallyPoint = true,
     RallyPointIconSize = 50,
     RallyPointIconAlpha = 1,
-
+    ShowQuestMarker = false,
+    QuestMarkerIconSize = 24,
+    QuestMarkerIconAlpha = 1
   },
   Debug = false,
   DebugSettings = {
