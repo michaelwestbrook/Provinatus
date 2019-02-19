@@ -18,6 +18,11 @@ local function reset()
   CrownPointerThing.SavedVars.HUD.ShowQuestMarker = ProvinatusConfig.HUD.ShowQuestMarker
   CrownPointerThing.SavedVars.HUD.QuestMarkerIconSize = ProvinatusConfig.HUD.QuestMarkerIconSize
   CrownPointerThing.SavedVars.HUD.QuestMarkerIconAlpha = ProvinatusConfig.HUD.QuestMarkerIconAlpha
+  CrownPointerThing.SavedVars.HUD.Skyshards.Enabled = ProvinatusConfig.HUD.Skyshards.Enabled
+  CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize = ProvinatusConfig.HUD.Skyshards.KnownSize
+  CrownPointerThing.SavedVars.HUD.Skyshards.KnownAlpha = ProvinatusConfig.HUD.Skyshards.KnownAlpha
+  CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize = ProvinatusConfig.HUD.Skyshards.UnknownSize
+  CrownPointerThing.SavedVars.HUD.Skyshards.UnknownAlpha = ProvinatusConfig.HUD.Skyshards.UnknownAlpha
 end
 
 local function GetWarning()
@@ -459,6 +464,146 @@ function ProvinatusMenu:Initialize()
               width = "full",
               disabled = ProvTF ~= nil,
               default = ProvinatusConfig.HUD.Compass.Color
+            }
+          }
+        },
+        [8] = {
+          type = "submenu",
+          name = "Skyshards",
+          controls = {
+            [1] = {
+              type = "checkbox",
+              name = PROVINATUS_ENABLE_SKYSHARDS,
+              getFunc = function()
+                return CrownPointerThing.SavedVars.HUD.Skyshards.Enabled and SkyShards_GetLocalData ~= nil
+              end,
+              setFunc = function(value)
+                CrownPointerThing.SavedVars.HUD.Skyshards.Enabled = value
+              end,
+              tooltip = PROVINATUS_ENABLE_SKYSHARDS_TT,
+              width = "full",
+              default = ProvinatusConfig.HUD.Skyshards.Enabled,
+              disabled = SkyShards_GetLocalData == nil
+            },
+            [2] = {
+              type = "submenu",
+              name = PROVINATUS_UNDISCOVERED,
+              controls = {
+                [1] = {
+                  type = "slider",
+                  name = PROVINATUS_ICON_SIZE,
+                  getFunc = function()
+                    return CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize
+                  end,
+                  setFunc = function(value)
+                    CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize = value
+                  end,
+                  -- TODO set min max in config
+                  min = 20,
+                  max = 150,
+                  step = 1,
+                  clampInput = true,
+                  decimals = 0,
+                  autoSelect = true,
+                  inputLocation = "below",
+                  tooltip = PROVINATUS_ICON_SIZE_TT,
+                  width = "half",
+                  disabled = function()
+                    return SkyShards_GetLocalData == nil or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
+                  end
+                },
+                [2] = {
+                  type = "slider",
+                  name = PROVINATUS_TRANSPARENCY,
+                  getFunc = function()
+                    return CrownPointerThing.SavedVars.HUD.Skyshards.UnknownAlpha * 100
+                  end,
+                  setFunc = function(value)
+                    CrownPointerThing.SavedVars.HUD.Skyshards.UnknownAlpha = value / 100
+                  end,
+                  -- TODO set min max in config
+                  min = 0,
+                  max = 100,
+                  step = 1,
+                  clampInput = true,
+                  decimals = 0,
+                  autoSelect = true,
+                  inputLocation = "below",
+                  tooltip = PROVINATUS_TRANSPARENCY_TT,
+                  width = "half",
+                  disabled = function()
+                    return SkyShards_GetLocalData == nil or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
+                  end
+                }
+              }
+            },
+            [3] = {
+              type = "submenu",
+              name = PROVINATUS_DISCOVERED,
+              controls = {
+                [1] = {
+                  type = "checkbox",
+                  name = PROVINATUS_SHOW_DISCOVERED,
+                  getFunc = function()
+                    return CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards
+                  end,
+                  setFunc = function(value)
+                    CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards = value
+                  end,
+                  tooltip = PROVINATUS_SHOW_DISCOVERED_TT,
+                  width = "full",
+                  default = ProvinatusConfig.HUD.Skyshards.ShowKnownSkyshards,
+                  disabled = function()
+                    return SkyShards_GetLocalData == nil or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
+                  end
+                },
+                [2] = {
+                  type = "slider",
+                  name = PROVINATUS_ICON_SIZE,
+                  getFunc = function()
+                    return CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize
+                  end,
+                  setFunc = function(value)
+                    CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize = value
+                  end,
+                  -- TODO set min max in config
+                  min = 20,
+                  max = 150,
+                  step = 1,
+                  clampInput = true,
+                  decimals = 0,
+                  autoSelect = true,
+                  inputLocation = "below",
+                  tooltip = PROVINATUS_ICON_SIZE_TT,
+                  width = "half",
+                  disabled = function()
+                    return SkyShards_GetLocalData == nil or not CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
+                  end
+                },
+                [3] = {
+                  type = "slider",
+                  name = PROVINATUS_TRANSPARENCY,
+                  getFunc = function()
+                    return CrownPointerThing.SavedVars.HUD.Skyshards.KnownAlpha * 100
+                  end,
+                  setFunc = function(value)
+                    CrownPointerThing.SavedVars.HUD.Skyshards.KnownAlpha = value / 100
+                  end,
+                  -- TODO set min max in config
+                  min = 0,
+                  max = 100,
+                  step = 1,
+                  clampInput = true,
+                  decimals = 0,
+                  autoSelect = true,
+                  inputLocation = "below",
+                  tooltip = PROVINATUS_TRANSPARENCY_TT,
+                  width = "half",
+                  disabled = function()
+                    return SkyShards_GetLocalData == nil or not CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
+                  end
+                }
+              }
             }
           }
         }

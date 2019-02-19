@@ -13,7 +13,7 @@ ProvinatusConfig = {
     Dead = "/esoui/art/icons/poi/poi_groupboss_incomplete.dds",
     ResurrectionPending = "/esoui/art/icons/poi/poi_groupboss_complete.dds",
     Crown = {
-      Alive = "EsoUI/Art/Compass/groupLeader.dds",
+      Alive = "EsoUI/Art/Compass/groupLeader.dds"
     }
   },
   HUD = {
@@ -49,7 +49,17 @@ ProvinatusConfig = {
     RallyPointIconAlpha = 1,
     ShowQuestMarker = false,
     QuestMarkerIconSize = 24,
-    QuestMarkerIconAlpha = 1
+    QuestMarkerIconAlpha = 1,
+    Skyshards = {
+      Enabled = false,
+      ShowKnownSkyshards = false,
+      UnknownTexture = "/esoui/art/treeicons/gamepad/achievement_categoryicon_skyshards.dds",
+      KnownTexture = "/esoui/art/tutorial/achievements_indexicon_skyshards_up.dds",
+      UnknownSize = 24,
+      KnownSize = 24,
+      UnknownAlpha = 1,
+      KnownAlpha = 1
+    }
   },
   Debug = false,
   DebugSettings = {

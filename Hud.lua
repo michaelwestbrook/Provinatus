@@ -161,6 +161,22 @@ local function IsPlayerInAreaPin()
   return Result
 end
 
+local function GetZoneAndSubZone()
+  return select(3, (GetMapTileTexture()):lower():gsub("ui_map_", ""):find("maps/([%w%-]+)/([%w%-]+_[%w%-]+)")) -- From SkyShards
+end
+
+local function GetSkyshardData()
+  if SkyShards_GetLocalData then
+    if not ZO_WorldMap_IsWorldMapShowing() and not DoesCurrentMapMatchMapForPlayerLocation() and SetMapToPlayerLocation() == SET_MAP_RESULT_MAP_CHANGED then
+      CALLBACK_MANAGER:FireCallbacks("OnWorldMapChanged")
+    end
+
+    return SkyShards_GetLocalData(GetZoneAndSubZone())
+  end
+
+  return {}
+end
+
 function ProvinatusHud:Initialize()
   self.Players = {}
 end
@@ -262,7 +278,7 @@ function ProvinatusHud:DrawQuestMarker(MyX, MyY, CameraHeading)
     end
   elseif self.QuestMarkers then
     for i = 1, #self.QuestMarkers do
-      if self.QuestMarkers[i] ~= nil and self.QuestMarkers[i]:GetAlpha() ~= 0 then
+      if self.QuestMarkers[i] ~= nil and self.QuestMarkers[i].GetAlpha ~= nil and self.QuestMarkers[i]:GetAlpha() ~= 0 then
         self.QuestMarkers[i]:SetAlpha(0)
       end
     end
@@ -304,6 +320,47 @@ function ProvinatusHud:DrawUnit(MyX, MyY, CameraHeading, UnitIndex)
   end
 end
 
+function ProvinatusHud:DrawSkyshards(MyX, MyY, CameraHeading)
+  if self.SkyShards == nil then
+    self.SkyShards = {}
+  end
+
+  local ShardData = GetSkyshardData()
+  if ShardData ~= nil and CrownPointerThing.SavedVars.HUD.Skyshards.Enabled then
+    for i = 1, #ShardData do
+      local _, NumCompleted, NumRequired = GetAchievementCriterion(ShardData[i][3], ShardData[i][4])
+      if self.SkyShards[i] == nil then
+        self.SkyShards[i] = WINDOW_MANAGER:CreateControl(nil, CrownPointerThingIndicator, CT_TEXTURE)
+      end
+
+      local XProjected, YProjected = GetProjectedCoordinates(MyX, MyY, ShardData[i][1], ShardData[i][2], CameraHeading)
+      if NumCompleted == NumRequired then
+        if CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards then
+          self.SkyShards[i]:SetDimensions(CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize, CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize)
+          self.SkyShards[i]:SetTexture(CrownPointerThing.SavedVars.HUD.Skyshards.KnownTexture)
+          self.SkyShards[i]:SetAlpha(CrownPointerThing.SavedVars.HUD.Skyshards.KnownAlpha)
+        else
+          self.SkyShards[i]:SetAlpha(0)
+        end
+      else
+        self.SkyShards[i]:SetDimensions(CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize, CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize)
+        self.SkyShards[i]:SetTexture(CrownPointerThing.SavedVars.HUD.Skyshards.UnknownTexture)
+        self.SkyShards[i]:SetAlpha(CrownPointerThing.SavedVars.HUD.Skyshards.UnknownAlpha)
+      end
+
+      self.SkyShards[i]:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected)
+    end
+
+    for i = #ShardData + 1, #self.SkyShards do
+      self.SkyShards[i]:SetAlpha(0)
+    end
+  else
+    for i = 1, #self.SkyShards do
+      self.SkyShards[i]:SetAlpha(0)
+    end
+  end
+end
+
 function ProvinatusHud:OnUpdate()
   if not CrownPointerThing or not CrownPointerThing.SavedVars then
     return
@@ -314,6 +371,7 @@ function ProvinatusHud:OnUpdate()
   self:DrawWaypoint(MyX, MyY, CameraHeading)
   self:DrawRallyPoint(MyX, MyY, CameraHeading)
   self:DrawQuestMarker(MyX, MyY, CameraHeading)
+  self:DrawSkyshards(MyX, MyY, CameraHeading)
   for i = 1, GetGroupSize() do
     ProvinatusHud:DrawUnit(MyX, MyY, CameraHeading, i)
   end

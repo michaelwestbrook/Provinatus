@@ -1,8 +1,8 @@
-﻿## Title: |c00C000Provinatus|r {{**DEVELOPMENTVERSION**}}
+﻿## Title: |cFF69B4Provinatus|r {{**DEVELOPMENTVERSION**}}
 ## Description: Adds a pointer to crown to Provisions Team Formation.
 ## Author: |cFF69B4AlbinoPython|r
 ## SavedVariables: CrownPointerThingSavedVariables
-## OptionalDependsOn: LibStub LibAddonMenu-2.0 pChat ProvisionsTeamFormation
+## OptionalDependsOn: LibStub LibAddonMenu-2.0 pChat ProvisionsTeamFormation SkyShards
 ## APIVersion: 100025
 ## Version: {{**DEVELOPMENTVERSION**}}
 
