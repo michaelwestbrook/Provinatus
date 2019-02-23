@@ -59,6 +59,11 @@ ProvinatusConfig = {
       KnownSize = 24,
       UnknownAlpha = 1,
       KnownAlpha = 1
+    },
+    LostTreasure = {
+      Enabled = false,
+      Size = 30,
+      Alpha = 1
     }
   },
   Debug = false,

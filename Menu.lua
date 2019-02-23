@@ -589,7 +589,6 @@ function ProvinatusMenu:Initialize()
                   setFunc = function(value)
                     CrownPointerThing.SavedVars.HUD.Skyshards.KnownAlpha = value / 100
                   end,
-                  -- TODO set min max in config
                   min = 0,
                   max = 100,
                   step = 1,
@@ -601,6 +600,80 @@ function ProvinatusMenu:Initialize()
                   width = "half",
                   disabled = function()
                     return SkyShards_GetLocalData == nil or not CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
+                  end
+                }
+              }
+            }
+          }
+        },
+        [9] = {
+          type = "submenu",
+          name = "Lost Treasure",
+          controls = {
+            [1] = {
+              type = "checkbox",
+              name = PROVINATUS_ENABLE_LOSTTREASURE,
+              getFunc = function()
+                return CrownPointerThing.SavedVars.HUD.LostTreasure.Enabled
+              end,
+              setFunc = function(value)
+                CrownPointerThing.SavedVars.HUD.LostTreasure.Enabled = value
+              end,
+              tooltip = PROVINATUS_ENABLE_LOSTTREASURE_TT,
+              width = "full",
+              default = ProvinatusConfig.HUD.LostTreasure.Enabled,
+              disabled = function()
+                return LOST_TREASURE_DATA == nil
+              end
+            },
+            [2] = {
+              type = "submenu",
+              name = PROVINATUS_ICON_SETTINGS,
+              controls = {
+                [1] = {
+                  type = "slider",
+                  name = PROVINATUS_ICON_SIZE,
+                  getFunc = function()
+                    return CrownPointerThing.SavedVars.HUD.LostTreasure.Size
+                  end,
+                  setFunc = function(value)
+                    CrownPointerThing.SavedVars.HUD.LostTreasure.Size = value
+                  end,
+                  min = 20,
+                  max = 150,
+                  step = 1,
+                  clampInput = true,
+                  decimals = 0,
+                  autoSelect = true,
+                  inputLocation = "below",
+                  tooltip = PROVINATUS_ICON_SIZE_TT,
+                  width = "half",
+                  default = ProvinatusConfig.HUD.LostTreasure.Size,
+                  disabled = function()
+                    return LOST_TREASURE_DATA == nil
+                  end
+                },
+                [2] = {
+                  type = "slider",
+                  name = PROVINATUS_TRANSPARENCY,
+                  getFunc = function()
+                    return CrownPointerThing.SavedVars.HUD.LostTreasure.Alpha * 100
+                  end,
+                  setFunc = function(value)
+                    CrownPointerThing.SavedVars.HUD.LostTreasure.Alpha = value / 100
+                  end,
+                  min = 0,
+                  max = 100,
+                  step = 1,
+                  clampInput = true,
+                  decimals = 0,
+                  autoSelect = true,
+                  inputLocation = "below",
+                  tooltip = PROVINATUS_TRANSPARENCY_TT,
+                  width = "half",
+                  default = ProvinatusConfig.HUD.LostTreasure.Alpha,
+                  disabled = function()
+                    return LOST_TREASURE_DATA == nil
                   end
                 }
               }

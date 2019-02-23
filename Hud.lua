@@ -161,17 +161,9 @@ local function IsPlayerInAreaPin()
   return Result
 end
 
-local function GetZoneAndSubZone()
-  return select(3, (GetMapTileTexture()):lower():gsub("ui_map_", ""):find("maps/([%w%-]+)/([%w%-]+_[%w%-]+)")) -- From SkyShards
-end
-
 local function GetSkyshardData()
   if SkyShards_GetLocalData then
-    if not ZO_WorldMap_IsWorldMapShowing() and not DoesCurrentMapMatchMapForPlayerLocation() and SetMapToPlayerLocation() == SET_MAP_RESULT_MAP_CHANGED then
-      CALLBACK_MANAGER:FireCallbacks("OnWorldMapChanged")
-    end
-
-    return SkyShards_GetLocalData(GetZoneAndSubZone())
+    return SkyShards_GetLocalData(select(3, (GetMapTileTexture()):lower():gsub("ui_map_", ""):find("maps/([%w%-]+)/([%w%-]+_[%w%-]+)"))) -- From SkyShards
   end
 
   return {}
@@ -361,9 +353,69 @@ function ProvinatusHud:DrawSkyshards(MyX, MyY, CameraHeading)
   end
 end
 
+function ProvinatusHud:DrawLostTreasure(MyX, MyY, CameraHeading)
+  if not LOST_TREASURE_DATA then
+    return
+  end
+
+  -- Lost Treasure code from here...
+  local Subzone = string.match(GetMapTileTexture(), "%w+/%w+/%w+/(%w+)_%w+_%d.dds")
+  local LostTreasureData = LOST_TREASURE_DATA[Subzone]
+  if LostTreasureData and CrownPointerThing.SavedVars.HUD.LostTreasure.Enabled then
+    local function getItemLinkFromItemId(itemId)
+      local Name = GetItemLinkName(ZO_LinkHandler_CreateLink("Test Trash", nil, ITEM_LINK_TYPE, itemId, 0, 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 10000, 0))
+      local Link = ZO_LinkHandler_CreateLinkWithoutBrackets(zo_strformat("<<t:1>>", Name), nil, ITEM_LINK_TYPE, itemId, 0, 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 10000, 0)
+      return string.match(Link, "|H0:item:%d+:%d:%d%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d+:%d") .. "|h|h"
+    end
+
+    local MapBag = {}
+    for Type, ZoneData in pairs(LostTreasureData) do
+      for _, MapData in ipairs(ZoneData) do
+        local Bag, _, _ = GetItemLinkStacks(getItemLinkFromItemId(MapData[LOST_TREASURE_INDEX.ITEMID]))
+        if Bag ~= 0 then
+          table.insert(MapBag, MapData)
+        end
+      end
+    end
+
+    -- basically to here
+
+    if self.LostTreasure == nil then
+      self.LostTreasure = {}
+      self.LostTreasure.Icons = {}
+    end
+
+    for i = 1, #MapBag do
+      if self.LostTreasure.Icons[i] == nil then
+        self.LostTreasure.Icons[i] = WINDOW_MANAGER:CreateControl(nil, CrownPointerThingIndicator, CT_TEXTURE)
+      end
+
+      local XProjected, YProjected = GetProjectedCoordinates(MyX, MyY, MapBag[i][LOST_TREASURE_INDEX.X], MapBag[i][LOST_TREASURE_INDEX.Y], CameraHeading)
+      self.LostTreasure.Icons[i]:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected)
+      self.LostTreasure.Icons[i]:SetAlpha(CrownPointerThing.SavedVars.HUD.LostTreasure.Alpha)
+      self.LostTreasure.Icons[i]:SetDimensions(CrownPointerThing.SavedVars.HUD.LostTreasure.Size, CrownPointerThing.SavedVars.HUD.LostTreasure.Size)
+      self.LostTreasure.Icons[i]:SetTexture("/LostTreasure/Icons/x_red.dds")
+    end
+
+    for i = #MapBag + 1, #self.LostTreasure.Icons do
+      self.LostTreasure.Icons[i]:SetAlpha(0)
+    end
+  else
+    if self.LostTreasure then
+      for i = 1, #self.LostTreasure.Icons do
+        self.LostTreasure.Icons[i]:SetAlpha(0)
+      end
+    end
+  end
+end
+
 function ProvinatusHud:OnUpdate()
   if not CrownPointerThing or not CrownPointerThing.SavedVars then
     return
+  end
+
+  if not ZO_WorldMap_IsWorldMapShowing() and not DoesCurrentMapMatchMapForPlayerLocation() and SetMapToPlayerLocation() == SET_MAP_RESULT_MAP_CHANGED then
+    CALLBACK_MANAGER:FireCallbacks("OnWorldMapChanged")
   end
 
   local MyX, MyY, MyHeading = GetMapPlayerPosition("player")
@@ -372,6 +424,7 @@ function ProvinatusHud:OnUpdate()
   self:DrawRallyPoint(MyX, MyY, CameraHeading)
   self:DrawQuestMarker(MyX, MyY, CameraHeading)
   self:DrawSkyshards(MyX, MyY, CameraHeading)
+  self:DrawLostTreasure(MyX, MyY, CameraHeading)
   for i = 1, GetGroupSize() do
     ProvinatusHud:DrawUnit(MyX, MyY, CameraHeading, i)
   end
