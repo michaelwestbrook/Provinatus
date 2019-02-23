@@ -329,14 +329,14 @@ function ProvinatusHud:DrawSkyshards(MyX, MyY, CameraHeading)
       if NumCompleted == NumRequired then
         if CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards then
           self.SkyShards[i]:SetDimensions(CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize, CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize)
-          self.SkyShards[i]:SetTexture(CrownPointerThing.SavedVars.HUD.Skyshards.KnownTexture)
+          self.SkyShards[i]:SetTexture("/SkyShards/Icons/Skyshard-collected.dds")
           self.SkyShards[i]:SetAlpha(CrownPointerThing.SavedVars.HUD.Skyshards.KnownAlpha)
         else
           self.SkyShards[i]:SetAlpha(0)
         end
       else
         self.SkyShards[i]:SetDimensions(CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize, CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize)
-        self.SkyShards[i]:SetTexture(CrownPointerThing.SavedVars.HUD.Skyshards.UnknownTexture)
+        self.SkyShards[i]:SetTexture("/SkyShards/Icons/Skyshard-unknown.dds")
         self.SkyShards[i]:SetAlpha(CrownPointerThing.SavedVars.HUD.Skyshards.UnknownAlpha)
       end
 
