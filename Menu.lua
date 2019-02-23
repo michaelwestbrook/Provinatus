@@ -671,7 +671,7 @@ function ProvinatusMenu:Initialize()
                   inputLocation = "below",
                   tooltip = PROVINATUS_TRANSPARENCY_TT,
                   width = "half",
-                  default = ProvinatusConfig.HUD.LostTreasure.Alpha,
+                  default = ProvinatusConfig.HUD.LostTreasure.Alpha * 100,
                   disabled = function()
                     return LOST_TREASURE_DATA == nil
                   end
