@@ -270,9 +270,7 @@ function ProvinatusHud:DrawQuestMarker(MyX, MyY, CameraHeading)
     end
   elseif self.QuestMarkers then
     for i = 1, #self.QuestMarkers do
-      if self.QuestMarkers[i] ~= nil and self.QuestMarkers[i].GetAlpha ~= nil and self.QuestMarkers[i]:GetAlpha() ~= 0 then
-        self.QuestMarkers[i]:SetAlpha(0)
-      end
+      self.QuestMarkers[i].Icon:SetAlpha(0)
     end
   end
 end
@@ -409,6 +407,30 @@ function ProvinatusHud:DrawLostTreasure(MyX, MyY, CameraHeading)
   end
 end
 
+function ProvinatusHud:DrawMyIcon(Heading, CameraHeading)
+  if CrownPointerThing.SavedVars.HUD.MyIcon.Enabled then
+    if self.MyIcon == nil then
+      self.MyIcon = WINDOW_MANAGER:CreateControl(nil, CrownPointerThingIndicator, CT_TEXTURE)
+      self.MyIcon:SetTexture("/esoui/art/icons/mapkey/mapkey_player.dds")
+      self.MyIcon:SetDrawLevel(100)
+    end
+
+    local Y = CrownPointerThing.SavedVars.HUD.PositionY
+    if CrownPointerThing.SavedVars.HUD.Offset then
+      Y = Y + CrownPointerThing.SavedVars.CrownPointer.Size / 2
+    end
+
+    self.MyIcon:SetAlpha(CrownPointerThing.SavedVars.HUD.MyIcon.Alpha)
+    self.MyIcon:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, CrownPointerThing.SavedVars.HUD.PositionX, Y)
+    self.MyIcon:SetDimensions(CrownPointerThing.SavedVars.HUD.MyIcon.Size, CrownPointerThing.SavedVars.HUD.MyIcon.Size)
+    self.MyIcon:SetTextureRotation(CameraHeading - Heading)
+  else
+    if self.MyIcon then
+      self.MyIcon:SetAlpha(0)
+    end
+  end
+end
+
 function ProvinatusHud:OnUpdate()
   if not CrownPointerThing or not CrownPointerThing.SavedVars then
     return
@@ -425,6 +447,7 @@ function ProvinatusHud:OnUpdate()
   self:DrawQuestMarker(MyX, MyY, CameraHeading)
   self:DrawSkyshards(MyX, MyY, CameraHeading)
   self:DrawLostTreasure(MyX, MyY, CameraHeading)
+  self:DrawMyIcon(CameraHeading, MyHeading)
   for i = 1, GetGroupSize() do
     ProvinatusHud:DrawUnit(MyX, MyY, CameraHeading, i)
   end

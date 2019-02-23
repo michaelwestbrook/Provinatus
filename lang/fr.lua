@@ -73,3 +73,6 @@ ZO_CreateStringId("PROVINATUS_SHOW_DISCOVERED", "Voir les Skyshards découverts?
 ZO_CreateStringId("PROVINATUS_SHOW_DISCOVERED_TT", "Affiche les Skyshards découverts sur HUD.")
 ZO_CreateStringId("PROVINATUS_ENABLE_LOSTTREASURE", "Afficher les icônes LostTreasure")
 ZO_CreateStringId("PROVINATUS_ENABLE_LOSTTREASURE_TT", "Trouvez des trésors enfouis et des sondages d'artisanat")
+ZO_CreateStringId("PROVINATUS_MY_ICON", "Mon icône")
+ZO_CreateStringId("PROVINATUS_SHOW_YOUR_ICON", "Montrez-moi sur HUD")
+ZO_CreateStringId("PROVINATUS_SHOW_YOUR_ICON_TT", "Affiche votre icône au centre du HUD")

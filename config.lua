@@ -62,6 +62,11 @@ ProvinatusConfig = {
       Enabled = false,
       Size = 30,
       Alpha = 1
+    },
+    MyIcon = {
+      Enabled = false,
+      Size = 24,
+      Alpha = 1
     }
   },
   Debug = false,

@@ -1,29 +1,4 @@
 ProvinatusMenu = {}
-local function reset()
-  CrownPointerThing.SavedVars.HUD.PlayerIconSize = ProvinatusConfig.HUD.PlayerIconSize
-  CrownPointerThing.SavedVars.HUD.PlayerIconAlpha = ProvinatusConfig.HUD.PlayerIconAlpha
-  CrownPointerThing.SavedVars.HUD.TargetIconSize = ProvinatusConfig.HUD.TargetIconSize
-  CrownPointerThing.SavedVars.HUD.TargetIconAlpha = ProvinatusConfig.HUD.TargetIconAlpha
-  CrownPointerThing.SavedVars.HUD.Compass.AlwaysOn = ProvinatusConfig.HUD.Compass.AlwaysOn
-  CrownPointerThing.SavedVars.HUD.Compass.Alpha = ProvinatusConfig.HUD.Compass.Alpha
-  CrownPointerThing.SavedVars.HUD.RefreshRate = ProvinatusConfig.HUD.RefreshRate
-  CrownPointerThing.SavedVars.CrownPointer.Enabled = ProvinatusConfig.CrownPointer.Enabled
-  CrownPointerThing.SavedVars.Debug = ProvinatusConfig.Debug
-  CrownPointerThing.SavedVars.CrownPointer.Size = ProvinatusConfig.CrownPointer.Size
-  CrownPointerThing.SavedVars.CrownPointer.Alpha = ProvinatusConfig.CrownPointer.Alpha
-  CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize = ProvinatusConfig.HUD.PlayerWaypointIconSize
-  CrownPointerThing.SavedVars.HUD.PlayerWaypointIconAlpha = ProvinatusConfig.HUD.PlayerWaypointIconAlpha
-  CrownPointerThing.SavedVars.HUD.RallyPointIconSize = ProvinatusConfig.HUD.RallyPointIconSize
-  CrownPointerThing.SavedVars.HUD.RallyPointIconAlpha = ProvinatusConfig.HUD.RallyPointIconAlpha
-  CrownPointerThing.SavedVars.HUD.ShowQuestMarker = ProvinatusConfig.HUD.ShowQuestMarker
-  CrownPointerThing.SavedVars.HUD.QuestMarkerIconSize = ProvinatusConfig.HUD.QuestMarkerIconSize
-  CrownPointerThing.SavedVars.HUD.QuestMarkerIconAlpha = ProvinatusConfig.HUD.QuestMarkerIconAlpha
-  CrownPointerThing.SavedVars.HUD.Skyshards.Enabled = ProvinatusConfig.HUD.Skyshards.Enabled
-  CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize = ProvinatusConfig.HUD.Skyshards.KnownSize
-  CrownPointerThing.SavedVars.HUD.Skyshards.KnownAlpha = ProvinatusConfig.HUD.Skyshards.KnownAlpha
-  CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize = ProvinatusConfig.HUD.Skyshards.UnknownSize
-  CrownPointerThing.SavedVars.HUD.Skyshards.UnknownAlpha = ProvinatusConfig.HUD.Skyshards.UnknownAlpha
-end
 
 local function GetWarning()
   if (ProvTF ~= nil) then
@@ -36,7 +11,7 @@ local function GetWarning()
   end
 end
 
-local function GetIconSettingsMenu(DescriptionText, GetSizeFunction, SetSizeFunction, GetAlphaFunction, SetAlphaFunction)
+local function GetIconSettingsMenu(DescriptionText, GetSizeFunction, SetSizeFunction, GetAlphaFunction, SetAlphaFunction, defaultSizeFunction, defaultAlphaFunction, disabledFunction)
   local Settings = {
     [1] = {
       type = "description",
@@ -58,7 +33,8 @@ local function GetIconSettingsMenu(DescriptionText, GetSizeFunction, SetSizeFunc
       inputLocation = "below",
       tooltip = PROVINATUS_ICON_SIZE_TT,
       width = "half",
-      disabled = ProvTF ~= nil
+      disabled = disabledFunction,
+      default = defaultSizeFunction
     },
     [3] = {
       type = "slider",
@@ -75,7 +51,8 @@ local function GetIconSettingsMenu(DescriptionText, GetSizeFunction, SetSizeFunc
       inputLocation = "below",
       tooltip = PROVINATUS_TRANSPARENCY_TT,
       width = "half",
-      disabled = ProvTF ~= nil
+      disabled = disabledFunction,
+      default = defaultAlphaFunction
     }
   }
 
@@ -97,6 +74,11 @@ local function GetPointerIconSettings()
     end,
     function(value)
       CrownPointerThing.SavedVars.CrownPointer.Alpha = value / 100
+    end,
+    ProvinatusConfig.CrownPointer.Size,
+    ProvinatusConfig.CrownPointer.Alpha * 100,
+    function()
+      return not CrownPointerThing.SavedVars.CrownPointer.Enabled
     end
   )
   local Button = {
@@ -130,8 +112,7 @@ function ProvinatusMenu:Initialize()
     keywords = "settings",
     slashCommand = "/provinatus",
     registerForRefresh = true,
-    registerForDefaults = true,
-    resetFunc = reset
+    registerForDefaults = true
   }
 
   local optionsData = {
@@ -199,7 +180,8 @@ function ProvinatusMenu:Initialize()
               requiresReload = true,
               autoSelect = true,
               inputLocation = "below",
-              width = "full"
+              width = "full",
+              default = ProvinatusConfig.HUD.RefreshRate
             },
             [4] = {
               type = "slider",
@@ -257,121 +239,6 @@ function ProvinatusMenu:Initialize()
         },
         [2] = {
           type = "submenu",
-          name = PROVINATUS_TEAM_ICON,
-          controls = GetIconSettingsMenu(
-            TEAMMATE_ICON_SETTINGS,
-            function()
-              return CrownPointerThing.SavedVars.HUD.PlayerIconSize
-            end,
-            function(value)
-              CrownPointerThing.SavedVars.HUD.PlayerIconSize = value
-            end,
-            function()
-              return CrownPointerThing.SavedVars.HUD.PlayerIconAlpha * 100
-            end,
-            function(value)
-              CrownPointerThing.SavedVars.HUD.PlayerIconAlpha = value / 100
-            end
-          )
-        },
-        [3] = {
-          type = "submenu",
-          name = PROVINATUS_LEADER_ICON,
-          controls = GetIconSettingsMenu(
-            LEADER_ICON_SETTINGS,
-            function()
-              return CrownPointerThing.SavedVars.HUD.TargetIconSize
-            end,
-            function(value)
-              CrownPointerThing.SavedVars.HUD.TargetIconSize = value
-            end,
-            function()
-              return CrownPointerThing.SavedVars.HUD.TargetIconAlpha * 100
-            end,
-            function(value)
-              CrownPointerThing.SavedVars.HUD.TargetIconAlpha = value / 100
-            end
-          )
-        },
-        [4] = {
-          type = "submenu",
-          name = PROVINATUS_WAYPOINT_ICON,
-          controls = GetIconSettingsMenu(
-            PROVINATUS_WAYPOINT_SETTINGS,
-            function()
-              return CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize
-            end,
-            function(value)
-              CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize = value
-            end,
-            function()
-              return CrownPointerThing.SavedVars.HUD.PlayerWaypointIconAlpha * 100
-            end,
-            function(value)
-              CrownPointerThing.SavedVars.HUD.PlayerWaypointIconAlpha = value / 100
-            end
-          )
-        },
-        [5] = {
-          type = "submenu",
-          name = PROVINATUS_RALLYPOINT,
-          controls = GetIconSettingsMenu(
-            PROVINATUS_RALLYPOINT_SETTINGS,
-            function()
-              return CrownPointerThing.SavedVars.HUD.RallyPointIconSize
-            end,
-            function(value)
-              CrownPointerThing.SavedVars.HUD.RallyPointIconSize = value
-            end,
-            function()
-              return CrownPointerThing.SavedVars.HUD.RallyPointIconAlpha * 100
-            end,
-            function(value)
-              CrownPointerThing.SavedVars.HUD.RallyPointIconAlpha = value / 100
-            end
-          )
-        },
-        [6] = {
-          type = "submenu",
-          name = PROVINATUS_QUEST_MARKER,
-          controls = {
-            [1] = {
-              type = "checkbox",
-              name = PROVINATUS_SHOW_QUEST_MARKER,
-              getFunc = function()
-                return CrownPointerThing.SavedVars.HUD.ShowQuestMarker
-              end,
-              setFunc = function(value)
-                CrownPointerThing.SavedVars.HUD.ShowQuestMarker = value
-              end,
-              tooltip = PROVINATUS_SHOW_QUEST_MARKER_TT,
-              width = "full",
-              disabled = ProvTF ~= nil,
-              default = ProvinatusConfig.HUD.ShowQuestMarker
-            },
-            [2] = {
-              type = "submenu",
-              name = PROVINATUS_ICON_SETTINGS,
-              controls = GetIconSettingsMenu(
-                "",
-                function()
-                  return CrownPointerThing.SavedVars.HUD.QuestMarkerIconSize
-                end,
-                function(value)
-                  CrownPointerThing.SavedVars.HUD.QuestMarkerIconSize = value
-                end,
-                function()
-                  return CrownPointerThing.SavedVars.HUD.QuestMarkerIconAlpha * 100
-                end,
-                function(value)
-                  CrownPointerThing.SavedVars.HUD.QuestMarkerIconAlpha = value / 100
-                end
-              )
-            }
-          }
-        },
-        [7] = {
-          type = "submenu",
           name = PROVINATUS_COMPASS_SETTINGS,
           controls = {
             [1] = {
@@ -383,7 +250,6 @@ function ProvinatusMenu:Initialize()
               setFunc = function(value)
                 CrownPointerThing.SavedVars.HUD.Compass.Alpha = value / 100
               end,
-              -- TODO set min max in config
               min = 0,
               max = 100,
               step = 1,
@@ -393,7 +259,8 @@ function ProvinatusMenu:Initialize()
               inputLocation = "below",
               tooltip = PROVINATUS_ICON_SIZE_TT,
               width = "full",
-              disabled = ProvTF ~= nil
+              disabled = ProvTF ~= nil,
+              default = ProvinatusConfig.HUD.Compass.Alpha * 100
             },
             [2] = {
               type = "slider",
@@ -404,7 +271,6 @@ function ProvinatusMenu:Initialize()
               setFunc = function(value)
                 CrownPointerThing.SavedVars.HUD.Compass.Size = value
               end,
-              -- TODO set min max in config
               min = 25,
               max = 500,
               step = 1,
@@ -446,7 +312,8 @@ function ProvinatusMenu:Initialize()
               end,
               tooltip = PROVINATUS_ALWAYS_ON_TT,
               width = "full",
-              disabled = ProvTF ~= nil
+              disabled = ProvTF ~= nil,
+              default = ProvinatusConfig.HUD.Compass.AlwaysOn
             },
             [5] = {
               type = "colorpicker",
@@ -463,7 +330,139 @@ function ProvinatusMenu:Initialize()
               tooltip = PROVINATUS_COMPASS_COLOR_TT,
               width = "full",
               disabled = ProvTF ~= nil,
-              default = ProvinatusConfig.HUD.Compass.Color
+              default = {r = ProvinatusConfig.HUD.Compass.Color.r, g = ProvinatusConfig.HUD.Compass.Color.g, b = ProvinatusConfig.HUD.Compass.Color.b, a = ProvinatusConfig.HUD.Compass.Alpha}
+            }
+          }
+        },
+        [3] = {
+          type = "submenu",
+          name = PROVINATUS_TEAM_ICON,
+          controls = GetIconSettingsMenu(
+            TEAMMATE_ICON_SETTINGS,
+            function()
+              return CrownPointerThing.SavedVars.HUD.PlayerIconSize
+            end,
+            function(value)
+              CrownPointerThing.SavedVars.HUD.PlayerIconSize = value
+            end,
+            function()
+              return CrownPointerThing.SavedVars.HUD.PlayerIconAlpha * 100
+            end,
+            function(value)
+              CrownPointerThing.SavedVars.HUD.PlayerIconAlpha = value / 100
+            end,
+            ProvinatusConfig.HUD.PlayerIconSize,
+            ProvinatusConfig.HUD.PlayerIconAlpha * 100,
+            ProvTF ~= nil
+          )
+        },
+        [4] = {
+          type = "submenu",
+          name = PROVINATUS_LEADER_ICON,
+          controls = GetIconSettingsMenu(
+            LEADER_ICON_SETTINGS,
+            function()
+              return CrownPointerThing.SavedVars.HUD.TargetIconSize
+            end,
+            function(value)
+              CrownPointerThing.SavedVars.HUD.TargetIconSize = value
+            end,
+            function()
+              return CrownPointerThing.SavedVars.HUD.TargetIconAlpha * 100
+            end,
+            function(value)
+              CrownPointerThing.SavedVars.HUD.TargetIconAlpha = value / 100
+            end,
+            ProvinatusConfig.HUD.TargetIconSize,
+            ProvinatusConfig.HUD.TargetIconAlpha * 100,
+            ProvTF ~= nil
+          )
+        },
+        [5] = {
+          type = "submenu",
+          name = PROVINATUS_WAYPOINT_ICON,
+          controls = GetIconSettingsMenu(
+            PROVINATUS_WAYPOINT_SETTINGS,
+            function()
+              return CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize
+            end,
+            function(value)
+              CrownPointerThing.SavedVars.HUD.PlayerWaypointIconSize = value
+            end,
+            function()
+              return CrownPointerThing.SavedVars.HUD.PlayerWaypointIconAlpha * 100
+            end,
+            function(value)
+              CrownPointerThing.SavedVars.HUD.PlayerWaypointIconAlpha = value / 100
+            end,
+            ProvinatusConfig.HUD.PlayerWaypointIconSize,
+            ProvinatusConfig.HUD.PlayerWaypointIconAlpha * 100,
+            false
+          )
+        },
+        [6] = {
+          type = "submenu",
+          name = PROVINATUS_RALLYPOINT,
+          controls = GetIconSettingsMenu(
+            PROVINATUS_RALLYPOINT_SETTINGS,
+            function()
+              return CrownPointerThing.SavedVars.HUD.RallyPointIconSize
+            end,
+            function(value)
+              CrownPointerThing.SavedVars.HUD.RallyPointIconSize = value
+            end,
+            function()
+              return CrownPointerThing.SavedVars.HUD.RallyPointIconAlpha * 100
+            end,
+            function(value)
+              CrownPointerThing.SavedVars.HUD.RallyPointIconAlpha = value / 100
+            end,
+            ProvinatusConfig.HUD.RallyPointIconSize,
+            ProvinatusConfig.HUD.RallyPointIconAlpha * 100,
+            false
+          )
+        },
+        [7] = {
+          type = "submenu",
+          name = PROVINATUS_QUEST_MARKER,
+          controls = {
+            [1] = {
+              type = "checkbox",
+              name = PROVINATUS_SHOW_QUEST_MARKER,
+              getFunc = function()
+                return CrownPointerThing.SavedVars.HUD.ShowQuestMarker
+              end,
+              setFunc = function(value)
+                CrownPointerThing.SavedVars.HUD.ShowQuestMarker = value
+              end,
+              tooltip = PROVINATUS_SHOW_QUEST_MARKER_TT,
+              width = "full",
+              disabled = ProvTF ~= nil,
+              default = ProvinatusConfig.HUD.ShowQuestMarker
+            },
+            [2] = {
+              type = "submenu",
+              name = PROVINATUS_ICON_SETTINGS,
+              controls = GetIconSettingsMenu(
+                "",
+                function()
+                  return CrownPointerThing.SavedVars.HUD.QuestMarkerIconSize
+                end,
+                function(value)
+                  CrownPointerThing.SavedVars.HUD.QuestMarkerIconSize = value
+                end,
+                function()
+                  return CrownPointerThing.SavedVars.HUD.QuestMarkerIconAlpha * 100
+                end,
+                function(value)
+                  CrownPointerThing.SavedVars.HUD.QuestMarkerIconAlpha = value / 100
+                end,
+                ProvinatusConfig.HUD.QuestMarkerIconSize,
+                ProvinatusConfig.HUD.QuestMarkerIconAlpha * 100,
+                function()
+                  return not CrownPointerThing.SavedVars.HUD.ShowQuestMarker
+                end
+              )
             }
           }
         },
@@ -510,7 +509,8 @@ function ProvinatusMenu:Initialize()
                   width = "half",
                   disabled = function()
                     return SkyShards_GetLocalData == nil or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
-                  end
+                  end,
+                  default = ProvinatusConfig.HUD.Skyshards.UnknownSize
                 },
                 [2] = {
                   type = "slider",
@@ -533,7 +533,8 @@ function ProvinatusMenu:Initialize()
                   width = "half",
                   disabled = function()
                     return SkyShards_GetLocalData == nil or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
-                  end
+                  end,
+                  default = ProvinatusConfig.HUD.Skyshards.UnknownAlpha * 100
                 }
               }
             },
@@ -578,7 +579,8 @@ function ProvinatusMenu:Initialize()
                   width = "half",
                   disabled = function()
                     return SkyShards_GetLocalData == nil or not CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
-                  end
+                  end,
+                  default = ProvinatusConfig.HUD.Skyshards.KnownSize
                 },
                 [3] = {
                   type = "slider",
@@ -600,7 +602,8 @@ function ProvinatusMenu:Initialize()
                   width = "half",
                   disabled = function()
                     return SkyShards_GetLocalData == nil or not CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
-                  end
+                  end,
+                  default = ProvinatusConfig.HUD.Skyshards.KnownAlpha * 100
                 }
               }
             }
@@ -629,54 +632,70 @@ function ProvinatusMenu:Initialize()
             [2] = {
               type = "submenu",
               name = PROVINATUS_ICON_SETTINGS,
-              controls = {
-                [1] = {
-                  type = "slider",
-                  name = PROVINATUS_ICON_SIZE,
-                  getFunc = function()
-                    return CrownPointerThing.SavedVars.HUD.LostTreasure.Size
-                  end,
-                  setFunc = function(value)
-                    CrownPointerThing.SavedVars.HUD.LostTreasure.Size = value
-                  end,
-                  min = 20,
-                  max = 150,
-                  step = 1,
-                  clampInput = true,
-                  decimals = 0,
-                  autoSelect = true,
-                  inputLocation = "below",
-                  tooltip = PROVINATUS_ICON_SIZE_TT,
-                  width = "half",
-                  default = ProvinatusConfig.HUD.LostTreasure.Size,
-                  disabled = function()
-                    return LOST_TREASURE_DATA == nil
-                  end
-                },
-                [2] = {
-                  type = "slider",
-                  name = PROVINATUS_TRANSPARENCY,
-                  getFunc = function()
-                    return CrownPointerThing.SavedVars.HUD.LostTreasure.Alpha * 100
-                  end,
-                  setFunc = function(value)
-                    CrownPointerThing.SavedVars.HUD.LostTreasure.Alpha = value / 100
-                  end,
-                  min = 0,
-                  max = 100,
-                  step = 1,
-                  clampInput = true,
-                  decimals = 0,
-                  autoSelect = true,
-                  inputLocation = "below",
-                  tooltip = PROVINATUS_TRANSPARENCY_TT,
-                  width = "half",
-                  default = ProvinatusConfig.HUD.LostTreasure.Alpha * 100,
-                  disabled = function()
-                    return LOST_TREASURE_DATA == nil
-                  end
-                }
-              }
+              controls = GetIconSettingsMenu(
+                "",
+                function()
+                  return CrownPointerThing.SavedVars.HUD.LostTreasure.Size
+                end,
+                function(value)
+                  CrownPointerThing.SavedVars.HUD.LostTreasure.Size = value
+                end,
+                function()
+                  return CrownPointerThing.SavedVars.HUD.LostTreasure.Alpha * 100
+                end,
+                function(value)
+                  CrownPointerThing.SavedVars.HUD.LostTreasure.Alpha = value / 100
+                end,
+                ProvinatusConfig.HUD.LostTreasure.Size,
+                ProvinatusConfig.HUD.LostTreasure.Alpha * 100,
+                function()
+                  return LOST_TREASURE_DATA == nil or not CrownPointerThing.SavedVars.HUD.LostTreasure.Enabled
+                end
+              )
+            }
+          }
+        },
+        [10] = {
+          type = "submenu",
+          name = PROVINATUS_MY_ICON,
+          controls = {
+            [1] = {
+              type = "checkbox",
+              name = PROVINATUS_SHOW_YOUR_ICON,
+              getFunc = function()
+                return CrownPointerThing.SavedVars.HUD.MyIcon.Enabled
+              end,
+              setFunc = function(value)
+                CrownPointerThing.SavedVars.HUD.MyIcon.Enabled = value
+              end,
+              tooltip = PROVINATUS_SHOW_YOUR_ICON_TT,
+              width = "full",
+              disabled = ProvTF ~= nil,
+              default = ProvinatusConfig.HUD.MyIcon.Enabled
+            },
+            [2] = {
+              type = "submenu",
+              name = PROVINATUS_ICON_SETTINGS,
+              controls = GetIconSettingsMenu(
+                "",
+                function()
+                  return CrownPointerThing.SavedVars.HUD.MyIcon.Size
+                end,
+                function(value)
+                  CrownPointerThing.SavedVars.HUD.MyIcon.Size = value
+                end,
+                function()
+                  return CrownPointerThing.SavedVars.HUD.MyIcon.Alpha * 100
+                end,
+                function(value)
+                  CrownPointerThing.SavedVars.HUD.MyIcon.Alpha = value / 100
+                end,
+                ProvinatusConfig.HUD.MyIcon.Size,
+                ProvinatusConfig.HUD.MyIcon.Alpha * 100,
+                function()
+                  return not CrownPointerThing.SavedVars.HUD.MyIcon.Enabled
+                end
+              )
             }
           }
         }
@@ -706,6 +725,7 @@ function ProvinatusMenu:Initialize()
                 CrownPointerThing.SavedVars.Debug = value
               end,
               width = "full",
+              default = ProvinatusConfig.Debug,
               disabled = function()
                 return not CrownPointerThing.SavedVars.CrownPointer.Enabled
               end
