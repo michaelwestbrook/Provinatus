@@ -3,7 +3,7 @@
 ## Author: |cFF69B4AlbinoPython|r
 ## SavedVariables: CrownPointerThingSavedVariables
 ## OptionalDependsOn: LibStub LibAddonMenu-2.0 pChat ProvisionsTeamFormation SkyShards
-## APIVersion: 100025
+## APIVersion: 100026
 ## Version: {{**DEVELOPMENTVERSION**}}
 
 libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibStub/LibStub.lua
