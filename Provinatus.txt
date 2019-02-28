@@ -1,33 +1,12 @@
-﻿## Title: |cFF69B4Provinatus|r {{**DEVELOPMENTVERSION**}}
-## Description: Adds a pointer to crown to Provisions Team Formation.
-## Author: |cFF69B4AlbinoPython|r
-## SavedVariables: CrownPointerThingSavedVariables
-## OptionalDependsOn: LibStub LibAddonMenu-2.0 pChat ProvisionsTeamFormation SkyShards
+# Manifest generated using eso-manifest. https://www.npmjs.com/package/eso-manifest
+## Title: |cFF69B4Provinatus|r 27-February-2019T21-58-37
 ## APIVersion: 100026
-## Version: {{**DEVELOPMENTVERSION**}}
-
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibStub/LibStub.lua
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibAddonMenu-2.0/LibAddonMenu-2.0.lua
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibAddonMenu-2.0/controls/panel.lua
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibAddonMenu-2.0/controls/submenu.lua
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibAddonMenu-2.0/controls/button.lua
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibAddonMenu-2.0/controls/checkbox.lua
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibAddonMenu-2.0/controls/colorpicker.lua
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibAddonMenu-2.0/controls/iconpicker.lua
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibAddonMenu-2.0/controls/custom.lua
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibAddonMenu-2.0/controls/description.lua
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibAddonMenu-2.0/controls/dropdown.lua
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibAddonMenu-2.0/controls/editbox.lua
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibAddonMenu-2.0/controls/header.lua
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibAddonMenu-2.0/controls/slider.lua
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibAddonMenu-2.0/controls/texture.lua
-libs/ESO-LibAddonMenu/LibAddonMenu-2.0/LibAddonMenu-2.0/controls/divider.lua
-
-lang/en.lua
+## Author: |cFF69B4@AlbinoPython (NA Server)|r
+## Description: Heads up display that shows: group members' locations, quest markers, rally points, and more
+## SavedVariables: CrownPointerThingSavedVariables
+## OptionalDependsOn: LibStub LibAddonMenu-2.0 pChat ProvisionsTeamFormation SkyShards LostTreasure
 lang/$(language).lua
-
 Config.lua
-
 reticles/arrow.lua
 Hud.lua
 Compass.lua
@@ -36,3 +15,7 @@ CrownPointerThing.lua
 Provinatus.lua
 CrownPointerThing.xml
 bindings.xml
+
+# This Add-on is not created by, affiliated with, or sponsored by, ZeniMax Media Inc. or its affiliates.
+# The Elder Scrolls® and related logos are registered trademarks or trademarks of ZeniMax Media Inc. in the United States
+# and/or other countries. All rights reserved.
