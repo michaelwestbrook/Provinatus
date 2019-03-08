@@ -1,5 +1,5 @@
 # Manifest generated using eso-manifest. https://www.npmjs.com/package/eso-manifest
-## Title: |cFF69B4Provinatus|r 27-February-2019T21-58-37
+## Title: |cFF69B4Provinatus|r {{**DEVELOPMENTVERSION**}}
 ## APIVersion: 100026
 ## Author: |cFF69B4@AlbinoPython (NA Server)|r
 ## Description: Heads up display that shows: group members' locations, quest markers, rally points, and more

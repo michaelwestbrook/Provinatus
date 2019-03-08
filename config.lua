@@ -67,6 +67,12 @@ ProvinatusConfig = {
       Enabled = false,
       Size = 24,
       Alpha = 1
+    },
+    POI = {
+      Enabled = false,
+      ShowKnownPOI = false,
+      Size = 24,
+      Alpha = 1
     }
   },
   Debug = false,
