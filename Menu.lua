@@ -301,7 +301,9 @@ local function GetLoreBooksMenu()
         tooltip = "",
         width = "full",
         default = ProvinatusConfig.HUD.LoreBooks.ShowKnownLoreBooks,
-        disabled = not CrownPointerThing.SavedVars.HUD.LoreBooks.Enabled or LoreBooks_GetLocalData == nil
+        disabled = function()
+          return not CrownPointerThing.SavedVars.HUD.LoreBooks.Enabled or LoreBooks_GetLocalData == nil
+        end
       },
       [3] = {
         type = "submenu",
@@ -322,7 +324,7 @@ local function GetLoreBooksMenu()
           end,
           ProvinatusConfig.HUD.LoreBooks.Size,
           ProvinatusConfig.HUD.LoreBooks.Alpha * 100,
-          function() 
+          function()
             return not CrownPointerThing.SavedVars.HUD.LoreBooks.Enabled or LoreBooks_GetLocalData == nil
           end
         )
