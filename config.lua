@@ -73,6 +73,12 @@ ProvinatusConfig = {
       ShowKnownPOI = false,
       Size = 24,
       Alpha = 1
+    },
+    LoreBooks = {
+      Enabled = false,
+      ShowKnownLoreBooks = false,
+      Size = 24,
+      Alpha = 1
     }
   },
   Debug = false,

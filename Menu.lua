@@ -270,6 +270,67 @@ local function DrawPOIMenuIcon(Control, Texture)
   POIIcon:SetAlpha(1)
 end
 
+local function GetLoreBooksMenu()
+  return {
+    type = "submenu",
+    name = "LoreBooks",
+    controls = {
+      [1] = {
+        type = "checkbox",
+        name = "LoreBooks",
+        getFunc = function()
+          return CrownPointerThing.SavedVars.HUD.LoreBooks.Enabled and LoreBooks_GetLocalData ~= nil
+        end,
+        setFunc = function(value)
+          CrownPointerThing.SavedVars.HUD.LoreBooks.Enabled = value
+        end,
+        tooltip = PROVINATUS_LOREBOOKS_ENABLED_TT,
+        width = "full",
+        default = ProvinatusConfig.HUD.LoreBooks.Enabled,
+        disabled = LoreBooks_GetLocalData == nil
+      },
+      [2] = {
+        type = "checkbox",
+        name = PROVINATUS_KNOWN_LOREBOOKS,
+        getFunc = function()
+          return CrownPointerThing.SavedVars.HUD.LoreBooks.ShowKnownLoreBooks
+        end,
+        setFunc = function(value)
+          CrownPointerThing.SavedVars.HUD.LoreBooks.ShowKnownLoreBooks = value
+        end,
+        tooltip = "",
+        width = "full",
+        default = ProvinatusConfig.HUD.LoreBooks.ShowKnownLoreBooks,
+        disabled = not CrownPointerThing.SavedVars.HUD.LoreBooks.Enabled or LoreBooks_GetLocalData == nil
+      },
+      [3] = {
+        type = "submenu",
+        name = PROVINATUS_ICON_SETTINGS,
+        controls = GetIconSettingsMenu(
+          "",
+          function()
+            return CrownPointerThing.SavedVars.HUD.LoreBooks.Size
+          end,
+          function(value)
+            CrownPointerThing.SavedVars.HUD.LoreBooks.Size = value
+          end,
+          function()
+            return CrownPointerThing.SavedVars.HUD.LoreBooks.Alpha * 100
+          end,
+          function(value)
+            CrownPointerThing.SavedVars.HUD.LoreBooks.Alpha = value / 100
+          end,
+          ProvinatusConfig.HUD.LoreBooks.Size,
+          ProvinatusConfig.HUD.LoreBooks.Alpha * 100,
+          function() 
+            return not CrownPointerThing.SavedVars.HUD.LoreBooks.Enabled or LoreBooks_GetLocalData == nil
+          end
+        )
+      }
+    }
+  }
+end
+
 local function ControlsCreated(Panel)
   if Panel == SettingsMenu then
     DrawPOIMenuIcon(Provinatus_AreaOfInterest, "/esoui/art/icons/poi/poi_areaofinterest_complete.dds")
@@ -1047,7 +1108,8 @@ function ProvinatusMenu:Initialize()
       }
     },
     [3] = GetPOIMenu(),
-    [4] = GetWarning()
+    [4] = GetLoreBooksMenu(),
+    [5] = GetWarning()
   }
 
   local LAM2 = LibStub("LibAddonMenu-2.0")

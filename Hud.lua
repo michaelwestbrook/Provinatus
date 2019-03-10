@@ -144,7 +144,7 @@ local POIMapping = {
   ["/esoui/art/icons/poi/poi_wayshrine_glow.dds"] = "Wayshrine",
   ["/esoui/art/icons/poi/poi_wayshrine_incomplete.dds"] = "Wayshrine",
   ["/esoui/art/icons/poi/poi_wayshrine_oneway_complete.dds"] = "Wayshrine",
-  ["/esoui/art/icons/poi/poi_wayshrine_oneway_incomplete.dds"] = "Wayshrine",
+  ["/esoui/art/icons/poi/poi_wayshrine_oneway_incomplete.dds"] = "Wayshrine"
 }
 
 local ClassMapping = {
@@ -635,6 +635,59 @@ function ProvinatusHud:DrawPOI(MyX, MyY, CameraHeading)
   end
 end
 
+function ProvinatusHud:DrawLoreBooks(MyX, MyY, CameraHeading)
+  if LoreBooks_GetLocalData == nil then
+    return
+  end
+
+  if self.LoreBooks == nil then
+    self.LoreBooks = {}
+  end
+
+  local lorebooks = LoreBooks_GetLocalData(select(3, (GetMapTileTexture()):lower():find("maps/([%w%-]+)/([%w%-]+_[%w%-]+)")))
+  if CrownPointerThing.SavedVars.HUD.LoreBooks.Enabled then
+    if lorebooks then
+      for i, pinData in ipairs(lorebooks) do
+        local _, Texture, Known = GetLoreBookInfo(1, pinData[3], pinData[4])
+
+        if self.LoreBooks[i] == nil then
+          self.LoreBooks[i] = WINDOW_MANAGER:CreateControl(nil, CrownPointerThingIndicator, CT_TEXTURE)
+        end
+
+        if not Known or CrownPointerThing.SavedVars.HUD.LoreBooks.ShowKnownLoreBooks then
+          DrawIcon(
+            self.LoreBooks[i],
+            MyX,
+            MyY,
+            CameraHeading,
+            pinData[1],
+            pinData[2],
+            Texture,
+            CrownPointerThing.SavedVars.HUD.LoreBooks.Alpha,
+            CrownPointerThing.SavedVars.HUD.LoreBooks.Size,
+            CrownPointerThing.SavedVars.HUD.LoreBooks.Size
+          )
+        elseif self.LoreBooks[i]:GetAlpha() ~= 0 then
+          self.LoreBooks[i]:SetAlpha(0)
+        end
+      end
+    end
+  end
+
+  local i
+  if lorebooks == nil then
+    i = 0
+  else
+    i = #lorebooks
+  end
+
+  for key, value in pairs(self.LoreBooks) do
+    if not CrownPointerThing.SavedVars.HUD.LoreBooks.Enabled or key > i and value:GetAlpha() ~= 0 then
+      value:SetAlpha(0)
+    end
+  end
+end
+
 function ProvinatusHud:OnUpdate()
   if not CrownPointerThing or not CrownPointerThing.SavedVars then
     return
@@ -653,6 +706,7 @@ function ProvinatusHud:OnUpdate()
   self:DrawLostTreasure(MyX, MyY, CameraHeading)
   self:DrawMyIcon(CameraHeading, MyHeading)
   self:DrawPOI(MyX, MyY, CameraHeading)
+  self:DrawLoreBooks(MyX, MyY, CameraHeading)
   for i = 1, GetGroupSize() do
     ProvinatusHud:DrawUnit(MyX, MyY, CameraHeading, i)
   end
