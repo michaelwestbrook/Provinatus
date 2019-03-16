@@ -1,20 +1,5 @@
 # Manifest generated using eso-manifest. https://www.npmjs.com/package/eso-manifest
-## Title: |cFF69B4Provinatus|r {{**DEVELOPMENTVERSION**}}
-## APIVersion: 100026
-## Author: |cFF69B4@AlbinoPython (NA Server)|r
-## Description: Heads up display that shows: group members' locations, quest markers, rally points, and more
-## SavedVariables: CrownPointerThingSavedVariables
-## OptionalDependsOn: LibStub LibAddonMenu-2.0 pChat ProvisionsTeamFormation SkyShards LostTreasure
-lang/$(language).lua
-Config.lua
-reticles/arrow.lua
-Hud.lua
-Compass.lua
-Menu.lua
-CrownPointerThing.lua
-Provinatus.lua
-CrownPointerThing.xml
-bindings.xml
+# Do not modify by hand. Manifest generated at build time.
 
 # This Add-on is not created by, affiliated with, or sponsored by, ZeniMax Media Inc. or its affiliates.
 # The Elder Scrolls® and related logos are registered trademarks or trademarks of ZeniMax Media Inc. in the United States
