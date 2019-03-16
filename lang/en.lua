@@ -66,7 +66,7 @@ ZO_CreateStringId("PROVINATUS_SHOW_QUEST_MARKER_TT", "Display active quest marke
 ZO_CreateStringId("PROVINATUS_SHOW_QUEST_MARKER", "Show quest marker")
 ZO_CreateStringId("PROVINATUS_ICON_SETTINGS", "Icon Settings")
 ZO_CreateStringId("PROVINATUS_ENABLE_SKYSHARDS", "Enable Skyshards")
-ZO_CreateStringId("PROVINATUS_ENABLE_SKYSHARDS_TT", "Displays Skyshards on HUD. (Must have SkyShards addon installed)")
+ZO_CreateStringId("PROVINATUS_ENABLE_SKYSHARDS_TT", "Displays Skyshards on HUD.")
 ZO_CreateStringId("PROVINATUS_UNDISCOVERED", "Undiscovered")
 ZO_CreateStringId("PROVINATUS_DISCOVERED", "Discovered")
 ZO_CreateStringId("PROVINATUS_SHOW_DISCOVERED", "Show discovered Skyshards?")

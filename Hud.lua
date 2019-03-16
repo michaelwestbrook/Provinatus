@@ -308,14 +308,6 @@ local function IsPlayerInAreaPin()
   return Result
 end
 
-local function GetSkyshardData()
-  if SkyShards_GetLocalData then
-    return SkyShards_GetLocalData(select(3, (GetMapTileTexture()):lower():gsub("ui_map_", ""):find("maps/([%w%-]+)/([%w%-]+_[%w%-]+)"))) -- From SkyShards
-  end
-
-  return {}
-end
-
 local function DrawIcon(Icon, MyX, MyY, CameraHeading, TX, TY, Texture, Alpha, Width, Height)
   local XProjected, YProjected = GetProjectedCoordinates(MyX, MyY, TX, TY, CameraHeading)
   Icon:SetAlpha(Alpha)
@@ -470,33 +462,35 @@ function ProvinatusHud:DrawSkyshards(MyX, MyY, CameraHeading)
     self.SkyShards = {}
   end
 
-  local ShardData = GetSkyshardData()
+  local ShardData = MapPins_SkyShards[string.match(string.gsub(GetMapTileTexture(), "UI_Map_", ""), "%w+/%w+/%w+/(%w+_%w+)")]
   if ShardData ~= nil and CrownPointerThing.SavedVars.HUD.Skyshards.Enabled then
-    for i = 1, #ShardData do
-      local _, NumCompleted, NumRequired = GetAchievementCriterion(ShardData[i][3], ShardData[i][4])
-      if self.SkyShards[i] == nil then
-        self.SkyShards[i] = WINDOW_MANAGER:CreateControl(nil, CrownPointerThingIndicator, CT_TEXTURE)
+    local Index = 1
+    for _, pinData in pairs(ShardData) do
+      local _, NumCompleted, NumRequired = GetAchievementCriterion(pinData[3], pinData[4])
+      if self.SkyShards[Index] == nil then
+        self.SkyShards[Index] = WINDOW_MANAGER:CreateControl(nil, CrownPointerThingIndicator, CT_TEXTURE)
       end
 
-      local XProjected, YProjected = GetProjectedCoordinates(MyX, MyY, ShardData[i][1], ShardData[i][2], CameraHeading)
+      local XProjected, YProjected = GetProjectedCoordinates(MyX, MyY, pinData[1], pinData[2], CameraHeading)
       if NumCompleted == NumRequired then
         if CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards then
-          self.SkyShards[i]:SetDimensions(CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize, CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize)
-          self.SkyShards[i]:SetTexture("/SkyShards/Icons/Skyshard-collected.dds")
-          self.SkyShards[i]:SetAlpha(CrownPointerThing.SavedVars.HUD.Skyshards.KnownAlpha)
+          self.SkyShards[Index]:SetDimensions(CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize, CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize)
+          self.SkyShards[Index]:SetTexture("Provinatus/icons/Skyshard-collected.dds")
+          self.SkyShards[Index]:SetAlpha(CrownPointerThing.SavedVars.HUD.Skyshards.KnownAlpha)
         else
-          self.SkyShards[i]:SetAlpha(0)
+          self.SkyShards[Index]:SetAlpha(0)
         end
       else
-        self.SkyShards[i]:SetDimensions(CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize, CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize)
-        self.SkyShards[i]:SetTexture("/SkyShards/Icons/Skyshard-unknown.dds")
-        self.SkyShards[i]:SetAlpha(CrownPointerThing.SavedVars.HUD.Skyshards.UnknownAlpha)
+        self.SkyShards[Index]:SetDimensions(CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize, CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize)
+        self.SkyShards[Index]:SetTexture("Provinatus/icons/Skyshard-unknown.dds")
+        self.SkyShards[Index]:SetAlpha(CrownPointerThing.SavedVars.HUD.Skyshards.UnknownAlpha)
       end
 
-      self.SkyShards[i]:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected)
+      self.SkyShards[Index]:SetAnchor(CENTER, CrownPointerThingIndicator, CENTER, XProjected, YProjected)
+      Index = Index + 1
     end
 
-    for i = #ShardData + 1, #self.SkyShards do
+    for i = #ShardData + 1, #self.SkyShards do -- TODO Check that this clears correctly
       self.SkyShards[i]:SetAlpha(0)
     end
   else

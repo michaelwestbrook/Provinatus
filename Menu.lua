@@ -333,6 +333,148 @@ local function GetLoreBooksMenu()
   }
 end
 
+local function GetSkyshardMenu()
+  return {
+    type = "submenu",
+    name = "Skyshards",
+    controls = {
+      [1] = {
+        type = "checkbox",
+        name = PROVINATUS_ENABLE_SKYSHARDS,
+        getFunc = function()
+          return CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
+        end,
+        setFunc = function(value)
+          CrownPointerThing.SavedVars.HUD.Skyshards.Enabled = value
+        end,
+        tooltip = PROVINATUS_ENABLE_SKYSHARDS_TT,
+        width = "full",
+        default = ProvinatusConfig.HUD.Skyshards.Enabled
+      },
+      [2] = {
+        type = "submenu",
+        name = PROVINATUS_UNDISCOVERED,
+        controls = {
+          [1] = {
+            type = "slider",
+            name = PROVINATUS_ICON_SIZE,
+            getFunc = function()
+              return CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize
+            end,
+            setFunc = function(value)
+              CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize = value
+            end,
+            min = 20,
+            max = 150,
+            step = 1,
+            clampInput = true,
+            decimals = 0,
+            autoSelect = true,
+            inputLocation = "below",
+            tooltip = PROVINATUS_ICON_SIZE_TT,
+            width = "half",
+            disabled = function()
+              return not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
+            end,
+            default = ProvinatusConfig.HUD.Skyshards.UnknownSize
+          },
+          [2] = {
+            type = "slider",
+            name = PROVINATUS_TRANSPARENCY,
+            getFunc = function()
+              return CrownPointerThing.SavedVars.HUD.Skyshards.UnknownAlpha * 100
+            end,
+            setFunc = function(value)
+              CrownPointerThing.SavedVars.HUD.Skyshards.UnknownAlpha = value / 100
+            end,
+            min = 0,
+            max = 100,
+            step = 1,
+            clampInput = true,
+            decimals = 0,
+            autoSelect = true,
+            inputLocation = "below",
+            tooltip = PROVINATUS_TRANSPARENCY_TT,
+            width = "half",
+            disabled = function()
+              return not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
+            end,
+            default = ProvinatusConfig.HUD.Skyshards.UnknownAlpha * 100
+          }
+        }
+      },
+      [3] = {
+        type = "submenu",
+        name = PROVINATUS_DISCOVERED,
+        controls = {
+          [1] = {
+            type = "checkbox",
+            name = PROVINATUS_SHOW_DISCOVERED,
+            getFunc = function()
+              return CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards
+            end,
+            setFunc = function(value)
+              CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards = value
+            end,
+            tooltip = PROVINATUS_SHOW_DISCOVERED_TT,
+            width = "full",
+            default = ProvinatusConfig.HUD.Skyshards.ShowKnownSkyshards,
+            disabled = function()
+              return not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
+            end
+          },
+          [2] = {
+            type = "slider",
+            name = PROVINATUS_ICON_SIZE,
+            getFunc = function()
+              return CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize
+            end,
+            setFunc = function(value)
+              CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize = value
+            end,
+            min = 20,
+            max = 150,
+            step = 1,
+            clampInput = true,
+            decimals = 0,
+            autoSelect = true,
+            inputLocation = "below",
+            tooltip = PROVINATUS_ICON_SIZE_TT,
+            width = "half",
+            disabled = function()
+              return not CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
+            end,
+            default = ProvinatusConfig.HUD.Skyshards.KnownSize
+          },
+          [3] = {
+            type = "slider",
+            name = PROVINATUS_TRANSPARENCY,
+            getFunc = function()
+              return CrownPointerThing.SavedVars.HUD.Skyshards.KnownAlpha * 100
+            end,
+            setFunc = function(value)
+              CrownPointerThing.SavedVars.HUD.Skyshards.KnownAlpha = value / 100
+            end,
+            min = 0,
+            max = 100,
+            step = 1,
+            clampInput = true,
+            decimals = 0,
+            autoSelect = true,
+            inputLocation = "below",
+            tooltip = PROVINATUS_TRANSPARENCY_TT,
+            width = "half",
+            disabled = function()
+              return not CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
+            end,
+            default = ProvinatusConfig.HUD.Skyshards.KnownAlpha * 100
+          }
+        }
+      }
+    }
+  }
+end
+
 local function ControlsCreated(Panel)
   if Panel == SettingsMenu then
     DrawPOIMenuIcon(Provinatus_AreaOfInterest, "/esoui/art/icons/poi/poi_areaofinterest_complete.dds")
@@ -764,146 +906,6 @@ function ProvinatusMenu:Initialize()
         },
         [8] = {
           type = "submenu",
-          name = "Skyshards",
-          controls = {
-            [1] = {
-              type = "checkbox",
-              name = PROVINATUS_ENABLE_SKYSHARDS,
-              getFunc = function()
-                return CrownPointerThing.SavedVars.HUD.Skyshards.Enabled and SkyShards_GetLocalData ~= nil
-              end,
-              setFunc = function(value)
-                CrownPointerThing.SavedVars.HUD.Skyshards.Enabled = value
-              end,
-              tooltip = PROVINATUS_ENABLE_SKYSHARDS_TT,
-              width = "full",
-              default = ProvinatusConfig.HUD.Skyshards.Enabled,
-              disabled = SkyShards_GetLocalData == nil
-            },
-            [2] = {
-              type = "submenu",
-              name = PROVINATUS_UNDISCOVERED,
-              controls = {
-                [1] = {
-                  type = "slider",
-                  name = PROVINATUS_ICON_SIZE,
-                  getFunc = function()
-                    return CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize
-                  end,
-                  setFunc = function(value)
-                    CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize = value
-                  end,
-                  min = 20,
-                  max = 150,
-                  step = 1,
-                  clampInput = true,
-                  decimals = 0,
-                  autoSelect = true,
-                  inputLocation = "below",
-                  tooltip = PROVINATUS_ICON_SIZE_TT,
-                  width = "half",
-                  disabled = function()
-                    return SkyShards_GetLocalData == nil or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
-                  end,
-                  default = ProvinatusConfig.HUD.Skyshards.UnknownSize
-                },
-                [2] = {
-                  type = "slider",
-                  name = PROVINATUS_TRANSPARENCY,
-                  getFunc = function()
-                    return CrownPointerThing.SavedVars.HUD.Skyshards.UnknownAlpha * 100
-                  end,
-                  setFunc = function(value)
-                    CrownPointerThing.SavedVars.HUD.Skyshards.UnknownAlpha = value / 100
-                  end,
-                  min = 0,
-                  max = 100,
-                  step = 1,
-                  clampInput = true,
-                  decimals = 0,
-                  autoSelect = true,
-                  inputLocation = "below",
-                  tooltip = PROVINATUS_TRANSPARENCY_TT,
-                  width = "half",
-                  disabled = function()
-                    return SkyShards_GetLocalData == nil or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
-                  end,
-                  default = ProvinatusConfig.HUD.Skyshards.UnknownAlpha * 100
-                }
-              }
-            },
-            [3] = {
-              type = "submenu",
-              name = PROVINATUS_DISCOVERED,
-              controls = {
-                [1] = {
-                  type = "checkbox",
-                  name = PROVINATUS_SHOW_DISCOVERED,
-                  getFunc = function()
-                    return CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards
-                  end,
-                  setFunc = function(value)
-                    CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards = value
-                  end,
-                  tooltip = PROVINATUS_SHOW_DISCOVERED_TT,
-                  width = "full",
-                  default = ProvinatusConfig.HUD.Skyshards.ShowKnownSkyshards,
-                  disabled = function()
-                    return SkyShards_GetLocalData == nil or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
-                  end
-                },
-                [2] = {
-                  type = "slider",
-                  name = PROVINATUS_ICON_SIZE,
-                  getFunc = function()
-                    return CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize
-                  end,
-                  setFunc = function(value)
-                    CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize = value
-                  end,
-                  min = 20,
-                  max = 150,
-                  step = 1,
-                  clampInput = true,
-                  decimals = 0,
-                  autoSelect = true,
-                  inputLocation = "below",
-                  tooltip = PROVINATUS_ICON_SIZE_TT,
-                  width = "half",
-                  disabled = function()
-                    return SkyShards_GetLocalData == nil or not CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
-                  end,
-                  default = ProvinatusConfig.HUD.Skyshards.KnownSize
-                },
-                [3] = {
-                  type = "slider",
-                  name = PROVINATUS_TRANSPARENCY,
-                  getFunc = function()
-                    return CrownPointerThing.SavedVars.HUD.Skyshards.KnownAlpha * 100
-                  end,
-                  setFunc = function(value)
-                    CrownPointerThing.SavedVars.HUD.Skyshards.KnownAlpha = value / 100
-                  end,
-                  min = 0,
-                  max = 100,
-                  step = 1,
-                  clampInput = true,
-                  decimals = 0,
-                  autoSelect = true,
-                  inputLocation = "below",
-                  tooltip = PROVINATUS_TRANSPARENCY_TT,
-                  width = "half",
-                  disabled = function()
-                    return SkyShards_GetLocalData == nil or not CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards or not CrownPointerThing.SavedVars.HUD.Skyshards.Enabled
-                  end,
-                  default = ProvinatusConfig.HUD.Skyshards.KnownAlpha * 100
-                }
-              }
-            }
-          }
-        },
-        [9] = {
-          type = "submenu",
           name = "Lost Treasure",
           controls = {
             [1] = {
@@ -948,7 +950,7 @@ function ProvinatusMenu:Initialize()
             }
           }
         },
-        [10] = {
+        [9] = {
           type = "submenu",
           name = PROVINATUS_MY_ICON,
           controls = {
@@ -1110,8 +1112,9 @@ function ProvinatusMenu:Initialize()
       }
     },
     [3] = GetPOIMenu(),
-    [4] = GetLoreBooksMenu(),
-    [5] = GetWarning()
+    [4] = GetSkyshardMenu(),
+    [5] = GetLoreBooksMenu(),
+    [6] = GetWarning()
   }
 
   local LAM2 = LibStub("LibAddonMenu-2.0")

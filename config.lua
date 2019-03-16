@@ -20,6 +20,7 @@ ProvinatusConfig = {
     Size = 350,
     Offset = true,
     ShowRoleIcons = false,
+    ZoomLevel = 250,
     TargetIconAlpha = 1,
     TargetIconSize = 48,
     TargetIconDrawLevel = 3,
