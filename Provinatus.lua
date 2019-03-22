@@ -9,8 +9,10 @@ function Provinatus.OnUpdate()
 end
 
 function Provinatus.EVENT_ADD_ON_LOADED(eventCode, addonName)
-  if addonName == CrownPointerThing.name then
-    CrownPointerThing:Initialize()
+  if addonName == ProvinatusConfig.Name then
+    local TLW = CreateTopLevelWindow("CrownPointerThingIndicator")
+    InitializeCrownPointer()
+    TLW:SetAnchor(CENTER, nil, CENTER, CrownPointerThing.SavedVars.HUD.PositionX, CrownPointerThing.SavedVars.HUD.PositionY) -- TODO init saved var here
     ProvinatusMenu:Initialize()
     table.insert(
       Provinatus.UpdateFunctions,
@@ -48,8 +50,12 @@ function Provinatus.EVENT_ADD_ON_LOADED(eventCode, addonName)
     HUD_SCENE:AddFragment(fragment)
     HUD_UI_SCENE:AddFragment(fragment)
     SIEGE_BAR_SCENE:AddFragment(fragment)
-    EVENT_MANAGER:RegisterForUpdate(CrownPointerThing.name .. "Update", 1000 / CrownPointerThing.SavedVars.HUD.RefreshRate, Provinatus.OnUpdate)
+    EVENT_MANAGER:RegisterForUpdate(ProvinatusConfig.Name .. "Update", 1000 / CrownPointerThing.SavedVars.HUD.RefreshRate, Provinatus.OnUpdate)
+    EVENT_MANAGER:UnregisterForEvent(ProvinatusConfig.Name, EVENT_ADD_ON_LOADED)
+  elseif addonName == "ProvinatusBeta" then
+    d("It appears you have Provinatus and ProvinatusBeta installed at the same time. Beta version is disabled.")
+    EVENT_MANAGER:UnregisterForEvent(ProvinatusConfig.Name, EVENT_ADD_ON_LOADED)
   end
 end
 
-EVENT_MANAGER:RegisterForEvent(CrownPointerThing.name, EVENT_ADD_ON_LOADED, Provinatus.EVENT_ADD_ON_LOADED)
+EVENT_MANAGER:RegisterForEvent(ProvinatusConfig.Name, EVENT_ADD_ON_LOADED, Provinatus.EVENT_ADD_ON_LOADED)

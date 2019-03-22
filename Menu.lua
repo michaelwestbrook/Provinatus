@@ -544,8 +544,8 @@ end
 function ProvinatusMenu:Initialize()
   local panelData = {
     type = "panel",
-    name = CrownPointerThing.name,
-    displayName = CrownPointerThing.name,
+    name = ProvinatusConfig.Name,
+    displayName = ProvinatusConfig.Name,
     author = "Albino Python",
     version = "{{**DEVELOPMENTVERSION**}}",
     website = "http://www.esoui.com/downloads/info1943-Provinatus.html",
@@ -1118,7 +1118,7 @@ function ProvinatusMenu:Initialize()
   }
 
   local LAM2 = LibStub("LibAddonMenu-2.0")
-  SettingsMenu = LAM2:RegisterAddonPanel(CrownPointerThing.name .. "Options", panelData)
-  LAM2:RegisterOptionControls(CrownPointerThing.name .. "Options", optionsData)
+  SettingsMenu = LAM2:RegisterAddonPanel(ProvinatusConfig.Name .. "Options", panelData)
+  LAM2:RegisterOptionControls(ProvinatusConfig.Name .. "Options", optionsData)
   CALLBACK_MANAGER:RegisterCallback("LAM-PanelControlsCreated", ControlsCreated)
 end
