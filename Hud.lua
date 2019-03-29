@@ -490,9 +490,9 @@ function ProvinatusHud:DrawSkyshards(MyX, MyY, CameraHeading)
       Index = Index + 1
     end
 
-    -- for i = #ShardData + 1, #self.SkyShards do -- TODO Check that this clears correctly
-    --   self.SkyShards[i]:SetAlpha(0)
-    -- end
+    for i = #ShardData + 1, #self.SkyShards do -- TODO Check that this clears correctly
+      self.SkyShards[i]:SetAlpha(0)
+    end
   else
     for i = 1, #self.SkyShards do
       self.SkyShards[i]:SetAlpha(0)
