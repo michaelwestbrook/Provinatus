@@ -1,7 +1,5 @@
 -- Note ALL settings are overridden by saved variables.
-if ProvinatusConfig then -- If ProvinatusConfig already exists then we have Provinatus and ProvinatusBeta installed side by side.
-  d("Trying to run ProvinatusBeta with Provinatus installed. Please disable Provinatus to use the Provinatus Beta")
-else
+if not ProvinatusConfig then -- If ProvinatusConfig already exists then we have Provinatus and ProvinatusBeta installed side by side.
   ProvinatusConfig = {
     Name = "{{**ADDONNAME**}}",
     CrownPointer = {
@@ -100,8 +98,4 @@ else
       }
     }
   }
-end
-
-if ProvinatusConfig.Name == "ProvinatusBeta" then
-  d("Thank you for trying Provinatus Beta. Please report any bugs on GitHub or esoui.com")
 end
