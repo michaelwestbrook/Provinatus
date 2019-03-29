@@ -486,7 +486,7 @@ local function GetZoomMenu()
       CrownPointerThing.SavedVars.HUD.ZoomLevel = value
     end,
     min = 1,
-    max = 1000000000,
+    max = 1000,
     step = 1,
     clampInput = true,
     decimals = 0,
