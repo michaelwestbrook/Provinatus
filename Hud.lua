@@ -475,14 +475,14 @@ function ProvinatusHud:DrawSkyshards(MyX, MyY, CameraHeading)
       if NumCompleted == NumRequired then
         if CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards then
           self.SkyShards[Index]:SetDimensions(CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize, CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize)
-          self.SkyShards[Index]:SetTexture("Provinatus/icons/Skyshard-collected.dds")
+          self.SkyShards[Index]:SetTexture("/esoui/art/icons/achievements_indexicon_skyshards_up.dds")
           self.SkyShards[Index]:SetAlpha(CrownPointerThing.SavedVars.HUD.Skyshards.KnownAlpha)
         else
           self.SkyShards[Index]:SetAlpha(0)
         end
       else
         self.SkyShards[Index]:SetDimensions(CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize, CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize)
-        self.SkyShards[Index]:SetTexture("Provinatus/icons/Skyshard-unknown.dds")
+        self.SkyShards[Index]:SetTexture("/esoui/art/icons/achievements_indexicon_skyshards_down.dds")
         self.SkyShards[Index]:SetAlpha(CrownPointerThing.SavedVars.HUD.Skyshards.UnknownAlpha)
       end
 
@@ -490,9 +490,9 @@ function ProvinatusHud:DrawSkyshards(MyX, MyY, CameraHeading)
       Index = Index + 1
     end
 
-    for i = #ShardData + 1, #self.SkyShards do -- TODO Check that this clears correctly
-      self.SkyShards[i]:SetAlpha(0)
-    end
+    -- for i = #ShardData + 1, #self.SkyShards do -- TODO Check that this clears correctly
+    --   self.SkyShards[i]:SetAlpha(0)
+    -- end
   else
     for i = 1, #self.SkyShards do
       self.SkyShards[i]:SetAlpha(0)
