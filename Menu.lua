@@ -475,32 +475,6 @@ local function GetSkyshardMenu()
   }
 end
 
-local function GetZoomMenu()
-  return {
-    type = "slider",
-    name = "Zoom Level",
-    getFunc = function()
-      return CrownPointerThing.SavedVars.HUD.ZoomLevel
-    end,
-    setFunc = function(value)
-      CrownPointerThing.SavedVars.HUD.ZoomLevel = value
-    end,
-    min = 1,
-    max = 1000,
-    step = 1,
-    clampInput = true,
-    decimals = 0,
-    autoSelect = true,
-    inputLocation = "below",
-    tooltip = "Use the slider to adjust the \"Zoom\" of the HUD",
-    width = "half",
-    disabled = function()
-      return not CrownPointerThing.SavedVars.HUD.ZoomLevel
-    end,
-    default = ProvinatusConfig.HUD.ZoomLevel
-  }
-end
-
 local function ControlsCreated(Panel)
   if Panel == SettingsMenu then
     DrawPOIMenuIcon(Provinatus_AreaOfInterest, "/esoui/art/icons/poi/poi_areaofinterest_complete.dds")
@@ -570,8 +544,8 @@ end
 function ProvinatusMenu:Initialize()
   local panelData = {
     type = "panel",
-    name = ProvinatusConfig.Name,
-    displayName = ProvinatusConfig.Name,
+    name = CrownPointerThing.name,
+    displayName = CrownPointerThing.name,
     author = "Albino Python",
     version = "{{**DEVELOPMENTVERSION**}}",
     website = "http://www.esoui.com/downloads/info1943-Provinatus.html",
@@ -1019,8 +993,7 @@ function ProvinatusMenu:Initialize()
               )
             }
           }
-        },
-        [10] = GetZoomMenu()
+        }
       }
     },
     [2] = {
@@ -1145,7 +1118,7 @@ function ProvinatusMenu:Initialize()
   }
 
   local LAM2 = LibStub("LibAddonMenu-2.0")
-  SettingsMenu = LAM2:RegisterAddonPanel(ProvinatusConfig.Name .. "Options", panelData)
-  LAM2:RegisterOptionControls(ProvinatusConfig.Name .. "Options", optionsData)
+  SettingsMenu = LAM2:RegisterAddonPanel(CrownPointerThing.name .. "Options", panelData)
+  LAM2:RegisterOptionControls(CrownPointerThing.name .. "Options", optionsData)
   CALLBACK_MANAGER:RegisterCallback("LAM-PanelControlsCreated", ControlsCreated)
 end

@@ -249,7 +249,22 @@ local function GetDrawLevel(UnitTag)
 end
 
 local function GetProjectedCoordinates(X1, Y1, X2, Y2, CameraHeading)
-  return ProvinatusProjection:GetOGProjection(X1, Y1, X2, Y2, CameraHeading)
+  -- Horizontal distance to target
+  local DistanceX = X1 - X2
+  -- Vertical distance to target
+  local DistanceY = Y1 - Y2
+  -- Angle to target.
+  local Phi = -1 * CameraHeading - math.atan2(DistanceY, DistanceX)
+  -- The closer the target the more exaggerated the movement becomes. See 3d chart here https://www.wolframalpha.com/input/?i=arctan(sqrt(add(x%5E2,+y%5E2)))
+  local DistanceProjected = math.atan(math.sqrt((DistanceX * DistanceX) + (DistanceY * DistanceY)) * 250) * (CrownPointerThing.SavedVars.HUD.Size / 2)
+  -- Calculates where to draw on the screen.
+  local XProjected = -DistanceProjected * math.cos(Phi) + CrownPointerThing.SavedVars.HUD.PositionX
+  local YProjected = DistanceProjected * math.sin(Phi) + CrownPointerThing.SavedVars.HUD.PositionY
+  if CrownPointerThing.SavedVars.HUD.Offset then
+    YProjected = YProjected + CrownPointerThing.SavedVars.CrownPointer.Size / 2
+  end
+
+  return XProjected, YProjected
 end
 
 local function GetQuestPins()
@@ -460,14 +475,14 @@ function ProvinatusHud:DrawSkyshards(MyX, MyY, CameraHeading)
       if NumCompleted == NumRequired then
         if CrownPointerThing.SavedVars.HUD.Skyshards.ShowKnownSkyshards then
           self.SkyShards[Index]:SetDimensions(CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize, CrownPointerThing.SavedVars.HUD.Skyshards.KnownSize)
-          self.SkyShards[Index]:SetTexture("/esoui/art/icons/achievements_indexicon_skyshards_up.dds")
+          self.SkyShards[Index]:SetTexture("Provinatus/icons/Skyshard-collected.dds")
           self.SkyShards[Index]:SetAlpha(CrownPointerThing.SavedVars.HUD.Skyshards.KnownAlpha)
         else
           self.SkyShards[Index]:SetAlpha(0)
         end
       else
         self.SkyShards[Index]:SetDimensions(CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize, CrownPointerThing.SavedVars.HUD.Skyshards.UnknownSize)
-        self.SkyShards[Index]:SetTexture("/esoui/art/icons/achievements_indexicon_skyshards_down.dds")
+        self.SkyShards[Index]:SetTexture("Provinatus/icons/Skyshard-unknown.dds")
         self.SkyShards[Index]:SetAlpha(CrownPointerThing.SavedVars.HUD.Skyshards.UnknownAlpha)
       end
 
