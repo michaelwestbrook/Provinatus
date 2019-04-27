@@ -26,7 +26,7 @@ steps:
   workingDirectory: ProvinatusBuild/Provinatus
   displayName: 'Set Submodule to PR commit'
 
-- script: 'find . -path ./lang -prune -o -name ''*.lua'' -print | while read -r fileName;  do echo "Compliling $fileName"; luac -p $fileName; done'
+- script: 'find . -path ./lang -prune -o -name ''*.lua'' -print | while read -r fileName;  do echo "Compiling $fileName"; luac -p $fileName; done'
   workingDirectory: ProvinatusBuild/Provinatus
   displayName: 'Compile Lua files'
 
