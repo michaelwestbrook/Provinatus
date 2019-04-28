@@ -7,7 +7,9 @@ local function OnUpdate()
 
   Provinatus:SetPlayerData()
   for _, Layer in pairs(Provinatus.Layers) do
-    Layer.Update()
+    if Layer.Update then
+      Layer.Update()
+    end
   end
 end
 
@@ -31,6 +33,7 @@ end
 local function AddonLoaded(EventCode, AddonName)
   if AddonName == "Provinatus" then
     local ProvinatusLayers = {
+      ProvinatusDisplay,
       ProvinatusCompass,
       ProvinatusPointer,
       ProvinatusQuests,
@@ -67,27 +70,6 @@ function Provinatus:SetPlayerData()
   self.GroupSize = GetGroupSize()
 end
 
-function Provinatus:ProjectCoordinates(X, Y)
-  -- Horizontal distance to target
-  local DistanceX = self.X - X
-  -- Vertical distance to target
-  local DistanceY = self.Y - Y
-  -- Angle to target.
-  local Phi = -1 * self.CameraHeading - math.atan2(DistanceY, DistanceX) -- TODO try minusing heading
-  -- The closer the target the more exaggerated the movement becomes. See 3d chart here https://www.wolframalpha.com/input/?i=min(atan(sqrt(x%5E2%2By%5E2)%2F(sqrt(2)*tan(1))),+1)
-  -- Magic number is approximation of sqrt(2) * tan(1). This value projects the distance to a value between 0 and  1ish.
-  local DistanceProjected = math.min(math.atan(math.sqrt((DistanceX * DistanceX) + (DistanceY * DistanceY)) / 2.2025071263 * 250), 1) * Provinatus.SavedVars.Display.Size
-  -- Calculates where to draw on the screen.
-  local XProjected = -DistanceProjected * math.cos(Phi) + Provinatus.SavedVars.Display.X
-  local YProjected = DistanceProjected * math.sin(Phi) + Provinatus.SavedVars.Display.Y
-
-  if Provinatus.SavedVars.Display.Offset then
-    YProjected = YProjected + Provinatus.SavedVars.Pointer.Size
-  end
-
-  return XProjected, YProjected
-end
-
 function Provinatus.DrawElements(Layer, Elements)
   if not Provinatus.Icons[Layer] and Elements ~= nil then
     Provinatus.Icons[Layer] = {}
@@ -101,7 +83,7 @@ function Provinatus.DrawElements(Layer, Elements)
         Provinatus.Icons[Layer][Index] = WINDOW_MANAGER:CreateControl(nil, Provinatus.TopLevelWindow, CT_TEXTURE)
       end
 
-      local X, Y = Provinatus:ProjectCoordinates(Element.X, Element.Y)
+      local X, Y = ProvinatusProjection.Project(Element.X, Element.Y)
       Provinatus.Icons[Layer][Index]:SetAlpha(Element.Alpha)
       Provinatus.Icons[Layer][Index]:SetAnchor(CENTER, Provinatus.TopLevelWindow, CENTER, X, Y)
       Provinatus.Icons[Layer][Index]:SetDimensions(Element.Width, Element.Height)
