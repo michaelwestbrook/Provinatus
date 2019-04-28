@@ -10,16 +10,16 @@ local function CreateElement(SkyshardData)
   local Element = {
     X = SkyshardData[1],
     Y = SkyshardData[2],
-    Alpha = Provinatus.SavedVars.Skyshards.Collected.Alpha,
-    Height = Provinatus.SavedVars.Skyshards.Collected.Size,
-    Width = Provinatus.SavedVars.Skyshards.Collected.Size,
+    Alpha = Provinatus.SavedVars.Skyshards.Uncollected.Alpha,
+    Height = Provinatus.SavedVars.Skyshards.Uncollected.Size,
+    Width = Provinatus.SavedVars.Skyshards.Uncollected.Size,
     Texture = UnknownTexture
   }
 
   if NumCompleted == NumRequired and Provinatus.SavedVars.Skyshards.ShowCollected then
-    Element.Alpha = Provinatus.SavedVars.Skyshards.Uncollected.Alpha
-    Element.Height = Provinatus.SavedVars.Skyshards.Uncollected.Size
-    Element.Width = Provinatus.SavedVars.Skyshards.Uncollected.Size
+    Element.Alpha = Provinatus.SavedVars.Skyshards.Collected.Alpha
+    Element.Height = Provinatus.SavedVars.Skyshards.Collected.Size
+    Element.Width = Provinatus.SavedVars.Skyshards.Collected.Size
     Element.Texture = KnownTexture
   elseif NumCompleted == NumRequired then
     Element.Alpha = 0
