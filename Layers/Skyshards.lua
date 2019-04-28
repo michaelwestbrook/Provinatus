@@ -1,7 +1,5 @@
 ProvinatusSkyshards = {}
 
-ProvinatusSkyshards.Skyshards = {}
-
 local UnknownTexture = "Provinatus/Icons/Skyshard-unknown.dds"
 local KnownTexture = "Provinatus/Icons/Skyshard-collected.dds"
 
@@ -29,17 +27,14 @@ local function CreateElement(SkyshardData)
 end
 
 function ProvinatusSkyshards.Update()
-  if not Provinatus.SavedVars.Skyshards.Enabled then
-    ProvinatusSkyshards.Skyshards = {}
-  elseif ProvinatusSkyshards.CurrentZone ~= Provinatus.Zone then
-    ProvinatusSkyshards.CurrentZone = Provinatus.Zone
-    ProvinatusSkyshards.Skyshards = {}
+  local Skyshards = {}
+  if Provinatus.SavedVars.Skyshards.Enabled then
     for _, SkyshardData in pairs(ProvinatusSkyshardsData[Provinatus.Zone] or {}) do
-      table.insert(ProvinatusSkyshards.Skyshards, CreateElement(SkyshardData))
+      table.insert(Skyshards, CreateElement(SkyshardData))
     end
   end
 
-  Provinatus.DrawElements(ProvinatusSkyshards, ProvinatusSkyshards.Skyshards)
+  Provinatus.DrawElements(ProvinatusSkyshards, Skyshards)
 end
 
 function ProvinatusSkyshards.GetMenu()
