@@ -27,7 +27,7 @@ function ProvinatusRallyPoint.Update()
     table.insert(Elements, Element)
   end
 
-  local Rendered = Provinatus.DrawElements(ProvinatusWaypoint, Elements)
+  local Rendered = Provinatus.DrawElements(ProvinatusRallyPoint, Elements)
   if Rendered and Rendered[Element] and not ProvinatusRallyPoint.Animation then
     ProvinatusRallyPoint.Animation = Animate(Rendered[Element])
   end
