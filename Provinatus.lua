@@ -78,8 +78,8 @@ function Provinatus:ProjectCoordinates(X, Y)
   -- Magic number is approximation of sqrt(2) * tan(1). This value projects the distance to a value between 0 and  1ish.
   local DistanceProjected = math.min(math.atan(math.sqrt((DistanceX * DistanceX) + (DistanceY * DistanceY)) / 2.2025071263 * 250), 1) * Provinatus.SavedVars.Display.Size
   -- Calculates where to draw on the screen.
-  local XProjected = -DistanceProjected * math.cos(Phi)
-  local YProjected = DistanceProjected * math.sin(Phi)
+  local XProjected = -DistanceProjected * math.cos(Phi) + Provinatus.SavedVars.Display.X
+  local YProjected = DistanceProjected * math.sin(Phi) + Provinatus.SavedVars.Display.Y
 
   if Provinatus.SavedVars.Display.Offset then
     YProjected = YProjected + Provinatus.SavedVars.Pointer.Size
