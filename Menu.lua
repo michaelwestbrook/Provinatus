@@ -14,6 +14,31 @@ local function GetPanelData()
   }
 end
 
+local function DrawOffsetIcon()
+  if not ProvinatusOffsetCenterCheckbox.Reticle then
+    ProvinatusOffsetCenterCheckbox.Reticle = WINDOW_MANAGER:CreateControl(nil, ProvinatusOffsetCenterCheckbox, CT_TEXTURE)
+    ProvinatusOffsetCenterCheckbox.Reticle:SetTexture("esoui/art/worldmap/map_centerreticle.dds")
+    ProvinatusOffsetCenterCheckbox.Reticle:SetAlpha(1)
+    ProvinatusOffsetCenterCheckbox.Reticle:SetAnchor(CENTER, ProvinatusOffsetCenterCheckbox, CENTER, 0, 0)
+    ProvinatusOffsetCenterCheckbox.Reticle:SetDimensions(24, 24)
+    ProvinatusOffsetCenterCheckbox.Reticle:SetTextureRotation(math.pi / 4)
+
+    ProvinatusOffsetCenterCheckbox.Pointer = WINDOW_MANAGER:CreateControl(nil, ProvinatusOffsetCenterCheckbox.Reticle, CT_TEXTURE)
+    ProvinatusOffsetCenterCheckbox.Pointer:SetTexture("esoui/art/floatingmarkers/quest_icon_assisted.dds")
+    ProvinatusOffsetCenterCheckbox.Pointer:SetDimensions(24, 24)
+    ProvinatusOffsetCenterCheckbox.Pointer:SetTextureRotation(math.pi)
+    ProvinatusOffsetCenterCheckbox.Pointer:SetColor(0, 1, 0, 1)
+  end
+
+  local AnchorPosition
+  if Provinatus.SavedVars.Display.Offset then
+    AnchorPosition = BOTTOM
+  else
+    AnchorPosition = CENTER
+  end
+  ProvinatusOffsetCenterCheckbox.Pointer:SetAnchor(CENTER, ProvinatusOffsetCenterCheckbox, AnchorPosition, 0, 0)
+end
+
 local function GetDisplayMenu()
   return {
     type = "submenu",
@@ -106,6 +131,7 @@ local function GetDisplayMenu()
         end,
         setFunc = function(value)
           Provinatus.SavedVars.Display.Offset = value
+          DrawOffsetIcon()
         end,
         tooltip = PROVINATUS_OFFSET_CENTER_TT,
         width = "full",
@@ -135,6 +161,7 @@ end
 
 local function PanelCreated(Panel)
   if Panel == ProvinatusMenu.SettingMenu then
+    DrawOffsetIcon()
     for _, Layer in pairs(Provinatus.Layers) do
       if Layer.SetMenuIcon then
         Layer.SetMenuIcon(Panel)
