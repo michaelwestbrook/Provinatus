@@ -1,25 +1,35 @@
 ProvinatusRallyPoint = {}
 
-function ProvinatusRallyPoint.Update()
-  local RallyX, RallyY = GetMapRallyPoint()
-  if (RallyX ~= 0 or RallyY ~= 0) and Provinatus.SavedVars.RallyPoint.Enabled then
-    local XProjected, YProjected = Provinatus:ProjectCoordinates(RallyX, RallyY)
-    if ProvinatusRallyPoint.RallyPoint == nil then
-      ProvinatusRallyPoint.RallyPoint = {}
-      ProvinatusRallyPoint.RallyPoint.Icon = WINDOW_MANAGER:CreateControl(nil, Provinatus.TopLevelWindow, CT_TEXTURE)
-      ProvinatusRallyPoint.RallyPoint.Icon:SetTexture("esoui/art/mappins/maprallypoint.dds")
-      local animation, timeline = CreateSimpleAnimation(ANIMATION_TEXTURE, ProvinatusRallyPoint.RallyPoint.Icon)
-      animation:SetImageData(32, 1)
-      animation:SetFramerate(60)
-      timeline:SetPlaybackType(ANIMATION_PLAYBACK_LOOP, LOOP_INDEFINITELY)
-      timeline:PlayFromStart()
-    end
+local Texture = "esoui/art/mappins/maprallypoint.dds"
 
-    ProvinatusRallyPoint.RallyPoint.Icon:SetAnchor(CENTER, Provinatus.TopLevelWindow, CENTER, XProjected, YProjected)
-    ProvinatusRallyPoint.RallyPoint.Icon:SetAlpha(Provinatus.SavedVars.RallyPoint.Alpha)
-    ProvinatusRallyPoint.RallyPoint.Icon:SetDimensions(Provinatus.SavedVars.RallyPoint.Size, Provinatus.SavedVars.RallyPoint.Size)
-  elseif ProvinatusRallyPoint.RallyPoint ~= nil and ProvinatusRallyPoint.RallyPoint.Icon ~= nil and ProvinatusRallyPoint.RallyPoint.Icon:GetAlpha() ~= 0 then
-    ProvinatusRallyPoint.RallyPoint.Icon:SetAlpha(0)
+local function Animate(Icon)
+  local animation, timeline = CreateSimpleAnimation(ANIMATION_TEXTURE, Icon)
+  animation:SetImageData(32, 1)
+  animation:SetFramerate(60)
+  timeline:SetPlaybackType(ANIMATION_PLAYBACK_LOOP, LOOP_INDEFINITELY)
+  timeline:PlayFromStart()
+  return animation
+end
+
+function ProvinatusRallyPoint.Update()
+  local Elements = {}
+  local RallyX, RallyY = GetMapRallyPoint()
+  local Element = {
+    X = RallyX,
+    Y = RallyY,
+    Width = Provinatus.SavedVars.RallyPoint.Size,
+    Height = Provinatus.SavedVars.RallyPoint.Size,
+    Texture = Texture,
+    Alpha = Provinatus.SavedVars.RallyPoint.Alpha
+  }
+
+  if (RallyX ~= 0 or RallyY ~= 0) and Provinatus.SavedVars.RallyPoint.Enabled then
+    table.insert(Elements, Element)
+  end
+
+  local Rendered = Provinatus.DrawElements(ProvinatusWaypoint, Elements)
+  if Rendered and Rendered[Element] and not ProvinatusRallyPoint.Animation then
+    ProvinatusRallyPoint.Animation = Animate(Rendered[Element])
   end
 end
 
@@ -50,10 +60,6 @@ function ProvinatusRallyPoint.GetMenu()
 end
 
 function ProvinatusRallyPoint.SetMenuIcon()
-  local Icon = ProvinatusMenu.DrawMenuIcon(ProvinatusRallyPointMenu.arrow, "esoui/art/mappins/maprallypoint.dds")
-  local animation, timeline = CreateSimpleAnimation(ANIMATION_TEXTURE, Icon)
-  animation:SetImageData(32, 1)
-  animation:SetFramerate(60)
-  timeline:SetPlaybackType(ANIMATION_PLAYBACK_LOOP, LOOP_INDEFINITELY)
-  timeline:PlayFromStart()
+  local Icon = ProvinatusMenu.DrawMenuIcon(ProvinatusRallyPointMenu.arrow, Texture)
+  Animate(Icon)
 end
