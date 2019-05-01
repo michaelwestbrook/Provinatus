@@ -1,3 +1,10 @@
+[SIZE="4"][U][B]30 April 2019[/B][/U][/SIZE]
+[LIST]
+[*]Waypoint no longer shows by default. You need to explicitly enable it in the menu.
+[*]Waypoint now has an enable/disable checkbox and respects size and opacity settings.
+[*]Moved most addon config data into the addon source code.
+[/LIST]
+
 [SIZE="4"][U][B]28 April 2019[/B][/U][/SIZE]
 [LIST]
 [*]Removed libs and added LibStub and LibAddonMenu as dependencies

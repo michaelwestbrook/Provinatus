@@ -11,6 +11,7 @@
   "PROVINATUS_COMPASS_SIZE_TT": "Disable 'Lock screen size to HUD' to change compass size",
   "PROVINATUS_DISCOVERED": "Discovered",
   "PROVINATUS_DISPLAY": "Display",
+  "PROVINATUS_ENABLE": "Enable",
   "PROVINATUS_ENABLE_SKYSHARDS": "Enable Skyshards",
   "PROVINATUS_ENABLE_SKYSHARDS_TT": "Displays Skyshards on HUD.",
   "PROVINATUS_GROUP": "Group",
@@ -66,6 +67,7 @@
   "PROVINATUS_VERTICAL_POSITION": "Vertical position",
   "PROVINATUS_WAYPOINT": "Waypoint",
   "PROVINATUS_WAYPOINT_SETTINGS": "Waypoint Settings",
+  "PROVINATUS_WAYPOINT_TT": "Show your waypoints on HUD",
 
   "PROVINATUS_AREA_OF_INTEREST": "Area of Interest",
   "PROVINATUS_AYLEID_RUIN": "Ayleid Ruin",

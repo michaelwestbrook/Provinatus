@@ -3,7 +3,10 @@ Currently working on V2 of Provinatus. This is a safespace for me to test my cha
 
 What's new
 [LIST]
-[*]Removed libs and added LibStub and LibAddonMenu as dependencies
+[*]Doing a lot of work on the build/release pipeline. High potential for new bugs. Please report any irregularities.
+[*]Waypoint no longer shows by default. You need to explicitly enable it in the menu.
+[*]Waypoint now has an enable/disable checkbox and respects size and opacity settings.
+[*]Moved most addon config data into the addon source code.
 [/LIST]
 
 Lot's of shiny icons in the menu :)
