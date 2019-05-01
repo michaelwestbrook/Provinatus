@@ -1,0 +1,362 @@
+[SIZE="4"][U][B]3 April 2019[/B][/U][/SIZE]
+Fix missing hotkeys
+
+[SIZE="4"][U][B]2 April 2019[/B][/U][/SIZE]
+Reorganized the menu. Most of the interesting options were buried in the 'HUD menu'
+Fix UI scaling. Icons will not use the entire HUD!
+
+[SIZE="4"][U][B]29 March 2019[/B][/U][/SIZE]
+Hotfix for missing Skyshard icons
+
+[SIZE="4"][U][B]23 March 2019[/B][/U][/SIZE]
+Now correctly loads LibAddonMenu dependencies
+
+[SIZE="4"][U][B]20 March 2019[/B][/U][/SIZE]
+No longer require Skyshards addon to be installed.
+
+[SIZE="4"][U][B]10 March 2019[/B][/U][/SIZE]
+View LoreBooks. Requires https://www.esoui.com/downloads/info288-LoreBooks.html to be installed
+
+[SIZE="4"][U][B]8 March 2019[/B][/U][/SIZE]
+View points of interest on HUD
+
+[SIZE="4"][U][B]28 February 2019[/B][/U][/SIZE]
+re-package manifest using eso-manifest https://www.npmjs.com/package/eso-manifest
+
+[SIZE="4"][U][B]26 February 2019[/B][/U][/SIZE]
+Add MIT license.
+
+[SIZE="4"][U][B]25 February 2019[/B][/U][/SIZE]
+Update API version
+
+[SIZE="4"][U][B]23 February 2019[/B][/U][/SIZE]
+[LIST]
+[*] Player can now see buried treasure and other crafting surveys if Lost Treasure is installed (https://www.esoui.com/downloads/info561-LostTreasure.html)
+[*] Now uses SkyShards' icons
+[/LIST]
+
+[SIZE="4"][U][B]20 February 2019[/B][/U][/SIZE]
+Update LibAddonMenu
+
+[SIZE="4"][U][B]18 February 2019[/B][/U][/SIZE]
+Player can now display Skyshards on HUD when SkyShards addon is installed
+https://www.esoui.com/downloads/info128-SkyShards.html
+
+[SIZE="4"][U][B]8 February 2019[/B][/U][/SIZE]
+[LIST]
+[*] Update compatibility
+[*] Update some translations
+[/LIST]
+
+[SIZE="4"][U][B]27 November 2018[/B][/U][/SIZE]
+Active quest markers on now displayed on the HUD!
+[LIST]
+[*]Markers are disabled by default.
+[*]Markers will only show for focused quests.
+[*]Markers are only available on your ACTIVE map.
+[*]Your ACTIVE map is generally the last map you viewed in the UI.
+[*]Some addons change your active map e.g. Votan's Mini Map. 
+[*]In this case you will only see markers for quests displayed in the mini map.
+[/LIST]
+
+[SIZE="4"][U][B]24 November 2018[/B][/U][/SIZE]
+[LIST]
+[*]Fix Crown Pointer Thing debug mode.
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]18 November 2018[/B][/U][/SIZE]
+[LIST]
+[*]Show group rally points on HUD (Quest markers coming soon)
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]16 November 2018[/B][/U][/SIZE]
+[LIST]
+[*]Map waypoints show on HUD. (Group rally points coming soon)
+[*]Updated translations
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]6 November 2018[/B][/U][/SIZE]
+[LIST]
+[*]Small performance fix
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]30 October 2018[/B][/U][/SIZE]
+[LIST]
+[*]Added hotkey to set pointer to nearest dead person (Feature is only lightly tested. Feedback appreciated)
+[*]Updated the automatically generated German strings
+[*]Jazzed up mod page with a gif
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]27 September 2018[/B][/U][/SIZE]
+[LIST]
+[*]No changes. Accidentally published addon while working on other stuff :/
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]22 September 2018[/B][/U][/SIZE]
+[LIST]
+[*]Update strings and translations for compass settings
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]21 September 2018[/B][/U][/SIZE]
+[LIST]
+[*]Compass size can be set independent of the HUD size
+[*]Can now choose color of cardinal direction icons
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]14 September 2018[/B][/U][/SIZE]
+[LIST]
+[*]Draw target icon on top of HUD
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]13 August 2018[/B][/U][/SIZE]
+[LIST]
+[*]Update API version to 10024
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]8 August 2018[/B][/U][/SIZE]
+[LIST]
+[*]Now displays the player's full name while cycling through targets.
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]3 August 2018[/B][/U][/SIZE]
+[LIST]
+[*]Now only loads UI elements once.
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]2 August 2018[/B][/U][/SIZE]
+[LIST]
+[*]Add missing string. German translations updated.
+[*]Removed extraneous files from released addon. Sorry bout that.
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]1 August 2018[/B][/U][/SIZE]
+[LIST]
+[*]Provinatus.txt has been pointing to the wrong library location this whole time!?!
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]23 July 2018[/B][/U][/SIZE]
+[LIST]
+[*]Added more missing strings
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]21 July 2018[/B][/U][/SIZE]
+[LIST]
+[*]Added missing strings for hotkey menu. Thanks Tiara Ra for bringing to my attention.
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]19 July 2018[/B][/U][/SIZE]
+[LIST]
+[*]Set or clear custom target using hotkey
+[*]Menu localization
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]15 July 2018[/B][/U][/SIZE]
+[LIST]
+[*]Added ability to follow someone other than group leader
+[*]Set custom target by using '/settarget <group number>' slash command or by setting hotkey
+[*]Clear custom target by using '/cleartarget' slash command or in the settings menu.
+[*]Console print statements now use localized strings
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]4 July 2018[/B][/U][/SIZE]
+[LIST]
+[*]Dead player's that have a resurrection pending will show as a white skull and crossbones.
+[*]HUD now displays while you are dead or on siege equipment
+[*]Fix icons showing if player offline or not in group
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]30 June 2018[/B][/U][/SIZE]
+[LIST]
+[*]HUD now displays while the player is resurrecting another player
+[*]First go at fixing icons displaying incorrectly. WIP see https://github.com/michaelwestbrook/Provinatus/issues/88
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]28 June 2018[/B][/U][/SIZE]
+[LIST]
+[*]Reset center of HUD to be a bit lower on the reticle
+[*]Player can optionally set to be directly in the center... Not sure why anyone would do that but you can now
+[*]Player can now put the HUD anywhere on the screen.
+[*]Changed minimum HUD size to 25
+[*]Centered compass on Crown Pointer
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]25 June 2018[/B][/U][/SIZE]
+[LIST]
+[*]Re-added option to show role icons instead of class.
+[*]Update screenshots
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]24 June 2018[/B][/U][/SIZE]
+[LIST]
+[*]Cleaned up German and French translations using Azure translation service
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]24 June 2018[/B][/U][/SIZE]
+[LIST]
+[*]Re-add HUD size setting.
+[*]Re-add crown pointer thing settings
+[*]Cleaned up English strings. Will complete other languages later.
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]24 June 2018[/B][/U][/SIZE]
+[LIST]
+[*]Hides icons when reticle is hidden.
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]21 June 2018[/B][/U][/SIZE]
+[LIST]
+[*]Switched to custom implementation of group Heads Up Display
+[*]Provinatus HUD will not display while Provision's Team Formation is enabled.
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]3 June 2018[/B][/U][/SIZE]
+[LIST]
+[*]Moved Crown Pointer to center of HUD
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]30 May 2018[/B][/U][/SIZE]
+[LIST]
+[*]No longer causes Provision's Team Formation to crash and burn.
+[*]If Team Formation is present, Provinatus will only display the Crown Pointer.
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]21 May 2018[/B][/U][/SIZE]
+[LIST]
+[*]Update to latest LibAddonMenu
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]26 April 2018[/B][/U][/SIZE]
+[LIST]
+[*]Update compatibility for Summerset
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]23 April 2018[/B][/U][/SIZE]
+[LIST]
+[*]Releases now handled through Visual Studio Team Services. Contact me if you are interested in learning/helping out with development.
+[*]Sorry for the update spam. It should not happen too much anymore.
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]16 April 2018[/B][/U][/SIZE]
+[LIST]
+[*]Fixed issue where icons would spin wildly.
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]5 April 2018[/B][/U][/SIZE]
+[LIST]
+[*]Enabled settings to control the transparency of icons. Transparency can be set based on if a player is alive or dead. Settings for leader and teammates can be set separately.
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]2 April 2018[/B][/U][/SIZE]
+[LIST]
+[*]Removed Players' Icon menu. Obsolete
+[*]Removed color picker menu. 
+[*]Added basic language support for French and German (Used Google Translate. Translations welcome)
+[*]Hide Crown Pointer in Battlegrounds. There is no 'Crown' in BG
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]26 March 2018[/B][/U][/SIZE]
+[LIST]
+[*][B]Minor fixes. (Thanks Tiara Ra)[/B]
+[*]Your life bar is no longer displayed.
+[*]Other Player's life bars only show when they are in combat.
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]25 March 2018[/B][/U][/SIZE]
+[LIST]
+[*]Players that are being resurrected or have pending resurrection will now display a white icon.
+[*]This is a fix to a breaking change to Team Formation.
+[/LIST]
+
+---------------------------------------
+
+[SIZE="4"][U][B]24 March 2018[/B][/U][/SIZE]
+[SIZE="3"][B]Added settings menu[/B][/SIZE] [SIZE="2"](Settings are saved account wide.)[/SIZE]
+[LIST]
+[*]Enable Crown Pointer[/B] => Enable / Disable Crown Pointer
+[*]Crown Pointer Transparency[/B] => Sets the alpha value of the Crown Pointer
+[*]Crown Pointer Size[/B] => Sets the size of the Crown Pointer
+[*]Enable Debug?[/B] = Force shows Crown Pointer. Can adjust angle with `/pangle <-pi to pi>` slash command
+[/LIST]
+
+[SIZE=2]minor fixes[/SIZE]
+[LIST]
+[*]Remove dead code
+[*]Removed Provision's debug menu for now.
+[/LIST]
+
+---------------------------------------
+
+3 March 2018
+[LIST]
+[*]Settings were still showing Provision's Team Formation. Set it to match this mod's name. Don't want to confuse people and make them think there is a rogue mod installed.
+[/LIST]

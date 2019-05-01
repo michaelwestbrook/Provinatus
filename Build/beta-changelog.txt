@@ -1,0 +1,40 @@
+[SIZE="4"][U][B]28 April 2019[/B][/U][/SIZE]
+[LIST]
+[*]Removed libs and added LibStub and LibAddonMenu as dependencies
+[/LIST]
+
+[SIZE="4"][U][B]27 April 2019[/B][/U][/SIZE]
+[LIST]
+[*]Fixed Skyshards not respecting size/alpha settings. Thanks fostot!
+[*]Display center settings respected
+[*]Rally point no longer manages its own icon
+[*]Extract projection logic in preparation for HUD overhaul
+[*]Display is now a 'layer'
+[*]Offset HUD now has a nice Icon
+[*]Added missing libs
+[/LIST]
+
+[SIZE="4"][U][B]25 April 2019[/B][/U][/SIZE]
+[LIST]
+[*]Added display menu. Thanks again Tiara Ra!
+[*]Compass size can be set independent of main HUD size
+[*]Quests icon will no longer show if not enabled
+[*]Changing refresh rate no longer requires a /reloadui
+[/LIST]
+
+[SIZE="4"][U][B]24 April 2019[/B][/U][/SIZE]
+[LIST]
+[*]Menus provide icons to help quickly identify what they control
+[*]You can now control whether or not to show discovered points of interest
+[*]Crown icon is almost obnoxiously large
+[*]Lifebars should look nicer and more consistent
+[*]HUD icon elements are treated as layers and now generate their own menus.
+[*]External addons can add layers to Provinatus (Still need to document the process)
+[*]Removed images folder
+[/LIST]
+
+[SIZE="4"][U][B]2 April 2019[/B][/U][/SIZE]
+Beta take 2
+
+[SIZE="4"][U][B]2 April 2019[/B][/U][/SIZE]
+Beta take 2
