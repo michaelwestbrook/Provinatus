@@ -1,6 +1,6 @@
 ProvinatusTreasureMaps = {}
 
-local Texture = "Provinatus/Icons/X.dds"
+local Texture = "Provinatus/Icons/Treasure.dds"
 
 local function CreateElement(TreasureMap)
   local Element = {}
@@ -35,7 +35,7 @@ function ProvinatusTreasureMaps.GetMenu()
   return {
     type = "submenu",
     name = PROVINATUS_TREASURE_MAPS,
-    reference = "ProvinatusTreasureMaps",
+    reference = "ProvinatusTreasureMapsMenu",
     controls = {
       [1] = {
         type = "checkbox",
@@ -75,5 +75,5 @@ function ProvinatusTreasureMaps.GetMenu()
 end
 
 function ProvinatusTreasureMaps.SetMenuIcon()
-  ProvinatusMenu.DrawMenuIcon(ProvinatusTreasureMaps.arrow, Texture)
+  ProvinatusMenu.DrawMenuIcon(ProvinatusTreasureMapsMenu.arrow, Texture)
 end

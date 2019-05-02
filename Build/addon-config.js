@@ -8,7 +8,7 @@ function initConfig(versionNumber, addOnVersion) {
   config.version = versionNumber;
   config.addOnVersion = addOnVersion;
   config.filesNeedingVersion = ['Config.lua'];
-  config.sourceFiles = ['**/*.lua', 'bindings.xml', `${config.name}.txt`, 'icons/**'];
+  config.sourceFiles = ['**/*.lua', 'bindings.xml', `${config.name}.txt`, 'Icons/**'];
   config.luaFilesToLint = [`./${config.name}/**/*.lua`];
   config.manifest = {
     Title: `|cFF69B4${config.friendlyName}|r ${config.version}`,

@@ -1,3 +1,8 @@
+[SIZE="4"][U][B]1 May 2019[/B][/U][/SIZE]
+[LIST]
+[*]Fix Treasure map icons not showing.
+[/LIST]
+
 [SIZE="4"][U][B]30 April 2019[/B][/U][/SIZE]
 [LIST]
 [*]Waypoint no longer shows by default. You need to explicitly enable it in the menu.
