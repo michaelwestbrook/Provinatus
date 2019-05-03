@@ -1,11 +1,21 @@
 [SIZE="6"][COLOR="Plum"]Displays group members' locations and many other map locations on a Heads Up Display[/SIZE][/COLOR]
-[COLOR="Plum"][SIZE="5"]Version 2 is here[/SIZE]
+
+[COLOR="Plum"][SIZE="5"][B]Version 2 is here!!![/B][/SIZE][/COLOR]
+
+This addon requires [URl="https://www.esoui.com/downloads/info44-LibStub.html"]LibStub[/URL]
 
 [LIST]
-[*][Size="4"]Another fix from my Git merge snafu[/SIZE]
-[*][Size="4"]Fixed scaling issue. Icons will now use the entire HUD[/SIZE]
-[*][SIZE="4"]Updated the menu. Hopefully things are easier to find:)[/SIZE]
-[/LIST][/COLOR]
+[*]Removed libs and added LibStub and LibAddonMenu as dependencies
+[*]Moved most addon config data into the addon source code.
+[*]Changing refresh rate no longer requires a /reloadui
+[*]Menus provide icons to help quickly identify what they control
+[*]You can now control whether or not to show discovered points of interest
+[*]Crown icon is almost obnoxiously large
+[*]Lifebars should look nicer and more consistent
+[*]HUD icon elements are treated as layers and now generate their own menus.
+[*]External addons can add layers to Provinatus (Still need to document the process)
+[*]Removed images folder
+[/LIST]
 
 [LIST]
 [*][SIZE="3"][COLOR="Plum"]Group[/COLOR][/SIZE]
@@ -19,9 +29,9 @@
 [*][SIZE="3"][COLOR="Plum"]Single Player[/COLOR][/SIZE]
   [LIST="a"]
   [*]Skyshards - Shows Skyshards near you.
-  [*]LostTreasure - Requires [URL="https://www.esoui.com/downloads/info561-LostTreasure.html"]Lost Treasure[/URL] addon to be installed
-  [*]LoreBooks - Requires [URL="https://www.esoui.com/downloads/info288-LoreBooks.html"]LoreBooks[/URL] addon to be installed (Eidetic books are not supported yet)
-  [*]Points of interest - Display various points of interest. Wayshrines, daedric anchors, group bosses etc. (No addons required)
+  [*]Treasure maps and crafting surveys - X marks the spot!
+  [*]Lore Books - Find Lore Books (Eidetic books are not supported yet)
+  [*]Points of interest - Display various points of interest. Wayshrines, daedric anchors, group bosses etc.
   [*]Quest markers - Active quest markers shown on HUD
   [*]Waypoints - View waypoints set by you
   [*]You - Your can be shown in middle of the HUD to help you see your orientation in the world
@@ -45,12 +55,6 @@
 [LIST]
 [*]Display locations of [URL="https://www.esoui.com/downloads/info128-SkyShards.html"]SkyShards[/URL]
 [YOUTUBE]InhiAeLoG6I[/YOUTUBE]
-[/LIST]
-
-[COLOR="Plum"][SIZE="5"][URL="https://www.esoui.com/downloads/info561-LostTreasure.html"]Lost Treasure[/URL][/SIZE][/COLOR]
-[LIST]
-[*]Display locations of [URL="https://www.esoui.com/downloads/info561-LostTreasure.html"]Lost Treasure[/URL] crafting surveys and treasure maps
-[YOUTUBE]Feobz89-JP4[/YOUTUBE]
 [/LIST]
 
 [SIZE="2"]
