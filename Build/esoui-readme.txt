@@ -1,5 +1,6 @@
 [SIZE="6"][COLOR="Plum"]Displays group members' locations and many other map locations on a Heads Up Display[/SIZE][/COLOR]
-[COLOR="Plum"][SIZE="5"]What's New[/SIZE]
+[COLOR="Plum"][SIZE="5"]Version 2 is here[/SIZE]
+
 [LIST]
 [*][Size="4"]Another fix from my Git merge snafu[/SIZE]
 [*][Size="4"]Fixed scaling issue. Icons will now use the entire HUD[/SIZE]

@@ -1,3 +1,17 @@
+[SIZE="4"][U][B]2 May 2019[/B][/U][/SIZE]
+[LIST]
+[*]Removed libs and added LibStub and LibAddonMenu as dependencies
+[*]Moved most addon config data into the addon source code.
+[*]Changing refresh rate no longer requires a /reloadui
+[*]Menus provide icons to help quickly identify what they control
+[*]You can now control whether or not to show discovered points of interest
+[*]Crown icon is almost obnoxiously large
+[*]Lifebars should look nicer and more consistent
+[*]HUD icon elements are treated as layers and now generate their own menus.
+[*]External addons can add layers to Provinatus (Still need to document the process)
+[*]Removed images folder
+[/LIST]
+
 [SIZE="4"][U][B]3 April 2019[/B][/U][/SIZE]
 Fix missing hotkeys
 

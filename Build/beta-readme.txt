@@ -3,8 +3,7 @@ This is an early release. To run this beta version please make sure to manually 
 
 What's new
 [LIST]
-[*][COLOR="Magenta"][B]About ready to publish this beta to Provinatus. Please please please let me know if anything is not working for you. I can't test everything so I rely on people to tell me things like that.[/B][/COLOR]
-[*]Fix treasure map icons not showing.
+[*][COLOR="Magenta"][B]Version 2 is now available.[/B][/COLOR]
 [/LIST]
 
 Lot's of shiny icons in the menu :)
