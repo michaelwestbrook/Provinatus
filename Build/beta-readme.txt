@@ -3,7 +3,7 @@ This is an early release. To run this beta version please make sure to manually 
 
 What's new
 [LIST]
-[*][COLOR="Magenta"][B]Version 2 is now available.[/B][/COLOR]
+[*][COLOR="Magenta"][B]Fix team member opacity. Thanks Lednard![/B][/COLOR]
 [/LIST]
 
 Lot's of shiny icons in the menu :)

@@ -1,3 +1,9 @@
+[SIZE="4"][U][B]5 May 2019[/B][/U][/SIZE]
+[LIST]
+[*]Fix team member opacity. Thanks Lednard!
+[*]Fix enable lifebars only in combat option.
+[/LIST]
+
 [SIZE="4"][U][B]2 May 2019[/B][/U][/SIZE]
 [LIST]
 [*]Removed libs and added LibStub and LibAddonMenu as dependencies

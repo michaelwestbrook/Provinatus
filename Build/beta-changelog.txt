@@ -1,3 +1,8 @@
+[SIZE="4"][U][B]5 May 2019[/B][/U][/SIZE]
+[LIST]
+[*]Fix team member opacity. Thanks Lednard!
+[/LIST]
+
 [SIZE="4"][U][B]2 May 2019[/B][/U][/SIZE]
 [LIST]
 [*]Upgrade to V2

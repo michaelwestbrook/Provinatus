@@ -36,13 +36,13 @@ local function AddonLoaded(EventCode, AddonName)
       ProvinatusDisplay,
       ProvinatusCompass,
       ProvinatusPointer,
+      ProvinatusTeam,
       ProvinatusQuests,
       ProvinatusWaypoint,
       ProvinatusSkyshards,
       ProvinatusTreasureMaps,
       ProvinatusPOI,
       ProvinatusLoreBooks,
-      ProvinatusTeam,
       ProvinatusRallyPoint,
       ProvinatusPlayerOrientation
     }

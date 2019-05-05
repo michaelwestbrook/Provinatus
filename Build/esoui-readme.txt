@@ -3,6 +3,7 @@
 [COLOR="Plum"][SIZE="5"][B]Version 2 is here!!![/B][/SIZE][/COLOR]
 
 This addon requires [URl="https://www.esoui.com/downloads/info44-LibStub.html"]LibStub[/URL]
+Fix team member opacity. Thanks Lednard!
 
 [LIST]
 [*]Removed libs and added LibStub and LibAddonMenu as dependencies

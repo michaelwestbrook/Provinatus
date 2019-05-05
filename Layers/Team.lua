@@ -107,8 +107,8 @@ local function SetLifeBar(Element, Icon)
   end
 end
 
-local function SetIconColor(Element, Icon) 
-  Icon:SetColor(Element.R, Element.G, Element.B)
+local function SetIconColor(Element, Icon)
+  Icon:SetColor(Element.R, Element.G, Element.B, Element.Alpha)
 end
 
 function ProvinatusTeam.Initialize()
@@ -198,20 +198,20 @@ function ProvinatusTeam.GetMenu()
             tooltip = PROVINATUS_HEALTH_SHOW_TT,
             width = "full",
             default = ProvinatusConfig.Team.Lifebars.Enabled
+          },
+          [2] = {
+            type = "checkbox",
+            name = PROVINATUS_HEALTH_COMBAT_ONLY, -- or string id or function returning a string
+            getFunc = function()
+              return Provinatus.SavedVars.Team.Lifebars.OnlyInCombat
+            end,
+            setFunc = function(value)
+              Provinatus.SavedVars.Team.Lifebars.OnlyInCombat = value
+            end,
+            tooltip = PROVINATUS_HEALTH_COMBAT_ONLY_TT,
+            width = "full",
+            default = ProvinatusConfig.Team.Lifebars.OnlyInCombat
           }
-        },
-        [2] = {
-          type = "checkbox",
-          name = PROVINATUS_HEALTH_COMBAT_ONLY, -- or string id or function returning a string
-          getFunc = function()
-            return Provinatus.SavedVars.Team.Lifebars.OnlyInCombat
-          end,
-          setFunc = function(value)
-            Provinatus.SavedVars.Team.Lifebars.OnlyInCombat = value
-          end,
-          tooltip = PROVINATUS_HEALTH_COMBAT_ONLY_TT,
-          width = "full",
-          default = ProvinatusConfig.Team.Lifebars.OnlyInCombat
         }
       }
     }
