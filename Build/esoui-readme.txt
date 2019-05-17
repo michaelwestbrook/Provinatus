@@ -6,16 +6,10 @@ This addon requires [URl="https://www.esoui.com/downloads/info44-LibStub.html"]L
 Fix team member opacity. Thanks Lednard!
 
 [LIST]
-[*]Removed libs and added LibStub and LibAddonMenu as dependencies
-[*]Moved most addon config data into the addon source code.
-[*]Changing refresh rate no longer requires a /reloadui
-[*]Menus provide icons to help quickly identify what they control
-[*]You can now control whether or not to show discovered points of interest
-[*]Crown icon is almost obnoxiously large
-[*]Lifebars should look nicer and more consistent
-[*]HUD icon elements are treated as layers and now generate their own menus.
-[*]External addons can add layers to Provinatus (Still need to document the process)
-[*]Removed images folder
+[*]Added zoom option to control 'Zoom' of the HUD.
+[*]Add option to always draw crown on top of group.
+[*]Display location menu should have a more sane min/max values
+[*]Added zoom and fade experimental settings.
 [/LIST]
 
 [LIST]

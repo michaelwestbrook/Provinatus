@@ -54,8 +54,8 @@ function ProvinatusDisplay.GetMenu()
         setFunc = function(value)
           Provinatus.SavedVars.Display.X = value
         end,
-        min = -GuiRoot:GetWidth() / 2,
-        max = GuiRoot:GetWidth() / 2,
+        min = math.floor(-GuiRoot:GetWidth() / 2),
+        max = math.floor(GuiRoot:GetWidth() / 2),
         step = 1,
         clampInput = true,
         decimals = 0,
@@ -73,8 +73,8 @@ function ProvinatusDisplay.GetMenu()
         setFunc = function(value)
           Provinatus.SavedVars.Display.Y = value
         end,
-        min = -GuiRoot:GetHeight() / 2,
-        max = GuiRoot:GetHeight() / 2,
+        min = math.floor(-GuiRoot:GetHeight() / 2),
+        max = math.floor(GuiRoot:GetHeight() / 2),
         step = 1,
         clampInput = true,
         decimals = 0,
@@ -97,6 +97,85 @@ function ProvinatusDisplay.GetMenu()
         tooltip = PROVINATUS_OFFSET_CENTER_TT,
         width = "full",
         default = ProvinatusConfig.Display.Offset
+      },
+      [6] = {
+        type = "slider",
+        name = PROVINATUS_ZOOM,
+        getFunc = function()
+          return Provinatus.SavedVars.Display.Zoom
+        end,
+        setFunc = function(value)
+          Provinatus.SavedVars.Display.Zoom = value
+        end,
+        min = 1,
+        max = 1000,
+        step = 1,
+        clampInput = true,
+        decimals = 0,
+        autoSelect = true,
+        inputLocation = "below",
+        width = "full",
+        disabled = ProvTF ~= nil,
+        default = ProvinatusConfig.Display.Zoom,
+        tooltip = PROVINATUS_ZOOM
+      },
+      [7] = {
+        type = "submenu",
+        name = PROVINATUS_FADE,
+        controls = {
+          [1] = {
+            type = "checkbox",
+            name = PROVINATUS_ENABLE,
+            getFunc = function()
+              return Provinatus.SavedVars.Display.Fade
+            end,
+            setFunc = function(value)
+              Provinatus.SavedVars.Display.Fade = value
+            end,
+            tooltip = PROVINATUS_FADE_TT,
+            width = "half",
+            default = ProvinatusConfig.Display.Fade
+          },
+          [2] = {
+            type = "slider",
+            name = PROVINATUS_MIN_FADE,
+            getFunc = function()
+              return Provinatus.SavedVars.Display.MinFade
+            end,
+            setFunc = function(value)
+              Provinatus.SavedVars.Display.MinFade = value
+            end,
+            min = 0,
+            max = 1,
+            step = 0.01,
+            decimals = 2,
+            autoSelect = true,
+            inputLocation = "below",
+            width = "half",
+            disabled = ProvTF ~= nil,
+            default = ProvinatusConfig.Display.MinFade,
+            tooltip = PROVINATUS_MIN_FADE_TT
+          },
+          [3] = {
+            type = "slider",
+            name = PROVINATUS_FADE_RATE,
+            getFunc = function()
+              return Provinatus.SavedVars.Display.FadeRate
+            end,
+            setFunc = function(value)
+              Provinatus.SavedVars.Display.FadeRate = value
+            end,
+            min = 0.01,
+            max = 5,
+            step = 0.01,
+            decimals = 2,
+            autoSelect = true,
+            inputLocation = "below",
+            width = "full",
+            disabled = ProvTF ~= nil,
+            default = ProvinatusConfig.Display.FadeRate,
+          }
+        }
       }
     }
   }

@@ -61,13 +61,15 @@ local function CreateElement(UnitTag)
 
   local X, Y, _ = GetMapPlayerPosition(UnitTag)
   local R, G, B = GetColor(UnitTag)
-  local Alpha, Size
+  local Alpha, Size, Leader
   if Provinatus.CustomTarget == GetUnitName(UnitTag) or IsUnitGroupLeader(UnitTag) then
     Alpha = Provinatus.SavedVars.Team.Leader.Alpha
     Size = Provinatus.SavedVars.Team.Leader.Size
+    Leader = true
   else
     Alpha = Provinatus.SavedVars.Team.Teammate.Alpha
     Size = Provinatus.SavedVars.Team.Teammate.Size
+    Leader = false
   end
 
   local Element = {
@@ -80,7 +82,8 @@ local function CreateElement(UnitTag)
     R = R,
     G = G,
     B = B,
-    UnitTag = UnitTag
+    UnitTag = UnitTag,
+    Leader = Leader
   }
 
   return Element
@@ -108,7 +111,13 @@ local function SetLifeBar(Element, Icon)
 end
 
 local function SetIconColor(Element, Icon)
-  Icon:SetColor(Element.R, Element.G, Element.B, Element.Alpha)
+  local Alpha
+  if Provinatus.SavedVars.Display.Fade then
+    Alpha = math.max(Element.Alpha * (1 - Element.Projection.Distance), Provinatus.SavedVars.Display.MinFade)
+  else
+    Alpha = Element.Alpha
+  end
+  Icon:SetColor(Element.R, Element.G, Element.B, Alpha)
 end
 
 function ProvinatusTeam.Initialize()
@@ -131,10 +140,51 @@ function ProvinatusTeam.Update()
   for Element, Icon in pairs(Provinatus.DrawElements(ProvinatusTeam, Elements)) do
     SetIconColor(Element, Icon)
     SetLifeBar(Element, Icon)
+    if Element.Leader and Provinatus.SavedVars.Team.Leader.DrawOnTop then
+      Icon:SetDrawLevel(1)
+    else
+      Icon:SetDrawLevel(0)
+    end
   end
 end
 
 function ProvinatusTeam.GetMenu()
+  local LeaderControls =
+    ProvinatusMenu.GetIconSettingsMenu(
+    "",
+    function()
+      return Provinatus.SavedVars.Team.Leader.Size
+    end,
+    function(value)
+      Provinatus.SavedVars.Team.Leader.Size = value
+    end,
+    function()
+      return Provinatus.SavedVars.Team.Leader.Alpha * 100
+    end,
+    function(value)
+      Provinatus.SavedVars.Team.Leader.Alpha = value / 100
+    end,
+    ProvinatusConfig.Team.Leader.Size,
+    ProvinatusConfig.Team.Leader.Alpha * 100
+  )
+
+  table.insert(
+    LeaderControls,
+    {
+      type = "checkbox",
+      name = PROVINATUS_ALWAYS_ON_TOP, -- or string id or function returning a string
+      getFunc = function()
+        return Provinatus.SavedVars.Team.Leader.DrawOnTop
+      end,
+      setFunc = function(value)
+        Provinatus.SavedVars.Team.Leader.DrawOnTop = value
+      end,
+      tooltip = PROVINATUS_ALWAYS_ON_TOP_TT,
+      width = "full",
+      default = ProvinatusConfig.Team.Leader.DrawOnTop
+    }
+  )
+
   return {
     type = "submenu",
     name = PROVINATUS_GROUP,
@@ -143,23 +193,7 @@ function ProvinatusTeam.GetMenu()
       [1] = {
         type = "submenu",
         name = PROVINATUS_LEADER_ICON,
-        controls = ProvinatusMenu.GetIconSettingsMenu(
-          "",
-          function()
-            return Provinatus.SavedVars.Team.Leader.Size
-          end,
-          function(value)
-            Provinatus.SavedVars.Team.Leader.Size = value
-          end,
-          function()
-            return Provinatus.SavedVars.Team.Leader.Alpha * 100
-          end,
-          function(value)
-            Provinatus.SavedVars.Team.Leader.Alpha = value / 100
-          end,
-          ProvinatusConfig.Team.Leader.Size,
-          ProvinatusConfig.Team.Leader.Alpha * 100
-        )
+        controls = LeaderControls
       },
       [2] = {
         type = "submenu",

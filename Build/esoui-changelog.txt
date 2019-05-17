@@ -1,3 +1,11 @@
+[SIZE="4"][U][B]16 May 2019[/B][/U][/SIZE]
+[LIST]
+[*]Added zoom option to control 'Zoom' of the HUD.
+[*]Add option to always draw crown on top of group.
+[*]Display location menu should have a more sane min/max values
+[*]Added zoom and fade experimental settings.
+[/LIST]
+
 [SIZE="4"][U][B]5 May 2019[/B][/U][/SIZE]
 [LIST]
 [*]Fix team member opacity. Thanks Lednard!

@@ -60,6 +60,10 @@ local function AddonLoaded(EventCode, AddonName)
   end
 end
 
+local function Fade(Alpha, Distance)
+  return math.max(math.pow(Alpha * (1 - Distance), Provinatus.SavedVars.Display.FadeRate), Provinatus.SavedVars.Display.MinFade)
+end
+
 function Provinatus:SetPlayerData()
   local X, Y, Heading = GetMapPlayerPosition("player")
   self.X = X
@@ -83,9 +87,14 @@ function Provinatus.DrawElements(Layer, Elements)
         Provinatus.Icons[Layer][Index] = WINDOW_MANAGER:CreateControl(nil, Provinatus.TopLevelWindow, CT_TEXTURE)
       end
 
-      local X, Y = ProvinatusProjection.Project(Element.X, Element.Y)
-      Provinatus.Icons[Layer][Index]:SetAlpha(Element.Alpha)
-      Provinatus.Icons[Layer][Index]:SetAnchor(CENTER, Provinatus.TopLevelWindow, CENTER, X, Y)
+      Element.Projection = ProvinatusProjection.Project(Element.X, Element.Y)
+      if Provinatus.SavedVars.Display.Fade then
+        Provinatus.Icons[Layer][Index]:SetAlpha(Fade(Element.Alpha, Element.Projection.Distance))
+      else
+        Provinatus.Icons[Layer][Index]:SetAlpha(Element.Alpha)
+      end
+
+      Provinatus.Icons[Layer][Index]:SetAnchor(CENTER, Provinatus.TopLevelWindow, CENTER, Element.Projection.XProjected, Element.Projection.YProjected)
       Provinatus.Icons[Layer][Index]:SetDimensions(Element.Width, Element.Height)
       Provinatus.Icons[Layer][Index]:SetTexture(Element.Texture)
 

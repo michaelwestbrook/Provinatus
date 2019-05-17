@@ -1,10 +1,11 @@
-Currently working on V2 of Provinatus. This is a safespace for me to test my changes. Please do not to hestitate to tell me anything that is buggy or missing. I appreciate any feedback I can get.
-This is an early release. To run this beta version please make sure to manually uninstall the stable version of [URL="https://www.esoui.com/downloads/info1943-Provinatus.html"]Provinatus[/URL] and associated SavedVars
+[COLOR="Plum"][SIZE="7"]Bleeding edge version of [URL="https://www.esoui.com/downloads/info1943-Provinatus.html"]Provinatus[/URL].[/SIZE]
+Nothing is guaranteed to work but please do not to hestitate to tell me anything that is buggy or missing. I appreciate any feedback I can get.
 
-What's new
+This is an early release. To run this beta version please make sure to manually uninstall the stable version of [URL="https://www.esoui.com/downloads/info1943-Provinatus.html"]Provinatus[/URL] and associated SavedVars[/COLOR]
+
+[SIZE="6"]What's new
 [LIST]
-[*][COLOR="Magenta"][B]Fix team member opacity. Thanks Lednard![/B][/COLOR]
-[/LIST]
+[*]Add option to always draw crown on top of group.
+[/LIST][/SIZE]
 
-Lot's of shiny icons in the menu :)
-[IMG]https://provinatus.blob.core.windows.net/images/new-menu.png[/IMG]
+[IMG]https://provinatus.blob.core.windows.net/images/fade.png[/IMG]

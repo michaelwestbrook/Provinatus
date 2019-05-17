@@ -21,7 +21,11 @@ ProvinatusConfig = {
     Size = 350,
     X = 0,
     Y = 0,
-    Offset = true
+    Offset = true,
+    Zoom = 250,
+    Fade = false,
+    FadeRate = 1,
+    MinFade = 0.25
   },
   LoreBooks = {
     Enabled = false,
@@ -76,7 +80,8 @@ ProvinatusConfig = {
     },
     Leader = {
       Size = 50,
-      Alpha = 1
+      Alpha = 1,
+      DrawOnTop = false
     },
     Teammate = {
       Size = 24,
