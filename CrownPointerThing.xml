@@ -1,7 +1,0 @@
-<GuiXml>
-  <Controls>
-    <TopLevelControl name="CrownPointerThingIndicator" clampedToScreen="true">
-      <Anchor point="CENTER" relativeTo="GuiRoot" relativePoint="CENTER" />
-    </TopLevelControl>
-  </Controls>
-</GuiXml>

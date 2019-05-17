@@ -1,0 +1,52 @@
+# https://provinatus.visualstudio.com/Provinatus/_build?definitionId=30
+name: $(Build.BuildId)
+
+pool:
+  name: Provinatus
+  demands: npm
+
+trigger: none
+
+pr:
+- master
+- develop
+
+steps:
+- checkout: none
+  clean: true
+
+- script: if [ -d "ProvinatusBuild" ]; then rm -Rf ProvinatusBuild; fi
+  displayName: 'Remove Existing Repo'
+
+- script: 'git clone --branch develop https://provinatus.visualstudio.com/Provinatus/_git/ProvinatusBuild --recurse-submodules'
+  displayName: 'Clone ProvinatusBuild '
+
+- script: |
+   git fetch origin $(Build.SourceVersion)
+   git checkout $(Build.SourceVersion)
+  workingDirectory: ProvinatusBuild/Provinatus
+  displayName: 'Set Submodule to PR commit'
+
+- script: 'find . -path ./lang -prune -o -name ''*.lua'' -print | while read -r fileName;  do echo "Compiling $fileName"; luac -p $fileName; done'
+  workingDirectory: ProvinatusBuild/Provinatus
+  displayName: 'Compile Lua files'
+
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    workingDir: ProvinatusBuild
+    verbose: false
+
+- task: Npm@1
+  displayName: 'Build Provinatus'
+  inputs:
+    command: custom
+    workingDir: ProvinatusBuild
+    verbose: false
+    customCommand: 'run build'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: $(Build.BuildId)'
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)/ProvinatusBuild/build/$(Build.BuildId)'
+    ArtifactName: '$(Build.BuildId)'
