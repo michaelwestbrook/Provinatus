@@ -1,9 +1,12 @@
 [SIZE="6"][COLOR="Plum"]Displays group members' locations and many other map locations on a Heads Up Display[/SIZE][/COLOR]
 
-[COLOR="Plum"][SIZE="5"][B]Version 2 is here!!![/B][/SIZE][/COLOR]
+[COLOR="Plum"][SIZE="5"][B]What's new - 16 May 2019[/B][/SIZE][/COLOR]
+[SIZE="4"]Added basic 'Zoom' and 'Fade' options to the 'Display' menu. [/SIZE]
 
-This addon requires [URl="https://www.esoui.com/downloads/info44-LibStub.html"]LibStub[/URL]
-Fix team member opacity. Thanks Lednard!
+A high zoom will only show icons that are very close to you in the center of your HUD. Otherwise a low value will allow you to see things that are further away. Currently zoom is not consistent on maps of differing sizes. I am working on this but it is a difficult problem so please be patient.
+Fade will make icons far away from you more transparant and less intrusive. You can set the 'minimum fade level' and the 'fade rate'. A lower fade level values makes distant icons more transparant. A high fade rate means icons will fade more quickly as they get further away.
+
+[IMG]https://provinatus.blob.core.windows.net/images/newer-menu.png[/IMG]
 
 [LIST]
 [*]Added zoom option to control 'Zoom' of the HUD.
@@ -12,6 +15,7 @@ Fix team member opacity. Thanks Lednard!
 [*]Added zoom and fade experimental settings.
 [/LIST]
 
+[SIZE="5"][COLOR="plum"]Features[/COLOR][/SIZE]
 [LIST]
 [*][SIZE="3"][COLOR="Plum"]Group[/COLOR][/SIZE]
   [LIST="a"]
@@ -45,6 +49,8 @@ Fix team member opacity. Thanks Lednard!
 [*]Display locations of active quest markers
 [YOUTUBE]iHN4mGk7Ggg[/YOUTUBE]
 [/LIST]
+
+[COLOR="Plum"]This addon requires [URl="https://www.esoui.com/downloads/info44-LibStub.html"]LibStub[/URL] and [URl="https://www.esoui.com/downloads/info7-LibAddonMenu.html"]LibAddonMenu[/URL][/COLOR]
 
 [COLOR="Plum"][SIZE="5"][URL="https://www.esoui.com/downloads/info128-SkyShards.html"]SkyShards[/URL][/SIZE][/COLOR]
 [LIST]

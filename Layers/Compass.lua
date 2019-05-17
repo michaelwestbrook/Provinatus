@@ -88,8 +88,7 @@ function ProvinatusCompass.GetMenu()
         end,
         tooltip = PROVINATUS_LOCK_TO_HUD_TT,
         width = "full",
-        default = ProvinatusConfig.Compass.LockToHUD,
-        disabled = ProvTF ~= nil
+        default = ProvinatusConfig.Compass.LockToHUD
       },
       [3] = {
         type = "slider",

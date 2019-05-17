@@ -22,7 +22,6 @@ function ProvinatusDisplay.GetMenu()
         autoSelect = true,
         inputLocation = "below",
         width = "full",
-        disabled = ProvTF ~= nil,
         default = ProvinatusConfig.Display.Size
       },
       [2] = {
@@ -115,9 +114,8 @@ function ProvinatusDisplay.GetMenu()
         autoSelect = true,
         inputLocation = "below",
         width = "full",
-        disabled = ProvTF ~= nil,
         default = ProvinatusConfig.Display.Zoom,
-        tooltip = PROVINATUS_ZOOM
+        tooltip = PROVINATUS_ZOOM_TT
       },
       [7] = {
         type = "submenu",
@@ -138,7 +136,7 @@ function ProvinatusDisplay.GetMenu()
           },
           [2] = {
             type = "slider",
-            name = PROVINATUS_MIN_FADE,
+            name = PROVINATUS_FADE_MIN,
             getFunc = function()
               return Provinatus.SavedVars.Display.MinFade
             end,
@@ -152,9 +150,11 @@ function ProvinatusDisplay.GetMenu()
             autoSelect = true,
             inputLocation = "below",
             width = "half",
-            disabled = ProvTF ~= nil,
             default = ProvinatusConfig.Display.MinFade,
-            tooltip = PROVINATUS_MIN_FADE_TT
+            tooltip = PROVINATUS_FADE_MIN_TT,
+            disabled = function()
+              return not Provinatus.SavedVars.Display.Fade
+            end
           },
           [3] = {
             type = "slider",
@@ -172,8 +172,11 @@ function ProvinatusDisplay.GetMenu()
             autoSelect = true,
             inputLocation = "below",
             width = "full",
-            disabled = ProvTF ~= nil,
             default = ProvinatusConfig.Display.FadeRate,
+            tooltip = PROVINATUS_FADE_RATE_TT,
+            disabled = function()
+              return not Provinatus.SavedVars.Display.Fade
+            end
           }
         }
       }
