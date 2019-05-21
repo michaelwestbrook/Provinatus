@@ -1,3 +1,8 @@
+[SIZE="4"][U][B]20 May 2019[/B][/U][/SIZE]
+[LIST]
+[*]Update Elsweyr
+[/LIST]
+
 [SIZE="4"][U][B]16 May 2019[/B][/U][/SIZE]
 [LIST]
 [*]Add option to always draw crown on top of group.
