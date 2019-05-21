@@ -3,7 +3,7 @@ function initConfig(versionNumber, addOnVersion) {
   config.name = 'Provinatus';
   config.friendlyName = config.name;
   config.author = '@AlbinoPython (NA Server)';
-  config.apiVersion = 100026;
+  config.apiVersion = 100027;
   config.compatibility = '4.3';
   config.version = versionNumber;
   config.addOnVersion = addOnVersion;
