@@ -5,7 +5,7 @@ This is an early release. To run this beta version please make sure to manually 
 
 [SIZE="6"]What's new
 [LIST]
-[*]Add option to always draw crown on top of group.
+[*]Elsweyr Skyshards
 [/LIST][/SIZE]
 
 [IMG]https://provinatus.blob.core.windows.net/images/fade.png[/IMG]

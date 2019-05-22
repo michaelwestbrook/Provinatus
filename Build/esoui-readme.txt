@@ -13,6 +13,7 @@ Fade will make icons far away from you more transparant and less intrusive. You 
 [*]Add option to always draw crown on top of group.
 [*]Display location menu should have a more sane min/max values
 [*]Added zoom and fade experimental settings.
+[*]Elsweyr Skyshards
 [/LIST]
 
 [SIZE="5"][COLOR="plum"]Features[/COLOR][/SIZE]
