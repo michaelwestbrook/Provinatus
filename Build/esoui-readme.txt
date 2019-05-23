@@ -51,7 +51,7 @@ Fade will make icons far away from you more transparant and less intrusive. You 
 [YOUTUBE]iHN4mGk7Ggg[/YOUTUBE]
 [/LIST]
 
-[COLOR="Plum"]This addon requires [URl="https://www.esoui.com/downloads/info44-LibStub.html"]LibStub[/URL] and [URl="https://www.esoui.com/downloads/info7-LibAddonMenu.html"]LibAddonMenu[/URL][/COLOR]
+[COLOR="Plum"]This addon requires [URl="https://www.esoui.com/downloads/info7-LibAddonMenu.html"]LibAddonMenu[/URL][/COLOR]
 
 [COLOR="Plum"][SIZE="5"][URL="https://www.esoui.com/downloads/info128-SkyShards.html"]SkyShards[/URL][/SIZE][/COLOR]
 [LIST]

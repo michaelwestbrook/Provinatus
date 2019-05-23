@@ -1,3 +1,8 @@
+[SIZE="4"][U][B]22 May 2019[/B][/U][/SIZE]
+[LIST]
+[*]Remove LibStub dependency
+[/LIST]
+
 [SIZE="4"][U][B]21 May 2019[/B][/U][/SIZE]
 [LIST]
 [*]Elsweyr Skyshards

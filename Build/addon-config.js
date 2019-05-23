@@ -15,7 +15,7 @@ function initConfig(versionNumber, addOnVersion) {
     Description: 'Heads up display that shows: group members\' locations, quest markers, rally points, and more',
     Author: `|cFF69B4${config.author}|r`,
     SavedVariables: 'ProvinatusVariables',
-    DependsOn: 'LibStub LibAddonMenu-2.0',
+    DependsOn: 'LibAddonMenu-2.0',
     OptionalDependsOn: 'pChat',
     APIVersion: config.apiVersion,
     AddOnVersion: config.addOnVersion,
