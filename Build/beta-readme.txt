@@ -5,7 +5,8 @@ This is an early release. To run this beta version please make sure to manually 
 
 [SIZE="6"]What's new
 [LIST]
-[*]Remove LibStub dependency
-[/LIST][/SIZE]
+[*]Add Necromancer icon
+[/LIST]
+[/SIZE]
 
 [IMG]https://provinatus.blob.core.windows.net/images/fade.png[/IMG]

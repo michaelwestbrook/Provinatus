@@ -1,3 +1,8 @@
+[SIZE="4"][U][B]27 May 2019[/B][/U][/SIZE]
+[LIST]
+[*]Add Necromancer icon
+[/LIST]
+
 [SIZE="4"][U][B]22 May 2019[/B][/U][/SIZE]
 [LIST]
 [*]Remove LibStub dependency

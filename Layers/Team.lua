@@ -5,6 +5,7 @@ local ClassMapping = {
   [2] = "sorcerer",
   [3] = "nightblade",
   [4] = "warden",
+  [5] = "necromancer",
   [6] = "templar"
 }
 
