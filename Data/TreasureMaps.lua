@@ -18,6 +18,36 @@
 -- THE SOFTWARE.
 
 ProvinatusTreasureMapsData = {
+  elsweyr_base = {
+    {.319, .725, 147922},
+    {.699, .251, 147923},
+    {.811, .361, 147924},
+     --CE TreasureMap
+    {.6116, .4083, 151613},
+     --TreasureMapI
+    {.4213, .2241, 151614},
+     --TreasureMapII
+    {.4007, .5826, 151615},
+     --TreasureMapIII
+    {.2691, .7504, 151616},
+     --TreasureMapIV
+    {.4872, .6790, 151617},
+     --TreasureMapV
+    {.6343, .4535, 151618},
+     --TreasureMapVI
+    {.4410, .3880, 151602, 1},
+     --EnchanterSurvey
+    {.3157, .5561, 151599, 1},
+     --ClothierSurvey
+    {.4283, .4209, 151601, 1},
+     --AlchemistSurvey
+    {.2685, .4400, 151598, 1},
+     --BlacksmithSurvey
+    {.4918, .6791, 151600, 1},
+     --WoodworkerSurvey
+    {.6120, .6430, 151603, 1}
+   --JewelryCraftingSurvey
+  },
   murkmire_base = {{.546, .378, 145510}, {.45, .408, 145512}},
   summerset_base = {
     {.335, .324, 139008},

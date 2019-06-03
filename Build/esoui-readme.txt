@@ -1,16 +1,8 @@
 [SIZE="6"][COLOR="Plum"]Displays group members' locations and many other map locations on a Heads Up Display[/SIZE][/COLOR]
 
-[COLOR="Plum"][SIZE="5"][B]What's new - 27 May 2019[/B][/SIZE][/COLOR]
-[SIZE="4"]Added basic 'Zoom' and 'Fade' options to the 'Display' menu. [/SIZE]
-
-A high zoom will only show icons that are very close to you in the center of your HUD. Otherwise a low value will allow you to see things that are further away. Currently zoom is not consistent on maps of differing sizes. I am working on this but it is a difficult problem so please be patient.
-Fade will make icons far away from you more transparant and less intrusive. You can set the 'minimum fade level' and the 'fade rate'. A lower fade level values makes distant icons more transparant. A high fade rate means icons will fade more quickly as they get further away.
-
-[IMG]https://provinatus.blob.core.windows.net/images/newer-menu.png[/IMG]
-
+[COLOR="Plum"][SIZE="5"][B]What's new - 2 June 2019[/B][/SIZE][/COLOR]
 [LIST]
-[*]Add Necromancer icon
-[*]Remove LibStub dependency
+[*]Elsweyr Treasure maps and surveys from MapPins data
 [/LIST]
 
 [SIZE="5"][COLOR="plum"]Features[/COLOR][/SIZE]

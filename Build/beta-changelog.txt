@@ -1,4 +1,9 @@
-[SIZE="4"][U][B]27 May 2019[/B][/U][/SIZE]
+[[SIZE="4"][U][B]2 June 2019[/B][/U][/SIZE]
+[LIST]
+[*]Elsweyr Treasure maps and surveys from MapPins data
+[/LIST]
+
+  SIZE="4"][U][B]27 May 2019[/B][/U][/SIZE]
 [LIST]
 [*]Add Necromancer icon
 [/LIST]

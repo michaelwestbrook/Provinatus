@@ -5,7 +5,7 @@ This is an early release. To run this beta version please make sure to manually 
 
 [SIZE="6"]What's new
 [LIST]
-[*]Add Necromancer icon
+[*]Elsweyr Treasure maps and surveys from MapPins data
 [/LIST]
 [/SIZE]
 
