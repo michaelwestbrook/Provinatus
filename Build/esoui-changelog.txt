@@ -1,3 +1,8 @@
+[[SIZE="4"][U][B]6 June 2019[/B][/U][/SIZE]
+[LIST]
+[*]Crown Pointer Thing transparency works. Thanks @bumka
+[/LIST]
+
 [[SIZE="4"][U][B]2 June 2019[/B][/U][/SIZE]
 [LIST]
 [*]Elsweyr Treasure maps and surveys from MapPins data

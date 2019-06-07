@@ -1,8 +1,8 @@
 [SIZE="6"][COLOR="Plum"]Displays group members' locations and many other map locations on a Heads Up Display[/SIZE][/COLOR]
 
-[COLOR="Plum"][SIZE="5"][B]What's new - 2 June 2019[/B][/SIZE][/COLOR]
+[COLOR="Plum"][SIZE="5"][B]What's new - 6 June 2019[/B][/SIZE][/COLOR]
 [LIST]
-[*]Elsweyr Treasure maps and surveys from MapPins data
+[*]Crown Pointer Thing transparency works. Thanks @bumka
 [/LIST]
 
 [SIZE="5"][COLOR="plum"]Features[/COLOR][/SIZE]

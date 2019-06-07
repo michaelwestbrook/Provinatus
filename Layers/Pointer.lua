@@ -155,7 +155,7 @@ function ProvinatusPointer.Update()
     local Angle = math.pi - NormalizeAngle(math.atan2(Dx, Dy) - Provinatus.CameraHeading)
     local Magnitude = math.abs(math.pi - Angle)
     RenderedElements[Element]:SetTextureRotation(-Angle)
-    RenderedElements[Element]:SetColor(Magnitude / math.pi, math.pi - Magnitude, 0)
+    RenderedElements[Element]:SetColor(Magnitude / math.pi, math.pi - Magnitude, 0, Element.Alpha)
   end
 end
 
