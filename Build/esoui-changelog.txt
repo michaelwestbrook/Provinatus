@@ -1,3 +1,8 @@
+[[SIZE="4"][U][B]7 July 2019[/B][/U][/SIZE]
+[LIST]
+[*]Choose different fonts for compass icons. Thanks again for the suggestion Tiara Ra!
+[/LIST]
+
 [[SIZE="4"][U][B]6 June 2019[/B][/U][/SIZE]
 [LIST]
 [*]Crown Pointer Thing transparency works. Thanks @bumka

@@ -14,7 +14,8 @@ ProvinatusConfig = {
     Alpha = 1,
     Size = 350,
     AlwaysOn = false,
-    LockToHUD = true
+    LockToHUD = true,
+    Font = "ZoFontAnnounceMedium"
   },
   Display = {
     RefreshRate = 60,

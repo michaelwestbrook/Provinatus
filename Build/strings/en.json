@@ -62,6 +62,7 @@
   "PROVINATUS_REFRESH_RATE": "Refresh Rate",
   "PROVINATUS_QUEST_ENABLE": "Show quest marker",
   "PROVINATUS_QUEST_ENABLE_TT": "Display active quest markers on the HUD",
+  "PROVINATUS_SET_FONT": "Set Font",
   "PROVINATUS_SHOW_COMPLETED_POI": "Show Discovered Points of Interest",
   "PROVINATUS_SHOW_DISCOVERED": "Show discovered?",
   "PROVINATUS_SHOW_DISCOVERED_TT": "Displays Discovered Skyshards on HUD.",
