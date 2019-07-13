@@ -43,6 +43,7 @@ function initConfig(versionNumber, addOnVersion) {
     'Layers/Team.lua',
     'Layers/TreasureMaps.lua',
     'Layers/Waypoint.lua',
+    'Layers/WorldEvents.lua',
     'Menu.lua',
     'Projection.lua'
   ];

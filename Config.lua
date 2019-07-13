@@ -98,5 +98,10 @@ ProvinatusConfig = {
     Enabled = false,
     Size = 24,
     Alpha = 1
+  },
+  WorldEvent = {
+    Enabled = false,
+    Size = 50,
+    Alpha = 1
   }
 }

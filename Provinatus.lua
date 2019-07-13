@@ -44,7 +44,8 @@ local function AddonLoaded(EventCode, AddonName)
       ProvinatusPOI,
       ProvinatusLoreBooks,
       ProvinatusRallyPoint,
-      ProvinatusPlayerOrientation
+      ProvinatusPlayerOrientation,
+      ProvinatusWorldEvents
     }
     Provinatus.Layers = {}
     Provinatus.Icons = {}
