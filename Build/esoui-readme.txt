@@ -1,9 +1,14 @@
 [SIZE="6"][COLOR="Plum"]Displays group members' locations and many other map locations on a Heads Up Display[/SIZE][/COLOR]
 
-[COLOR="Plum"][SIZE="5"][B]What's new - 7 July 2019[/B][/SIZE][/COLOR]
+[COLOR="Plum"][SIZE="5"][B]What's new - 13 July 2019[/B][/SIZE][/COLOR]
 [LIST]
-[*]Choose different fonts for compass icons. Thanks again for the suggestion Tiara Ra!
+[*]Dragons can now be displayed on the HUD
 [/LIST]
+
+[SIZE="5"]Enable in the World Events Menu[/SIZE]
+[IMG]https://provinatus.blob.core.windows.net/images/dragonmenu.png[/IMG]
+[SIZE="5"]Profit[/SIZE]
+[IMG]https://provinatus.blob.core.windows.net/images/dragon.png[/IMG]
 
 [SIZE="5"][COLOR="plum"]Features[/COLOR][/SIZE]
 [LIST]

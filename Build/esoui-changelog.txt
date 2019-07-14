@@ -1,14 +1,19 @@
-[[SIZE="4"][U][B]7 July 2019[/B][/U][/SIZE]
+[SIZE="4"][U][B]13 July 2019[/B][/U][/SIZE]
+[LIST]
+[*]Enable dragons on HUD
+[/LIST]
+
+[SIZE="4"][U][B]7 July 2019[/B][/U][/SIZE]
 [LIST]
 [*]Choose different fonts for compass icons. Thanks again for the suggestion Tiara Ra!
 [/LIST]
 
-[[SIZE="4"][U][B]6 June 2019[/B][/U][/SIZE]
+[SIZE="4"][U][B]6 June 2019[/B][/U][/SIZE]
 [LIST]
 [*]Crown Pointer Thing transparency works. Thanks @bumka
 [/LIST]
 
-[[SIZE="4"][U][B]2 June 2019[/B][/U][/SIZE]
+[SIZE="4"][U][B]2 June 2019[/B][/U][/SIZE]
 [LIST]
 [*]Elsweyr Treasure maps and surveys from MapPins data
 [/LIST]
