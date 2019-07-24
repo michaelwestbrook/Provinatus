@@ -1,14 +1,21 @@
-[SIZE="6"][COLOR="Plum"]Displays group members' locations and many other map locations on a Heads Up Display[/SIZE][/COLOR]
+[FONT="Arial Black"][SIZE="6"][COLOR="Plum"]Displays group members' locations and many other map locations on a Heads Up Display[/SIZE][/COLOR][/FONT]
 
-[COLOR="Plum"][SIZE="5"][B]What's new - 13 July 2019[/B][/SIZE][/COLOR]
+[COLOR="Plum"][SIZE="5"][B]What's new - 24 July 2019[/B][/SIZE][/COLOR]
 [LIST]
-[*]Dragons can now be displayed on the HUD
+[*][SIZE="4"][COLOR="Plum"][FONT="Arial Black"]PvP support![/FONT][/COLOR] Finds keeps, resources, bridges, Elder Scrolls, etc and display if they are under attack. (Sorry that took so long)[/SIZE]
+[*][SIZE="4"]Added Zoom in/out hotkeys for the HUD[/SIZE]
+[*][SIZE="4"]Added ability to use global coordinates for a smooth transition between maps of differing sizes. Requires [URL="https://www.esoui.com/downloads/info601-LibGPS2.html"]LibGPS[/URL][/SIZE]
 [/LIST]
 
-[SIZE="5"]Enable in the World Events Menu[/SIZE]
-[IMG]https://provinatus.blob.core.windows.net/images/dragonmenu.png[/IMG]
-[SIZE="5"]Profit[/SIZE]
-[IMG]https://provinatus.blob.core.windows.net/images/dragon.png[/IMG]
+[SIZE="5"]Enable in the PvP Menu and select which icons to show[/SIZE]
+[IMG]https://provinatus.blob.core.windows.net/images/pvp-menu.png[/IMG]
+[IMG]https://provinatus.blob.core.windows.net/images/pvp-icons.png[/IMG]
+
+[SIZE="5"]Zoom In/Out[/SIZE]
+[IMG]https://provinatus.blob.core.windows.net/images/zoom-hotkey.png[/IMG]
+
+[SIZE="5"]Consistent distances for icons. Requires [URL="https://www.esoui.com/downloads/info601-LibGPS2.html"]LibGPS[/URL][/SIZE]
+[IMG]https://provinatus.blob.core.windows.net/images/projection-menu.png[/IMG]
 
 [SIZE="5"][COLOR="plum"]Features[/COLOR][/SIZE]
 [LIST]
@@ -29,6 +36,8 @@
   [*]Quest markers - Active quest markers shown on HUD
   [*]Waypoints - View waypoints set by you
   [*]You - Your can be shown in middle of the HUD to help you see your orientation in the world
+  [*]Elsweyr Dragons' location and health 
+  [*]PvP Icons and attack status
   [/LIST]
 [/LIST]
 

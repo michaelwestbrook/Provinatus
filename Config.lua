@@ -5,6 +5,12 @@ ProvinatusConfig = {
   Version = "{{**DEVELOPMENTVERSION**}}",
   Website = "http://www.esoui.com/downloads/info1943-Provinatus.html",
   SlashCommand = "/provinatus",
+  AVA = {
+    Enabled = false,
+    Alpha = 1,
+    Size = 24,
+    Objectives = false
+  },
   Compass = {
     Color = {
       r = 1,
@@ -26,7 +32,8 @@ ProvinatusConfig = {
     Zoom = 250,
     Fade = false,
     FadeRate = 1,
-    MinFade = 0.25
+    MinFade = 0.25,
+    Projection = "DefaultProjection"
   },
   LoreBooks = {
     Enabled = false,

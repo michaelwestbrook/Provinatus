@@ -1,16 +1,20 @@
 <Bindings>
   <Layer name="SI_KEYBINDINGS_CATEGORY_GENERAL">
-    <Category name="|cFF69B4Provinatus Custom Target|r">
+    <Category name="|cFF69B4Provinatus|r">
       <Action name="PROVINATUS_NEXT_TARGET">
         <Down>ProvinatusPointer:NextTarget()</Down>
       </Action>
       <Action name="PROVINATUS_CLEAR_TARGET">
         <Down>ProvinatusPointer.ClearTarget()</Down>
       </Action>
-    </Category>
-    <Category>
       <Action name="PROVINATUS_NEAREST_DEAD">
         <Down>ProvinatusPointer:SnapToNearestDeadTarget()</Down>
+      </Action>
+      <Action name="PROVINATUS_ZOOM_IN">
+        <Down>ProvinatusDisplay.ZoomIn()</Down>
+      </Action>
+      <Action name="PROVINATUS_ZOOM_OUT">
+        <Down>ProvinatusDisplay:ZoomOut()</Down>
       </Action>
     </Category>
   </Layer>

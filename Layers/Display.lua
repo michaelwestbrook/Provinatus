@@ -1,5 +1,9 @@
 ProvinatusDisplay = {}
 
+function ProvinatusDisplay.Initialize()
+  ProvinatusProjection.Initialize()
+end
+
 function ProvinatusDisplay.GetMenu()
   return {
     type = "submenu",
@@ -15,7 +19,7 @@ function ProvinatusDisplay.GetMenu()
           Provinatus.SavedVars.Display.Size = value
         end,
         min = 25,
-        max = 500,
+        max = 750,
         step = 1,
         clampInput = true,
         decimals = 0,
@@ -107,7 +111,7 @@ function ProvinatusDisplay.GetMenu()
           Provinatus.SavedVars.Display.Zoom = value
         end,
         min = 1,
-        max = 1000,
+        max = 100,
         step = 1,
         clampInput = true,
         decimals = 0,
@@ -118,67 +122,85 @@ function ProvinatusDisplay.GetMenu()
         tooltip = PROVINATUS_ZOOM_TT
       },
       [7] = {
-        type = "submenu",
-        name = PROVINATUS_FADE,
-        controls = {
-          [1] = {
-            type = "checkbox",
-            name = PROVINATUS_ENABLE,
-            getFunc = function()
-              return Provinatus.SavedVars.Display.Fade
-            end,
-            setFunc = function(value)
-              Provinatus.SavedVars.Display.Fade = value
-            end,
-            tooltip = PROVINATUS_FADE_TT,
-            width = "half",
-            default = ProvinatusConfig.Display.Fade
-          },
-          [2] = {
-            type = "slider",
-            name = PROVINATUS_FADE_MIN,
-            getFunc = function()
-              return Provinatus.SavedVars.Display.MinFade
-            end,
-            setFunc = function(value)
-              Provinatus.SavedVars.Display.MinFade = value
-            end,
-            min = 0,
-            max = 1,
-            step = 0.01,
-            decimals = 2,
-            autoSelect = true,
-            inputLocation = "below",
-            width = "half",
-            default = ProvinatusConfig.Display.MinFade,
-            tooltip = PROVINATUS_FADE_MIN_TT,
-            disabled = function()
-              return not Provinatus.SavedVars.Display.Fade
-            end
-          },
-          [3] = {
-            type = "slider",
-            name = PROVINATUS_FADE_RATE,
-            getFunc = function()
-              return Provinatus.SavedVars.Display.FadeRate
-            end,
-            setFunc = function(value)
-              Provinatus.SavedVars.Display.FadeRate = value
-            end,
-            min = 0.01,
-            max = 5,
-            step = 0.01,
-            decimals = 2,
-            autoSelect = true,
-            inputLocation = "below",
-            width = "full",
-            default = ProvinatusConfig.Display.FadeRate,
-            tooltip = PROVINATUS_FADE_RATE_TT,
-            disabled = function()
-              return not Provinatus.SavedVars.Display.Fade
-            end
-          }
-        }
+        type = "checkbox",
+        name = "Enable Fade",
+        getFunc = function()
+          return Provinatus.SavedVars.Display.Fade
+        end,
+        setFunc = function(value)
+          Provinatus.SavedVars.Display.Fade = value
+        end,
+        tooltip = PROVINATUS_FADE_TT,
+        width = "full",
+        default = ProvinatusConfig.Display.Fade
+      },
+      [8] = {
+        type = "slider",
+        name = PROVINATUS_FADE_MIN,
+        getFunc = function()
+          return Provinatus.SavedVars.Display.MinFade
+        end,
+        setFunc = function(value)
+          Provinatus.SavedVars.Display.MinFade = value
+        end,
+        min = 0,
+        max = 1,
+        step = 0.01,
+        decimals = 2,
+        autoSelect = true,
+        inputLocation = "below",
+        width = "half",
+        default = ProvinatusConfig.Display.MinFade,
+        tooltip = PROVINATUS_FADE_MIN_TT,
+        disabled = function()
+          return not Provinatus.SavedVars.Display.Fade
+        end
+      },
+      [9] = {
+        type = "slider",
+        name = PROVINATUS_FADE_RATE,
+        getFunc = function()
+          return Provinatus.SavedVars.Display.FadeRate
+        end,
+        setFunc = function(value)
+          Provinatus.SavedVars.Display.FadeRate = value
+        end,
+        min = 0.01,
+        max = 5,
+        step = 0.01,
+        decimals = 2,
+        autoSelect = true,
+        inputLocation = "below",
+        width = "half",
+        default = ProvinatusConfig.Display.FadeRate,
+        tooltip = PROVINATUS_FADE_RATE_TT,
+        disabled = function()
+          return not Provinatus.SavedVars.Display.Fade
+        end
+      },
+      [10] = {
+        type = "dropdown",
+        name = "Projection",
+        choices = {"Default", "Global"},
+        choicesValues = {"DefaultProjection", "GlobalProjection"},
+        getFunc = function()
+          return Provinatus.SavedVars.Display.Projection
+        end,
+        setFunc = function(value)
+          Provinatus.SavedVars.Display.Projection = value
+          ProvinatusProjection.Project = ProvinatusProjection[Provinatus.SavedVars.Display.Projection]
+        end,
+        tooltip = "Requires LibGPS.",
+        choicesTooltips = {
+          "Use local map coordinates. Icons move when changing map size. Does not require LibGPS",
+          "Use global map coordinates. Icons dont move when changing map size. Requires LibGPS"
+        },
+        width = "full",
+        scrollable = false,
+        disabled = function()
+          return LibGPS2 == nil
+        end,
+        default = ProvinatusConfig.Display.Projection
       }
     }
   }
@@ -207,4 +229,14 @@ function ProvinatusDisplay.SetMenuIcon()
     AnchorPosition = CENTER
   end
   ProvinatusOffsetCenterCheckbox.Pointer:SetAnchor(CENTER, ProvinatusOffsetCenterCheckbox, AnchorPosition, 0, 0)
+end
+local ZOOMRATE = 0.1
+local ZOOMMIN = 1
+local ZOOMMAX = 10000
+function ProvinatusDisplay:ZoomIn()
+  Provinatus.SavedVars.Display.Zoom = zo_round(math.min(Provinatus.SavedVars.Display.Zoom + Provinatus.SavedVars.Display.Zoom * ZOOMRATE, ZOOMMAX))
+end
+
+function ProvinatusDisplay:ZoomOut()
+  Provinatus.SavedVars.Display.Zoom = zo_round(math.max(Provinatus.SavedVars.Display.Zoom - Provinatus.SavedVars.Display.Zoom * ZOOMRATE, ZOOMMIN))
 end

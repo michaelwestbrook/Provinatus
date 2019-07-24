@@ -50,6 +50,8 @@
   "PROVINATUS_NEED_TWO_MEMBERS": "Need at least two members to set a custom target",
   "PROVINATUS_NO_SUITABLE_TARGET": "No suitable target found",
   "PROVINATUS_NO_TARGET_PROVIDED": "No valid target provided",
+  "PROVINATUS_OBJECTIVES": "Objectives",
+  "PROVINATUS_OBJECTIVES_TT":"Elder Scrolls and such",
   "PROVINATUS_OFFSET_CENTER": "Offset Center",
   "PROVINATUS_OFFSET_CENTER_TT": "Place center of HUD slightly below the center of the screen",
   "PROVINATUS_POI": "Points of Interest",
@@ -57,6 +59,8 @@
   "PROVINATUS_POINTER": "Crown Pointer Thing",
   "PROVINATUS_POINTER_SETTINGS": "Pointer Settings",
   "PROVINATUS_POINTS_OF_INTEREST": "Show Points of Interest?",
+  "PROVINATUS_PVP": "PvP",
+  "PROVINATUS_PVP_ENABLE": "Show PvP Icons",
   "PROVINATUS_RALLYPOINT": "Rally Point",
   "PROVINATUS_RALLYPOINT_SETTINGS": "Rally Point Settings",
   "PROVINATUS_REFRESH_RATE": "Refresh Rate",
@@ -145,5 +149,8 @@
   "PROVINATUS_TINY_CLAW": "Tiny Claw",
   "SI_BINDING_NAME_PROVINATUS_CLEAR_TARGET": "Clear custom target",
   "SI_BINDING_NAME_PROVINATUS_NEAREST_DEAD": "Find nearest dead player",
-  "SI_BINDING_NAME_PROVINATUS_NEXT_TARGET": "Next target"
+  "SI_BINDING_NAME_PROVINATUS_NEXT_TARGET": "Next target",
+  "SI_BINDING_NAME_PROVINATUS_ZOOM_IN": "Zoom in",
+  "SI_BINDING_NAME_PROVINATUS_ZOOM_OUT": "Zoom out"
+
 }

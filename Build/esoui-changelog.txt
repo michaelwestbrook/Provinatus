@@ -1,3 +1,10 @@
+[SIZE="4"][U][B]24 July 2019[/B][/U][/SIZE]
+[LIST]
+[*]Add Zoom in/out hotkeys
+[*]Added PvP pins
+[*]Added ability to use global coordinates for a smooth transition between maps of differing sizes
+[/LIST]
+
 [SIZE="4"][U][B]13 July 2019[/B][/U][/SIZE]
 [LIST]
 [*]Enable dragons on HUD

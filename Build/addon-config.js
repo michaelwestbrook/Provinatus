@@ -16,7 +16,7 @@ function initConfig(versionNumber, addOnVersion) {
     Author: `|cFF69B4${config.author}|r`,
     SavedVariables: 'ProvinatusVariables',
     DependsOn: 'LibAddonMenu-2.0',
-    OptionalDependsOn: 'pChat',
+    OptionalDependsOn: 'pChat LibGPS',
     APIVersion: config.apiVersion,
     AddOnVersion: config.addOnVersion,
     Version: config.version
@@ -31,6 +31,7 @@ function initConfig(versionNumber, addOnVersion) {
     'Data/POITextures.lua',
     'Data/Skyshards.lua',
     'Data/TreasureMaps.lua',
+    'Layers/AVA.lua',
     'Layers/Compass.lua',
     'Layers/Display.lua',
     'Layers/LoreBooks.lua',
