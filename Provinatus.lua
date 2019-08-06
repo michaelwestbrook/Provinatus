@@ -40,6 +40,7 @@ local function AddonLoaded(EventCode, AddonName)
       ProvinatusAVA,
       ProvinatusQuests,
       ProvinatusWaypoint,
+      ProvinatusServicePins,
       ProvinatusSkyshards,
       ProvinatusTreasureMaps,
       ProvinatusPOI,

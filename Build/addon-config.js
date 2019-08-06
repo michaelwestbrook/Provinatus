@@ -40,6 +40,7 @@ function initConfig(versionNumber, addOnVersion) {
     'Layers/Pointer.lua',
     'Layers/RallyPoint.lua',
     'Layers/Quests.lua',
+    'Layers/ServicePins.lua',
     'Layers/Skyshards.lua',
     'Layers/Team.lua',
     'Layers/TreasureMaps.lua',

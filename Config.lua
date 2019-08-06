@@ -68,6 +68,11 @@ ProvinatusConfig = {
     Size = 50,
     Alpha = 1
   },
+  ServicePins = {
+    Enabled = false,
+    Size = 24,
+    Alpha = 1
+  },
   Skyshards = {
     Enabled = false,
     ShowCollected = false,

@@ -1,3 +1,11 @@
+[SIZE="4"][U][B]5 August 2019[/B][/U][/SIZE]
+[LIST]
+[*]Display available service pins such as stables, banks, guild traders, most crafting stations, etc. Not all pins display but it should be enough to get you in the general area.
+[*]Corrected max zoom value available in the settings menu. Increased max zoom to 10000
+[*]Localized some strings
+[*]Default to new projection mode automatically if LibGPS is present
+[/LIST]
+
 [SIZE="4"][U][B]24 July 2019[/B][/U][/SIZE]
 [LIST]
 [*]Add Zoom in/out hotkeys

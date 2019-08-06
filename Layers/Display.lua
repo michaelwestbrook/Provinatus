@@ -1,3 +1,7 @@
+local ZOOMRATE = 0.1
+local ZOOMMIN = 1
+local ZOOMMAX = 10000
+
 ProvinatusDisplay = {}
 
 function ProvinatusDisplay.Initialize()
@@ -110,8 +114,8 @@ function ProvinatusDisplay.GetMenu()
         setFunc = function(value)
           Provinatus.SavedVars.Display.Zoom = value
         end,
-        min = 1,
-        max = 100,
+        min = ZOOMMIN,
+        max = ZOOMMAX,
         step = 1,
         clampInput = true,
         decimals = 0,
@@ -123,7 +127,7 @@ function ProvinatusDisplay.GetMenu()
       },
       [7] = {
         type = "checkbox",
-        name = "Enable Fade",
+        name = PROVINATUS_FADE,
         getFunc = function()
           return Provinatus.SavedVars.Display.Fade
         end,
@@ -180,27 +184,32 @@ function ProvinatusDisplay.GetMenu()
       },
       [10] = {
         type = "dropdown",
-        name = "Projection",
-        choices = {"Default", "Global"},
+        name = PROVINATUS_PROJECTION,
+        choices = {GetString(PROVINATUS_DEFAULT), GetString(PROVINATUS_GLOBAL)},
         choicesValues = {"DefaultProjection", "GlobalProjection"},
         getFunc = function()
           return Provinatus.SavedVars.Display.Projection
         end,
         setFunc = function(value)
           Provinatus.SavedVars.Display.Projection = value
-          ProvinatusProjection.Project = ProvinatusProjection[Provinatus.SavedVars.Display.Projection]
         end,
-        tooltip = "Requires LibGPS.",
+        tooltip = PROVINATUS_REQUIRES_LIBGPS,
         choicesTooltips = {
-          "Use local map coordinates. Icons move when changing map size. Does not require LibGPS",
-          "Use global map coordinates. Icons dont move when changing map size. Requires LibGPS"
+          GetString(PROVINATUS_PROJECTION_DEFAULT_TT),
+          GetString(PROVINATUS_PROJECTION_GLOBAL_TT)
         },
         width = "full",
         scrollable = false,
         disabled = function()
           return LibGPS2 == nil
         end,
-        default = ProvinatusConfig.Display.Projection
+        default = function()
+          if LibGPS2 then
+            return "GlobalProjection"
+          else
+            return ProvinatusConfig.Display.Projection
+          end
+        end
       }
     }
   }
@@ -208,14 +217,16 @@ end
 
 function ProvinatusDisplay.SetMenuIcon()
   if not ProvinatusOffsetCenterCheckbox.Reticle then
-    ProvinatusOffsetCenterCheckbox.Reticle = WINDOW_MANAGER:CreateControl(nil, ProvinatusOffsetCenterCheckbox, CT_TEXTURE)
+    ProvinatusOffsetCenterCheckbox.Reticle =
+      WINDOW_MANAGER:CreateControl(nil, ProvinatusOffsetCenterCheckbox, CT_TEXTURE)
     ProvinatusOffsetCenterCheckbox.Reticle:SetTexture("esoui/art/worldmap/map_centerreticle.dds")
     ProvinatusOffsetCenterCheckbox.Reticle:SetAlpha(1)
     ProvinatusOffsetCenterCheckbox.Reticle:SetAnchor(CENTER, ProvinatusOffsetCenterCheckbox, CENTER, 0, 0)
     ProvinatusOffsetCenterCheckbox.Reticle:SetDimensions(24, 24)
     ProvinatusOffsetCenterCheckbox.Reticle:SetTextureRotation(math.pi / 4)
 
-    ProvinatusOffsetCenterCheckbox.Pointer = WINDOW_MANAGER:CreateControl(nil, ProvinatusOffsetCenterCheckbox.Reticle, CT_TEXTURE)
+    ProvinatusOffsetCenterCheckbox.Pointer =
+      WINDOW_MANAGER:CreateControl(nil, ProvinatusOffsetCenterCheckbox.Reticle, CT_TEXTURE)
     ProvinatusOffsetCenterCheckbox.Pointer:SetTexture("esoui/art/floatingmarkers/quest_icon_assisted.dds")
     ProvinatusOffsetCenterCheckbox.Pointer:SetDimensions(24, 24)
     ProvinatusOffsetCenterCheckbox.Pointer:SetTextureRotation(math.pi)
@@ -230,13 +241,13 @@ function ProvinatusDisplay.SetMenuIcon()
   end
   ProvinatusOffsetCenterCheckbox.Pointer:SetAnchor(CENTER, ProvinatusOffsetCenterCheckbox, AnchorPosition, 0, 0)
 end
-local ZOOMRATE = 0.1
-local ZOOMMIN = 1
-local ZOOMMAX = 10000
+
 function ProvinatusDisplay:ZoomIn()
-  Provinatus.SavedVars.Display.Zoom = zo_round(math.min(Provinatus.SavedVars.Display.Zoom + Provinatus.SavedVars.Display.Zoom * ZOOMRATE, ZOOMMAX))
+  Provinatus.SavedVars.Display.Zoom =
+    zo_round(math.min(Provinatus.SavedVars.Display.Zoom + Provinatus.SavedVars.Display.Zoom * ZOOMRATE, ZOOMMAX))
 end
 
 function ProvinatusDisplay:ZoomOut()
-  Provinatus.SavedVars.Display.Zoom = zo_round(math.max(Provinatus.SavedVars.Display.Zoom - Provinatus.SavedVars.Display.Zoom * ZOOMRATE, ZOOMMIN))
+  Provinatus.SavedVars.Display.Zoom =
+    zo_round(math.max(Provinatus.SavedVars.Display.Zoom - Provinatus.SavedVars.Display.Zoom * ZOOMRATE, ZOOMMIN))
 end
