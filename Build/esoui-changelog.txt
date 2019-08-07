@@ -1,3 +1,8 @@
+[SIZE="4"][U][B]6 August 2019[/B][/U][/SIZE]
+[LIST]
+[*]Fixed bug where nil values were being used. Thanks amber1019!
+[/LIST]
+
 [SIZE="4"][U][B]5 August 2019[/B][/U][/SIZE]
 [LIST]
 [*]Display available service pins such as stables, banks, guild traders, most crafting stations, etc. Not all pins display but it should be enough to get you in the general area.
