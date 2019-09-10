@@ -1,5 +1,5 @@
 local ZOOMRATE = 0.1
-local ZOOMMIN = 1
+local ZOOMMIN = 5
 local ZOOMMAX = 10000
 
 ProvinatusDisplay = {}

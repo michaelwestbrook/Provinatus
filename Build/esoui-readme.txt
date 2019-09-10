@@ -1,19 +1,18 @@
 [FONT="Arial Black"][SIZE="6"][COLOR="Plum"]Displays group members' locations and many other map locations on a Heads Up Display[/SIZE][/COLOR][/FONT]
 
-[COLOR="Plum"][SIZE="5"][B]What's new - 5 August 2019[/B][/SIZE][/COLOR]
+[COLOR="Plum"][SIZE="5"][B]What's new - 9 September 2019[/B][/SIZE][/COLOR]
 [LIST]
-[*]Display available service pins such as stables, banks, guild traders, most crafting stations, etc. Not all pins display but it should be enough to get you in the general area.
-[*]Corrected max zoom value available in the settings menu. Increased max zoom to 10000
-[*]Localized some strings
-[*]Default to new projection mode automatically if LibGPS is present
+[*]Add [URL="https://www.esoui.com/downloads/info2023-DungeonChampions.html"]Dungeon Champions Integration[/URL].
+[*]Fixed bug where you could not zoom in if you were at max zoom
 [/LIST]
 
 
 [COLOR="Plum"][SIZE="5"][B]Old News[/B][/SIZE][/COLOR]
 [LIST]
-[*][SIZE="4"][COLOR="Plum"][FONT="Arial Black"]PvP support![/FONT][/COLOR] Finds keeps, resources, bridges, Elder Scrolls, etc and display if they are under attack. (Sorry that took so long)[/SIZE]
-[*][SIZE="4"]Added Zoom in/out hotkeys for the HUD[/SIZE]
-[*][SIZE="4"]Added ability to use global coordinates for a smooth transition between maps of differing sizes. Requires [URL="https://www.esoui.com/downloads/info601-LibGPS2.html"]LibGPS[/URL][/SIZE]
+[*]Display available service pins such as stables, banks, guild traders, most crafting stations, etc. Not all pins display but it should be enough to get you in the general area.
+[*]Corrected max zoom value available in the settings menu. Increased max zoom to 10000
+[*]Localized some strings
+[*]Default to new projection mode automatically if LibGPS is present
 [/LIST]
 
 [SIZE="5"]Enable in the PvP Menu and select which icons to show[/SIZE]

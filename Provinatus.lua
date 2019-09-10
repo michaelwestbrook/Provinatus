@@ -47,7 +47,8 @@ local function AddonLoaded(EventCode, AddonName)
       ProvinatusLoreBooks,
       ProvinatusRallyPoint,
       ProvinatusPlayerOrientation,
-      ProvinatusWorldEvents
+      ProvinatusWorldEvents,
+      ProvinatusDungeonChampions
     }
     Provinatus.Layers = {}
     Provinatus.Icons = {}
@@ -69,11 +70,13 @@ end
 
 function Provinatus:SetPlayerData()
   local X, Y, Heading = GetMapPlayerPosition("player")
+  local Zone, Subzone = select(3,(GetMapTileTexture()):lower():gsub("ui_map_", ""):find("maps/([%w%-]+)/([%w%-]+_[%w%-]+)"))
   self.X = X
   self.Y = Y
   self.Heading = Heading
   self.CameraHeading = GetPlayerCameraHeading()
-  self.Zone = string.match(string.gsub(GetMapTileTexture(), "UI_Map_", ""), "%w+/%w+/%w+/(%w+_%w+)")
+  self.Zone = Zone
+  self.Subzone = Subzone
   self.GroupSize = GetGroupSize()
 end
 

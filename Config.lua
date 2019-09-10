@@ -35,6 +35,12 @@ ProvinatusConfig = {
     MinFade = 0.25,
     Projection = "DefaultProjection"
   },
+  DungeonChampions = {
+    Enabled = false,
+    ShowDefeated = false,
+    Size = 24,
+    Alpha = 1
+  },
   LoreBooks = {
     Enabled = false,
     ShowCollected = false,
