@@ -1,8 +1,14 @@
 ProvinatusLoreBooks = {}
+local LOREBOOKS_ADDON_LOADED = LoreBooks_GetLocalData ~= nil
 
 function ProvinatusLoreBooks.Update()
   local Elements = {}
-  local LoreBooks = ProvinatusLoreBooksData[Provinatus.Zone]
+  local LoreBooks
+  if LOREBOOKS_ADDON_LOADED then
+    LoreBooks = LoreBooks_GetLocalData(Provinatus.Zone, Provinatus.Subzone)
+  else
+    LoreBooks = ProvinatusLoreBooksData[Provinatus.Subzone]
+  end
   if LoreBooks and Provinatus.SavedVars.LoreBooks.Enabled then
     for _, pinData in pairs(LoreBooks) do
       local _, Texture, Known = GetLoreBookInfo(1, pinData[3], pinData[4])
@@ -40,7 +46,13 @@ function ProvinatusLoreBooks.GetMenu()
         setFunc = function(value)
           Provinatus.SavedVars.LoreBooks.Enabled = value
         end,
-        tooltip = PROVINATUS_LORE_BOOKS_ENABLED_TT,
+        tooltip = function()
+          if LOREBOOKS_ADDON_LOADED then
+            return PROVINATUS_LORE_BOOKS_ENABLED_TT
+          else
+            return PROVINATUS_LORE_BOOKS_ENABLED_NO_LB_TT
+          end
+        end,
         width = "full",
         default = ProvinatusConfig.LoreBooks.Enabled
       },

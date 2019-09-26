@@ -28,8 +28,15 @@ end
 
 function ProvinatusSkyshards.Update()
   local Skyshards = {}
+  local SkyShardZoneData
+  if SkyShards_GetLocalData then
+    SkyShardZoneData = SkyShards_GetLocalData(Provinatus.Zone, Provinatus.Subzone)
+  else
+    SkyShardZoneData = ProvinatusSkyshardsData[Provinatus.Subzone]
+  end
+
   if Provinatus.SavedVars.Skyshards.Enabled then
-    for _, SkyshardData in pairs(ProvinatusSkyshardsData[Provinatus.Zone] or {}) do
+    for _, SkyshardData in pairs(SkyShardZoneData or {}) do
       table.insert(Skyshards, CreateElement(SkyshardData))
     end
   end
@@ -53,7 +60,13 @@ function ProvinatusSkyshards.GetMenu()
           ProvinatusSkyshards.CurrentZone = nil
           Provinatus.SavedVars.Skyshards.Enabled = value
         end,
-        tooltip = PROVINATUS_ENABLE_SKYSHARDS_TT,
+        tooltip = function()
+          if SkyShards_GetLocalData then
+            return PROVINATUS_ENABLE_SKYSHARDS_TT
+          else
+            return PROVINATUS_ENABLE_SKYSHARDS_NO_SS_TT
+          end
+        end,
         width = "full",
         default = ProvinatusConfig.Skyshards.Enabled
       },

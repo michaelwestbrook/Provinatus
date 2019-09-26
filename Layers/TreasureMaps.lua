@@ -14,13 +14,27 @@ local function CreateElement(TreasureMap)
 end
 
 function ProvinatusTreasureMaps.Update()
-  local Maps = ProvinatusTreasureMapsData[Provinatus.Zone]
+  local Maps
+  local SlotIndexIndex
   local Elements = {}
+  if LOST_TREASURE_DATA and LOST_TREASURE_DATA[Provinatus.Zone] and LOST_TREASURE_DATA[Provinatus.Zone]["treasure"] then
+    local ZONE_DATA = LOST_TREASURE_DATA[Provinatus.Zone]
+    Maps = {}
+    for TreasureType, TreasureTypeData in pairs(ZONE_DATA) do
+      for _, Data in pairs(TreasureTypeData) do
+        table.insert(Maps, Data)
+      end
+    end
+    SlotIndexIndex = 9
+  else
+    Maps = ProvinatusTreasureMapsData[Provinatus.Subzone]
+    SlotIndexIndex = 3
+  end
   if Provinatus.SavedVars.TreasureMaps.Enabled and Maps then
     for _, itemData in pairs(SHARED_INVENTORY:GenerateFullSlotData(nil, BAG_BACKPACK)) do
       if itemData and itemData.itemType == ITEMTYPE_TROPHY then
         for _, pinData in pairs(Maps) do
-          if GetItemId(BAG_BACKPACK, itemData.slotIndex) == pinData[3] then
+          if GetItemId(BAG_BACKPACK, itemData.slotIndex) == pinData[SlotIndexIndex] then
             table.insert(Elements, CreateElement(pinData))
           end
         end
@@ -45,6 +59,11 @@ function ProvinatusTreasureMaps.GetMenu()
         end,
         setFunc = function(value)
           Provinatus.SavedVars.TreasureMaps.Enabled = value
+        end,
+        tooltip = function()
+          if LOST_TREASURE_DATA == nil then
+            return PROVINATUS_TREASURE_MAPS_ENABLE_NO_ADDON
+          end
         end,
         width = "full",
         default = ProvinatusConfig.TreasureMaps.Enabled

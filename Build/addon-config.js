@@ -4,7 +4,7 @@ function initConfig(versionNumber, addOnVersion) {
   config.friendlyName = config.name;
   config.author = '@AlbinoPython (NA Server)';
   config.apiVersion = 100028;
-  config.compatibility = '4.3';
+  config.compatibility = '5.2.0';
   config.version = versionNumber;
   config.addOnVersion = addOnVersion;
   config.filesNeedingVersion = ['Config.lua'];
@@ -16,7 +16,7 @@ function initConfig(versionNumber, addOnVersion) {
     Author: `|cFF69B4${config.author}|r`,
     SavedVariables: 'ProvinatusVariables',
     DependsOn: 'LibAddonMenu-2.0',
-    OptionalDependsOn: 'pChat LibGPS DungeonChampions',
+    OptionalDependsOn: 'pChat LibGPS DungeonChampions SkyShards LoreBooks LostTreasure',
     APIVersion: config.apiVersion,
     AddOnVersion: config.addOnVersion,
     Version: config.version

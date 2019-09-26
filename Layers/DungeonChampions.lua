@@ -33,10 +33,6 @@ function DungeonChampions:Update()
       for _, ChampData in pairs(data) do
         local Element = CreateElement(ChampData)
         if Element then
-          if DPRINT then
-            d(Element)
-            d("***")
-          end
           table.insert(Elements, Element)
         end
       end

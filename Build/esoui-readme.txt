@@ -1,8 +1,17 @@
 [FONT="Arial Black"][SIZE="6"][COLOR="Plum"]Displays group members' locations and many other map locations on a Heads Up Display[/SIZE][/COLOR][/FONT]
 
-[COLOR="Plum"][SIZE="5"][B]What's new - 9 September 2019[/B][/SIZE][/COLOR]
+[SIZE="5"]Also displays data from the following add ons[/SIZE]
 [LIST]
-[*]Add [URL="https://www.esoui.com/downloads/info2023-DungeonChampions.html"]Dungeon Champions Integration[/URL].
+[*][SIZE="4"][URL="https://www.esoui.com/downloads/info2023-DungeonChampions.html"]Dungeon Champions[/URL][/SIZE]
+[*][SIZE="4"][URL="https://www.esoui.com/downloads/info288-LoreBooks.html"]LoreBooks[/URL][/SIZE]
+[*][SIZE="4"][URL="https://www.esoui.com/downloads/info561-LostTreasure.html"]LostTreasure[/URL][/SIZE]
+[*][SIZE="4"][URL="https://www.esoui.com/downloads/info128-SkyShards.html"]SkyShards[/URL][/SIZE]
+[/LIST]
+
+[COLOR="Plum"][SIZE="5"][B]What's new - 25 September 2019[/B][/SIZE][/COLOR]
+[LIST]
+[*]Added integration with [URL="https://www.esoui.com/downloads/info2023-DungeonChampions.html"]Dungeon Champions[/URL], [URL="https://www.esoui.com/downloads/info288-LoreBooks.html"]LoreBooks[/URL], [URL="https://www.esoui.com/downloads/info128-SkyShards.html"]SkyShards[/URL], and [URL="https://www.esoui.com/downloads/info561-LostTreasure.html"]LostTreasure[/URL].
+[*]'Static' data (SkyShards etc..) should now only load once per zone change.
 [*]Fixed bug where you could not zoom in if you were at max zoom
 [/LIST]
 

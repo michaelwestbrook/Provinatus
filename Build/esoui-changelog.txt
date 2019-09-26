@@ -1,6 +1,7 @@
-[SIZE="4"][U][B]9 September 2019[/B][/U][/SIZE]
+[SIZE="4"][U][B]25 September 2019[/B][/U][/SIZE]
 [LIST]
-[*]Add Dungeon Champions Integration. https://www.esoui.com/downloads/info2023-DungeonChampions.html
+[*]Added integration with Dungeon Champions, LoreBooks, SkyShards, and LostTreasure. https://www.esoui.com/downloads/info2023-DungeonChampions.html, https://www.esoui.com/downloads/info288-LoreBooks.html, https://www.esoui.com/downloads/info128-SkyShards.html, https://www.esoui.com/downloads/info561-LostTreasure.html
+[*]'Static' data (SkyShards etc..) should now only load once per zone change.
 [*]Fixed bug where you could not zoom in if you were at max zoom
 [/LIST]
 
