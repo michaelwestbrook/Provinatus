@@ -4,7 +4,7 @@ function initConfig(versionNumber, addOnVersion) {
   config.friendlyName = config.name;
   config.author = '@AlbinoPython (NA Server)';
   config.apiVersion = 100029;
-  config.compatibility = '5.2.0';
+  config.compatibility = '5.2.5';
   config.version = versionNumber;
   config.addOnVersion = addOnVersion;
   config.filesNeedingVersion = ['Config.lua'];

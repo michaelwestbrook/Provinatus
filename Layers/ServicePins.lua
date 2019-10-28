@@ -9,17 +9,19 @@ function ServicePins:Update()
   if Provinatus.SavedVars.ServicePins.Enabled then
     for i = 1, GetNumMapLocations() do
       local icon, normalizedX, normalizedY = GetMapLocationIcon(i)
-      table.insert(
-        Elements,
-        {
-          X = normalizedX,
-          Y = normalizedY,
-          Texture = icon,
-          Alpha = Provinatus.SavedVars.ServicePins.Alpha,
-          Height = Provinatus.SavedVars.ServicePins.Size,
-          Width = Provinatus.SavedVars.ServicePins.Size
-        }
-      )
+      if (icon and (icon ~= "")) then
+        table.insert(
+          Elements,
+          {
+            X = normalizedX,
+            Y = normalizedY,
+            Texture = icon,
+            Alpha = Provinatus.SavedVars.ServicePins.Alpha,
+            Height = Provinatus.SavedVars.ServicePins.Size,
+            Width = Provinatus.SavedVars.ServicePins.Size
+          }
+        )
+      end
     end
   end
 

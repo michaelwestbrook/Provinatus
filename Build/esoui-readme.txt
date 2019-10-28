@@ -8,20 +8,9 @@
 [*][SIZE="4"][URL="https://www.esoui.com/downloads/info128-SkyShards.html"]SkyShards[/URL][/SIZE]
 [/LIST]
 
-[COLOR="Plum"][SIZE="5"][B]What's new - 25 September 2019[/B][/SIZE][/COLOR]
+[COLOR="Plum"][SIZE="5"][B]What's new - 28 October 2019[/B][/SIZE][/COLOR]
 [LIST]
-[*]Added integration with [URL="https://www.esoui.com/downloads/info2023-DungeonChampions.html"]Dungeon Champions[/URL], [URL="https://www.esoui.com/downloads/info288-LoreBooks.html"]LoreBooks[/URL], [URL="https://www.esoui.com/downloads/info128-SkyShards.html"]SkyShards[/URL], and [URL="https://www.esoui.com/downloads/info561-LostTreasure.html"]LostTreasure[/URL].
-[*]'Static' data (SkyShards etc..) should now only load once per zone change.
-[*]Fixed bug where you could not zoom in if you were at max zoom
-[/LIST]
-
-
-[COLOR="Plum"][SIZE="5"][B]Old News[/B][/SIZE][/COLOR]
-[LIST]
-[*]Display available service pins such as stables, banks, guild traders, most crafting stations, etc. Not all pins display but it should be enough to get you in the general area.
-[*]Corrected max zoom value available in the settings menu. Increased max zoom to 10000
-[*]Localized some strings
-[*]Default to new projection mode automatically if LibGPS is present
+[*]Minor bug fixes
 [/LIST]
 
 [SIZE="5"]Enable in the PvP Menu and select which icons to show[/SIZE]

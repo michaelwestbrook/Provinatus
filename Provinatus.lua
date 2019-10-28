@@ -124,3 +124,15 @@ function Provinatus.SetRefreshRate()
 end
 
 EVENT_MANAGER:RegisterForEvent("Provinatus", EVENT_ADD_ON_LOADED, AddonLoaded)
+
+SLASH_COMMANDS["/foo"] = function()
+  Provinatus.SavedVars.Display.RefreshRate = 1
+  Provinatus.SetRefreshRate()
+  DPRINT = true
+end
+
+SLASH_COMMANDS["/bar"] = function()
+  Provinatus.SavedVars.Display.RefreshRate = 60
+  Provinatus.SetRefreshRate()
+  DPRINT = false
+end

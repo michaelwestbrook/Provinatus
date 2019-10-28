@@ -1,3 +1,9 @@
+[SIZE="4"][U][B]28 October 2019[/B][/U][/SIZE]
+[LIST]
+[*]Fixed bug where POIs would always show
+[*]No longer shows squares for unknow service pin types
+[/LIST]
+
 [SIZE="4"][U][B]25 September 2019[/B][/U][/SIZE]
 [LIST]
 [*]Added integration with Dungeon Champions, LoreBooks, SkyShards, and LostTreasure. https://www.esoui.com/downloads/info2023-DungeonChampions.html, https://www.esoui.com/downloads/info288-LoreBooks.html, https://www.esoui.com/downloads/info128-SkyShards.html, https://www.esoui.com/downloads/info561-LostTreasure.html

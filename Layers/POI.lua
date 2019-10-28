@@ -124,7 +124,7 @@ function ProvinatusPOI.Update()
   for poiIndex = 1, GetNumPOIs(zoneIndex) do
     local normalizedX, normalizedY, poiType, icon, isShownInCurrentMap, linkedCollectibleIsLocked, isDiscovered, isNearby = GetPOIMapInfo(zoneIndex, poiIndex)
     local POIType = ProvinatusPOIMapping[icon]
-    if POIType and Provinatus.SavedVars.POI[POIType] and Provinatus.SavedVars.POI[POIType].Enabled and (not isDiscovered or Provinatus.SavedVars.POI[POIType].ShowDiscovered) and isShownInCurrentMap then
+    if Provinatus.SavedVars.POI.Enabled and POIType and Provinatus.SavedVars.POI[POIType] and Provinatus.SavedVars.POI[POIType].Enabled and (not isDiscovered or Provinatus.SavedVars.POI[POIType].ShowDiscovered) and isShownInCurrentMap then
       table.insert(
         Destinations,
         {
